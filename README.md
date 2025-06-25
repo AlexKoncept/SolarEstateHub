@@ -40,8 +40,7 @@ C’est de cette idée qu’est né **SolarEstateHub** — un nouveau **Koncept 
 - Animations CSS & transition JS
 - Structure modulaire (une page par planète)
 
-
-
+---
 
 🙌 Auteur
 Alex Koncept

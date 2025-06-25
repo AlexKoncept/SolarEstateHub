@@ -39,3 +39,10 @@ C’est de cette idée qu’est né **SolarEstateHub** — un nouveau **Koncept 
 - JavaScript
 - Animations CSS & transition JS
 - Structure modulaire (une page par planète)
+
+
+🙌 Auteur
+Alex Koncept
+Créateur de mondes, d'idées folles et de designs immersifs.
+
+"Les Koncepts naissent d’un rêve, prennent vie dans le code, et voyagent dans les étoiles."

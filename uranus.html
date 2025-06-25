@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uranus Living - Habitations Orbitales de Luxe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, #001a33 0%, #003366 50%, #0066cc 100%);
+            color: #e6f2ff;
+            min-height: 100vh;
+        }
+        .frosted-glass {
+            background: rgba(13, 42, 82, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 149, 237, 0.3);
+        }
+        .hover-glow:hover {
+            box-shadow: 0 0 15px rgba(100, 149, 237, 0.7);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="frosted-glass fixed w-full z-50 py-4 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-cyan-300 flex items-center">
+                <i class="fas fa-planet-ringed mr-2"></i>
+                URANUS LIVING
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#habitats" class="hover:text-cyan-300 transition">Nos Habitats</a>
+                <a href="#avantages" class="hover:text-cyan-300 transition">Avantages</a>
+                <a href="#gallerie" class="hover:text-cyan-300 transition">Gallerie</a>
+                <a href="#contact" class="hover:text-cyan-300 transition">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-cyan-300 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden absolute left-0 right-0 mt-4 py-4 px-6 frosted-glass rounded-b-lg">
+            <div class="flex flex-col space-y-3">
+                <a href="#habitats" class="hover:text-cyan-300 transition">Nos Habitats</a>
+                <a href="#avantages" class="hover:text-cyan-300 transition">Avantages</a>
+                <a href="#gallerie" class="hover:text-cyan-300 transition">Gallerie</a>
+                <a href="#contact" class="hover:text-cyan-300 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+<!-- Hero Section -->
+
+    <!-- === CODE DU BOUTON À AJOUTER ICI === -->
+    
+    <!-- Hero section -->
+    <header class="pt-24 pb-32 relative">
+        <!-- Hero section -->
+        <header class="pt-24 pb-32 relative">
+
+<!-- === Bouton Retour Flottant === -->
+<a href="index.html" 
+   class="fixed top-5 left-5 z-50 inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold hover:bg-white/20 hover:border-white/40 transition-all duration-300"
+   title="Retour à la page d'accueil">
+    <i class="fas fa-arrow-left mr-2"></i>
+    <span>Accueil</span>
+</a>
+<!-- =============================== -->
+
+
+<section class="parallax" style="background-image: url('Uranus/uranus.jpg'); min-height: 100vh; padding-top: 80px;">
+    
+    <!-- Tout ce contenu doit être PRÉSENT à l'intérieur de la balise <section> -->
+    <div class="container mx-auto px-6 flex flex-col justify-center items-center text-center h-full">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 text-cyan-200 drop-shadow-lg">
+            VOTRE NOUVELLE VIE <br><span class="text-white">SUR URANUS</span>
+        </h1>
+        <p class="text-xl md:text-2xl mb-10 max-w-3xl">
+            Découvrez des habitats orbitaux de luxe avec vue imprenable sur les anneaux d'Uranus, où le futur de l'humanité commence aujourd'hui.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="#habitats" class="bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 px-8 rounded-full transition hover-glow">Explorer</a>
+            <a href="#contact" class="border-2 border-cyan-300 hover:bg-cyan-900/30 text-cyan-300 font-bold py-3 px-8 rounded-full transition hover-glow">Réserver</a>
+        </div>
+    </div>
+    
+</section>
+
+    <!-- About Section -->
+    <section class="py-20 px-6" style="background: linear-gradient(180deg, #001a33 0%, #000d1a 100%);">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-16 text-center text-cyan-300">LA NOUVELLE FRONTIÈRE</h2>
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="md:w-1/2">
+    <img src="Uranus/station-uranus.jpg" alt="Station Uranus" class="w-full rounded-xl shadow-2xl floating">
+</div>
+                <div class="md:w-1/2">
+                    <h3 class="text-3xl font-semibold mb-6 text-cyan-200">Vivre parmi les nuages d'Uranus</h3>
+                    <p class="mb-6 text-lg">Nos habitats en orbite géosynchrone offrent une vue imprenable sur les couches supérieures d'Uranus, avec ses nuages d'hydrogène, d'hélium et de méthane qui créent un spectacle céleste incomparable.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-temperature-high text-cyan-400 mt-1 mr-3"></i>
+                            <span>Dômes climatiques à température contrôlée (22°C constante)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-leaf text-cyan-400 mt-1 mr-3"></i>
+                            <span>Écosystèmes fermés avec parcs, jardins et fermes hydroponiques</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-shield-alt text-cyan-400 mt-1 mr-3"></i>
+                            <span>Protection magnétique avancée contre les radiations</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Habitat Types -->
+    <section id="habitats" class="py-20 px-6 frosted-glass">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-4 text-center text-cyan-300">NOS HABITATS EXCLUSIFS</h2>
+            <p class="text-xl text-center mb-16 max-w-3xl mx-auto">Choisissez parmi nos trois modèles d'habitats orbitaux, tous offrant des vues panoramiques à couper le souffle sur Uranus et ses anneaux.</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Habitat 1 -->
+                <div class="bg-gray-900/70 rounded-xl overflow-hidden hover-glow transition">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('Uranus/Orbital classic.jpg')"></div>
+                    <div classp-6">
+                        <h3 class="text-2xl font-bold mb-2 text-cyan-300">L'ORBITAL CLASSIC</h3>
+                        <p class="text-gray-300 mb-4">Appartements de 60 à 120 m² avec baies vitrées donnant sur Uranus. Parfait pour les célibataires ou couples.</p>
+                        <div class="flex justify-between items-end">
+                            <span class="text-2xl font-bold">À partir de <br> <span class="text-cyan-300">2.5M €</span></span>
+                            <button class="bg-cyan-600 hover:bg-cyan-500 text-white py-2 px-4 rounded-full transition">Détails</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Habitat 2 -->
+                <div class="bg-gray-900/70 rounded-xl overflow-hidden hover-glow transition transform scale-105 z-10 border border-cyan-400/30">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('Uranus/Habitat2.jpg')"; position: relative;">
+                        <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">POPULAIRE</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 text-cyan-300">LE DÔME FAMILIAL</h3>
+                        <p class="text-gray-300 mb-4">Maisons de 150 à 300 m² avec accès privé aux jardins flottants et écoles orbitales. Idéal pour les familles.</p>
+                        <div class="flex justify-between items-end">
+                            <span class="text-2xl font-bold">À partir de <br> <span class="text-cyan-300">5.8M €</span></span>
+                            <button class="bg-cyan-600 hover:bg-cyan-500 text-white py-2 px-4 rounded-full transition">Détails</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Habitat 3 -->
+                <div class="bg-gray-900/70 rounded-xl overflow-hidden hover-glow transition">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('Uranus/Habitat3.jpg')"></div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 text-cyan-300">LA RÉSIDENCE EXÉCUTIVE</h3>
+                        <p class="text-gray-300 mb-4">Penthouses de 400+ m² avec jardins privés, observatoires et accès VIP à tous les équipements.</p>
+                        <div class="flex justify-between items-end">
+                            <span class="text-2xl font-bold">À partir de <br> <span class="text-cyan-300">12M €</span></span>
+                            <button class="bg-cyan-600 hover:bg-cyan-500 text-white py-2 px-4 rounded-full transition">Détails</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages -->
+    <section id="avantages" class="py-20 px-6" style="background: linear-gradient(180deg, #000d1a 0%, #001a33 100%);">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-16 text-center text-cyan-300">POURQUOI CHOISIR URANUS ?</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <div class="flex items-start">
+                    <div class="mr-6 text-cyan-300 text-4xl">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-3 text-cyan-200">Vues Spectaculaires</h3>
+                        <p>Admirez chaque jour le spectacle des anneaux d'Uranus et de ses 27 lunes. Nos stations offrent des vues panoramiques à 360° depuis chaque habitat.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="mr-6 text-cyan-300 text-4xl">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-3 text-cyan-200">Santé Optimale</h3>
+                        <p>Notre gravité artificielle ajustable et notre air purifié garantissent une santé optimale. L'espérance de vie moyenne dans nos stations dépasse les 100 ans.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="mr-6 text-cyan-300 text-4xl">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-3 text-cyan-200">Éducation Spatiale</h3>
+                        <p>Nos écoles orbitales offrent un cursus unique en astronomie, ingénierie spatiale et sciences planétaires, avec des professeurs parmi les meilleurs du système solaire.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="mr-6 text-cyan-300 text-4xl">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-3 text-cyan-200">Technologie de Pointe</h3>
+                        <p>Nos stations intègrent les dernières avancées en IA, recyclage d'air et d'eau, et énergie propre. Le taux d'autosuffisance atteint 98%.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button class="border-2 border-cyan-300 hover:bg-cyan-900/30 text-cyan-300 font-bold py-3 px-8 rounded-full transition hover-glow">
+                    <i class="fas fa-file-alt mr-2"></i>TÉLÉCHARGER LA BROCHURE COMPLÈTE
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallerie" class="py-20 px-6 frosted-glass">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-16 text-center text-cyan-300">GALERIE IMMERSIVE</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="col-span-1 rounded-xl overflow-hidden h-96 hover-glow">
+                    <img src="Uranus/Dôme résidentiel.jpg" alt="Dôme résidentiel" class="w-full h-full object-cover">
+                </div>
+                <div class="col-span-1 md:col-span-2 rounded-xl overflow-hidden h-96 hover-glow">
+                    <img src="Uranus/Uranus.jpg" alt="Vue sur Uranus" class="w-full h-full object-cover">
+                </div>
+                <div class="col-span-1 md:col-span-2 rounded-xl overflow-hidden h-96 hover-glow">
+                    <img src="Uranus/Jardin intérieur.jpg" alt="Jardin intérieur" class="w-full h-full object-cover">
+                </div>
+                <div class="col-span-1 rounded-xl overflow-hidden h-96 hover-glow">
+                    <img src="Uranus/Coucher de soleil.jpg" alt="Coucher de soleil" class="w-full h-full object-cover">
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button class="bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 px-8 rounded-full transition hover-glow">
+                    <i class="fas fa-virtual-reality mr-2"></i>VISITE VIRTUELLE 360°
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 px-6" style="background: linear-gradient(180deg, #001a33 0%, #000d1a 100%);">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-16 text-center text-cyan-300">TEMOIGNAGES DE NOS RÉSIDENTS</h2>
+            
+            <div class="flex flex-col md:flex-row gap-8 mb-12">
+                <div class="bg-gray-900/70 rounded-xl p-8 md:w-1/2 hover-glow">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Marie L." class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Marie L.</h4>
+                            <div class="flex text-amber-300">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Vivre sur Uranus a transformé ma vie. Les jardins flottants sont magiques, et les couchers de soleil sur les anneaux sont à couper le souffle. L'école spatiale pour mes enfants est d'une qualité inégalée sur Terre."</p>
+                </div>
+                
+                <div class="bg-gray-900/70 rounded-xl p-8 md:w-1/2 hover-glow">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Jean P." class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Jean P.</h4>
+                            <div class="flex text-amber-300">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"En tant que retraité, j'apprécie particulièrement le système de santé avancé et l'air pur. La communauté est soudée et les activités culturelles sont nombreuses. Je n'ai jamais eu aussi peu de douleurs articulaires!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 px-6 frosted-glass">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-2 text-center text-cyan-300">PRÊT POUR LE GRAND SAUT ?</h2>
+            <p class="text-xl text-center mb-16 max-w-3xl mx-auto">Nos conseillers en colonisation spatiale sont à votre disposition pour répondre à toutes vos questions et vous guider dans votre projet de vie sur Uranus.</p>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block mb-2">Votre nom complet</label>
+                            <input type="text" id="name" class="w-full bg-gray-800/50 border border-cyan-500/30 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block mb-2">Votre email</label>
+                            <input type="email" id="email" class="w-full bg-gray-800/50 border border-cyan-500/30 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                        </div>
+                        
+                        <div>
+                            <label for="phone" class="block mb-2">Téléphone (optionnel)</label>
+                            <input type="tel" id="phone" class="w-full bg-gray-800/50 border border-cyan-500/30 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                        </div>
+                        
+                        <div>
+                            <label for="interest" class="block mb-2">Type d'habitat qui vous intéresse</label>
+                            <select id="interest" class="w-full bg-gray-800/50 border border-cyan-500/30 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                                <option value="">Sélectionnez une option</option>
+                                <option value="orbital">Orbital Classic</option>
+                                <option value="dome">Dôme Familial</option>
+                                <option value="executive">Résidence Executive</option>
+                                <option value="other">Autre</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block mb-2">Votre message</label>
+                            <textarea id="message" rows="4" class="w-full bg-gray-800/50 border border-cyan-500/30 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-cyan-400"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 px-4 rounded-lg transition hover-glow">
+                            ENVOYER MESSAGE
+                        </button>
+                    </form>
+                </div>
+                
+                <div>
+                    <div class="bg-gray-900/60 rounded-xl p-8 h-full">
+                        <h3 class="text-2xl font-bold mb-6 text-cyan-300">CONTACTEZ-NOUS</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <i class="fas fa-phone-alt text-cyan-300 mt-1 mr-4"></i>
+                                <div>
+                                    <h4 class="font-bold mb-1">Téléphone</h4>
+                                    <p class="text-gray-300">+1 (555) URANUS-8</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope text-cyan-300 mt-1 mr-4"></i>
+                                <div>
+                                    <h4 class="font-bold mb-1">Email</h4>
+                                    <p class="text-gray-300">contact@uranus-living.space</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-cyan-300 mt-1 mr-4"></i>
+                                <div>
+                                    <h4 class="font-bold mb-1">Bureau Terrestre</h4>
+                                    <p class="text-gray-300">Station Spatiale Gateway <br> Orbite Lunaire, Secteur 7-G</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-rocket text-cyan-300 mt-1 mr-4"></i>
+                                <div>
+                                    <h4 class="font-bold mb-1">Transport</h4>
+                                    <p class="text-gray-300">Navettes hebdomadaires depuis la Lune. Temps de trajet moyen : 2 semaines en propulsion quantique.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 pt-6 border-t border-cyan-500/30">
+                            <h4 class="font-bold mb-4 text-cyan-200">SUIVEZ-NOUS</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="text-cyan-300 hover:text-white text-xl"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="text-cyan-300 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="text-cyan-300 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="text-cyan-300 hover:text-white text-xl"><i class="fab fa-tiktok"></i></a>
+                                <a href="#" class="text-cyan-300 hover:text-white text-xl"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6" style="background: linear-gradient(180deg, #000d1a 0%, #000511 100%);">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-cyan-300 font-bold text-lg mb-4">URANUS LIVING</h4>
+                    <p class="text-gray-400">Pionniers de la colonisation orbitale depuis 2154. Notre mission est de rendre la vie dans l'espace accessible, confortable et durable.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-cyan-300 font-bold text-lg mb-4">LIENS RAPIDES</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-300 transition">Carrières</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-300 transition">Presse</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-300 transition">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-300 transition">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-cyan-300 font-bold text-lg mb-4">INFORMATIONS LÉGALES</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-300 transition">Mentions légales</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-300 transition">Politique de confidentialité</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-300 transition">Conditions générales</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-300 transition">Assurance spatiale</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-cyan-300 font-bold text-lg mb-4">NEWSLETTER</h4>
+                    <p class="text-gray-400 mb-4">Recevez nos dernières offres et actualités spatiales.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Votre email" class="bg-gray-800 text-white py-2 px-4 rounded-l-lg focus:outline-none focus:ring-1 focus:ring-cyan-400 w-full">
+                        <button class="bg-cyan-600 hover:bg-cyan-500 text-white py-2 px-4 rounded-r-lg transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-6 border-t border-gray-800 text-center text-gray-500">
+                <p>&copy; 2154-2162 Uranus Living Corporation. Tous droits réservés. URANUS LIVING™ est une marque déposée de United Space Habitats Ltd.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating contact button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button id="contact-float" class="bg-cyan-600 hover:bg-cyan-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-xl transition hover-glow">
+            <i class="fas fa-comments text-2xl"></i>
+        </button>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Floating contact button
+        document.getElementById('contact-float').addEventListener('click', function() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Smooth scrolling for all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

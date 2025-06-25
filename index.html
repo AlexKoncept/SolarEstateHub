@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SolarEstateHub - Carte du Système Solaire</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: url('fond-espace.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Orbitron', sans-serif;
+      overflow-x: hidden; /* Empêche le défilement horizontal */
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 2rem;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .solar-system {
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 6rem);
+      display: flex;
+      align-items: center; /* Centre les éléments verticalement pour un meilleur rendu */
+    }
+
+    /* Style commun pour les corps célestes */
+    .sun, .planet {
+      position: absolute;
+      border-radius: 50%;
+      display: block;
+      text-decoration: none;
+    }
+
+    .sun img, .planet img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    
+    /* Style spécifique pour le Soleil */
+    .sun {
+      width: 150px; /* Plus grand que les planètes */
+      height: 150px;
+      left: 5%;
+      top: 50%;
+      transform: translateY(-50%); /* Pour un centrage vertical parfait */
+      z-index: 20;
+      transition: box-shadow 0.4s;
+    }
+
+    .sun:hover {
+      box-shadow: 0 0 35px 15px rgba(255, 223, 0, 0.7); /* Effet de lueur */
+    }
+
+    /* Style pour les planètes */
+    .planet {
+      width: 80px;
+      height: 80px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .planet:hover {
+      transform: scale(1.2);
+      z-index: 10;
+    }
+
+    .tooltip {
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.8);
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      font-size: 0.8rem;
+      color: #fff;
+    }
+
+    /* Affiche le tooltip au survol pour le soleil ET les planètes */
+    .sun:hover .tooltip,
+    .planet:hover .tooltip {
+      opacity: 1;
+    }
+
+    /* --- NOUVEAU POSITIONNEMENT (décalé vers la droite) --- */
+    /* .sun est déjà positionné plus haut */
+    .mercury  { top: 60%; left: 22%; }
+    .venus    { top: 40%; left: 32%; }
+    .earth    { top: 70%; left: 42%; }
+    .mars     { top: 50%; left: 52%; }
+    .jupiter  { top: 30%; left: 62%; }
+    .saturn   { top: 60%; left: 72%; }
+    .uranus   { top: 40%; left: 82%; }
+    .neptune  { top: 65%; left: 92%; }
+  </style>
+</head>
+<body>
+  <header>
+    🌌 Bienvenue sur SolarEstateHub – Choisissez votre planète 🌌
+  </header>
+
+  <main class="solar-system">
+    
+    <!-- SOLEIL -->
+    <div class="sun" title="Le Soleil">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Map_of_the_full_sun.jpg/1024px-Map_of_the_full_sun.jpg" alt="Le Soleil">
+      <div class="tooltip">Soleil<br>Temp: 5,505°C<br>Notre étoile</div>
+    </div>
+
+    <!-- PLANÈTES -->
+    <a href="mercure.html" class="planet mercury" title="Mercure">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Mercury_in_true_color.jpg" alt="Mercure">
+      <div class="tooltip">Mercure<br>Temp: 167°C<br>Gravité: 0.38g</div>
+    </a>
+    <a href="venus.html" class="planet venus" title="Vénus">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Venus-real_color.jpg" alt="Vénus">
+      <div class="tooltip">Vénus<br>Temp: 464°C<br>Gravité: 0.9g</div>
+    </a>
+    <a href="terre.html" class="planet earth" title="Terre">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" alt="Terre">
+      <div class="tooltip">Terre<br>Temp: 15°C<br>Gravité: 1g</div>
+    </a>
+    <a href="mars.html" class="planet mars" title="Mars">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" alt="Mars">
+      <div class="tooltip">Mars<br>Temp: -60°C<br>Gravité: 0.38g</div>
+    </a>
+    <a href="jupiter.html" class="planet jupiter" title="Jupiter">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" alt="Jupiter">
+      <div class="tooltip">Jupiter<br>Temp: -110°C<br>Gravité: 2.4g</div>
+    </a>
+    <a href="saturne.html" class="planet saturn" title="Saturne">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_during_Equinox.jpg" alt="Saturne">
+      <div class="tooltip">Saturne<br>Temp: -140°C<br>Gravité: 1.1g</div>
+    </a>
+    <a href="uranus.html" class="planet uranus" title="Uranus">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Uranus2.jpg" alt="Uranus">
+      <div class="tooltip">Uranus<br>Temp: -195°C<br>Gravité: 0.89g</div>
+    </a>
+    <a href="neptune.html" class="planet neptune" title="Neptune">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Neptune_Full.jpg" alt="Neptune">
+      <div class="tooltip">Neptune<br>Temp: -200°C<br>Gravité: 1.14g</div>
+    </a>
+  </main>
+</body>
+</html>

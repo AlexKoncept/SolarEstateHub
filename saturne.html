@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saturn Living - Propriétés Orbitales de Luxe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Oxanium:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Oxanium', sans-serif;
+            background-color: #0a0a15;
+            color: #e0e0ff;
+            overflow-x: hidden;
+        }
+        
+        .title-font {
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 10px rgba(100, 150, 255, 0.5);
+        }
+        
+        .space-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at center, #060612 0%, #000000 100%);
+        }
+        
+        .saturn-rings {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(15deg);
+            width: 200vw;
+            height: 30px;
+            background: linear-gradient(90deg, 
+                rgba(255,255,255,0) 0%, 
+                rgba(200,220,255,0.1) 15%,
+                rgba(170,200,255,0.3) 30%,
+                rgba(200,220,255,0.1) 70%, 
+                rgba(255,255,255,0) 100%);
+            z-index: -1;
+            opacity: 0.6;
+        }
+        
+        .property-card {
+            background: rgba(20, 25, 50, 0.7);
+            border: 1px solid rgba(100, 150, 255, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(100, 150, 255, 0.1);
+        }
+        
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(100, 150, 255, 0.3);
+            border: 1px solid rgba(100, 150, 255, 0.5);
+        }
+        
+        .glow-effect {
+            position: relative;
+        }
+        
+        .glow-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            box-shadow: 0 0 15px rgba(100, 150, 255, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .glow-effect:hover::after {
+            opacity: 1;
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(100, 150, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(100, 150, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(100, 150, 255, 0); }
+        }
+        
+        .btn-neon {
+            background: linear-gradient(45deg, #0066ff, #6600ff);
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-neon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-neon:hover::before {
+            left: 100%;
+            top: 100%;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #66a6ff, #a65fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .scroll-down-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #66a6ff;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+            40% {transform: translateY(-20px) translateX(-50%);}
+            60% {transform: translateY(-10px) translateX(-50%);}
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @media (max-width: 768px) {
+            .saturn-rings {
+                width: 300vw;
+                height: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="space-bg"></div>
+    <div class="saturn-rings"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg border-b border-indigo-900 border-opacity-30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="title-font text-xl gradient-text">SATURN LIVING</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#properties" class="text-indigo-200 hover:text-white transition">Propriétés</a>
+                    <a href="#features" class="text-indigo-200 hover:text-white transition">Avantages</a>
+                    <a href="#gallery" class="text-indigo-200 hover:text-white transition">Galerie</a>
+                    <a href="#contact" class="text-indigo-200 hover:text-white transition">Contact</a>
+                </div>
+                <button class="md:hidden text-indigo-200 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+
+    <!-- === CODE DU BOUTON À AJOUTER ICI === -->
+    
+    <!-- Hero section -->
+    <header class="pt-24 pb-32 relative">
+        <!-- Hero section -->
+        <header class="pt-24 pb-32 relative">
+
+<!-- === Bouton Retour Flottant === -->
+<a href="index.html" 
+   class="fixed top-5 left-5 z-50 inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold hover:bg-white/20 hover:border-white/40 transition-all duration-300"
+   title="Retour à la page d'accueil">
+    <i class="fas fa-arrow-left mr-2"></i>
+    <span>Accueil</span>
+</a>
+<!-- =============================== -->
+
+
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+        <div class="container mx-auto px-6 z-10 text-center">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 title-font">
+                <span class="gradient-text">VOTRE RÊVE</span> <span class="text-white">ORBITAL</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-indigo-200 max-w-3xl mx-auto mb-10">
+                Propriétés exclusives sur les anneaux de Saturne et stations orbitales de luxe avec vues imprenables sur le système solaire.
+            </p>
+            <a href="#properties" class="btn-neon text-white font-bold py-3 px-8 rounded-full text-lg inline-block relative overflow-hidden">
+                EXPLORER LES BIENS
+            </a>
+            <div class="scroll-down-btn">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </div>
+       <!-- Floating Saturn illustration (VOTRE IMAGE LOCALE) -->
+<div class="absolute right-10 top-1/4 w-64 h-64 floating hidden md:block">
+    <img src="Saturne/saturne.png" alt="Illustration de Saturne" class="w-full h-full object-contain">
+</div>
+    </section>
+    
+    <!-- Properties Section -->
+    <section id="properties" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-bold mb-16 text-center title-font">
+                <span class="gradient-text">NOS PROPRIÉTÉS</span> <span class="text-white">EXCLUSIVES</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Property 1 -->
+                <div class="property-card rounded-xl overflow-hidden glow-effect transition-all duration-300">
+                    <!-- On a supprimé les classes de fond et l'icône -->
+<div class="h-48 overflow-hidden"> <!-- overflow-hidden est important pour que l'image ne dépasse pas -->
+    <img src="Saturne/Hôtel Orbital Titan.jpg" alt="Vue de l'Hôtel Orbital Titan" class="w-full h-full object-cover">
+</div>
+                    <div classp-6">
+                        <h3 class="text-2xl font-bold mb-3 gradient-text title-font">Hôtel Orbital Titan Vue</h3>
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-map-marker-alt text-blue-400 mr-2"></i>
+                            <span>Anneau B de Saturne - Secteur 7</span>
+                        </div>
+                        <p class="text-indigo-200 mb-4">Suites panoramiques avec vue directe sur Titan. Gravité artificielle de 1G, spa interstellaire et observatoire privé.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold gradient-text">12.5M €</span>
+                            <span class="bg-indigo-900 bg-opacity-50 px-3 py-1 rounded-full text-sm">500m²</span>
+                        </div>
+                        <button class="btn-neon w-full py-2 rounded-lg text-white font-bold">
+                            Détails <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Property 2 -->
+                <div class="property-card rounded-xl overflow-hidden glow-effect transition-all duration-300">
+                    <!-- On a supprimé les classes de fond et l'icône -->
+<div class="h-48 overflow-hidden"> <!-- overflow-hidden est important pour que l'image ne dépasse pas -->
+    <img src="Saturne/Celestial Ring Residence.jpg" alt="Vue de l'Hôtel Orbital Titan" class="w-full h-full object-cover">
+</div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3 gradient-text title-font">Résidence Celestial Ring</h3>
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-map-marker-alt text-blue-400 mr-2"></i>
+                            <span>Anneau A - Secteur Delta</span>
+                        </div>
+                        <p class="text-indigo-200 mb-4">Domaine résidentiel haut de gamme avec accès privé aux anneaux de Saturne. Chaque villa dispose d'une serre hydroponique.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold gradient-text">8.9M €</span>
+                            <span class="bg-indigo-900 bg-opacity-50 px-3 py-1 rounded-full text-sm">350m²</span>
+                        </div>
+                        <button class="btn-neon w-full py-2 rounded-lg text-white font-bold">
+                            Détails <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Property 3 -->
+                <div class="property-card rounded-xl overflow-hidden glow-effect transition-all duration-300">
+                    <div class="h-48 overflow-hidden"> <!-- overflow-hidden est important pour que l'image ne dépasse pas -->
+    <img src="Saturne/Stellar Horizon Observatory.jpg" alt="Vue de l'Hôtel Orbital Titan" class="w-full h-full object-cover">
+</div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3 gradient-text title-font">Observatoire Stellar Horizon</h3>
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-map-marker-alt text-blue-400 mr-2"></i>
+                            <span>Station Orbitale Encelade</span>
+                        </div>
+                        <p class="text-indigo-200 mb-4">Complexe scientifique privatisable avec dômes d'observation de pointe. Parfait pour astronomes et investisseurs éclairés.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold gradient-text">21.3M €</span>
+                            <span class="bg-indigo-900 bg-opacity-50 px-3 py-1 rounded-full text-sm">1200m²</span>
+                        </div>
+                        <button class="btn-neon w-full py-2 rounded-lg text-white font-bold">
+                            Détails <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16">
+                <a href="#contact" class="inline-block border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white font-bold py-3 px-8 rounded-full transition duration-300">
+                    Voir toutes nos propriétés
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4 bg-gradient-to-b from-blue-950 via-indigo-950 to-purple-950 bg-opacity-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-bold mb-16 text-center title-font">
+                <span class="gradient-text">VIVRE DANS</span> <span class="text-white">L'ESPACE</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-black bg-opacity-30 backdrop-filter backdrop-blur-sm rounded-xl p-6 border border-indigo-900 border-opacity-30 text-center hover:border-opacity-60 transition">
+                    <div class="w-16 h-16 bg-indigo-900 rounded-full flex items-center justify-center mx-auto mb-4 pulse-animation">
+                        <i class="fas fa-shield-alt text-2xl text-blue-300"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 gradient-text title-font">Protection Avancée</h3>
+                    <p class="text-indigo-200">Boucliers anti-radiation de pointe et systèmes de sécurité interstellaires certifiés.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-black bg-opacity-30 backdrop-filter backdrop-blur-sm rounded-xl p-6 border border-indigo-900 border-opacity-30 text-center hover:border-opacity-60 transition">
+                    <div class="w-16 h-16 bg-indigo-900 rounded-full flex items-center justify-center mx-auto mb-4 pulse-animation">
+                        <i class="fas fa-leaf text-2xl text-blue-300"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 gradient-text title-font">Écosystèmes Durables</h3>
+                    <p class="text-indigo-200">Jardins hydroponiques autonomes et systèmes de recyclage des ressources à 98%.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-black bg-opacity-30 backdrop-filter backdrop-blur-sm rounded-xl p-6 border border-indigo-900 border-opacity-30 text-center hover:border-opacity-60 transition">
+                    <div class="w-16 h-16 bg-indigo-900 rounded-full flex items-center justify-center mx-auto mb-4 pulse-animation">
+                        <i class="fas fa-wifi text-2xl text-blue-300"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 gradient-text title-font">Connectivité Quantique</h3>
+                    <p class="text-indigo-200">Communications instantanées avec la Terre via réseau quantique sécurisé.</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="bg-black bg-opacity-30 backdrop-filter backdrop-blur-sm rounded-xl p-6 border border-indigo-900 border-opacity-30 text-center hover:border-opacity-60 transition">
+                    <div class="w-16 h-16 bg-indigo-900 rounded-full flex items-center justify-center mx-auto mb-4 pulse-animation">
+                        <i class="fas fa-rocket text-2xl text-blue-300"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 gradient-text title-font">Transport Privé</h3>
+                    <p class="text-indigo-200">Accès VIP aux navettes spatiales privées et hangars personnels pour vaisseaux.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-bold mb-16 text-center title-font">
+                <span class="gradient-text">GALERIE</span> <span class="text-white">IMMERSIVE</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery Item 1 (avec image locale) -->
+<div class="relative h-64 rounded-xl overflow-hidden group">
+    <!-- L'icône et le fond ont été remplacés par une image -->
+    <img src="Saturne/Hôtel Orbital Aurora.jpg" alt="Hôtel Orbital Aurora" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+
+    <!-- L'effet de survol reste INCHANGÉ -->
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        <h3 class="text-xl font-bold text-white title-font">Hôtel Orbital Aurora</h3>
+    </div>
+</div>
+                
+                <!-- Gallery Item 2 (avec image locale) -->
+<div class="relative h-64 rounded-xl overflow-hidden group">
+    <!-- On remplace le fond et l'icône par une image locale -->
+    <img src="Saturne/view of Saturn's rings.jpg" alt="Vue sur les anneaux de Saturne" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+
+    <!-- L'effet de survol avec le titre reste INCHANGÉ -->
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        <h3 class="text-xl font-bold text-white title-font">Vue sur les Anneaux</h3>
+    </div>
+</div>
+                
+                <!-- Gallery Item 3 (avec image locale) -->
+<div class="relative h-64 rounded-xl overflow-hidden group">
+    <!-- On remplace le fond et l'icône par une image locale -->
+    <img src="Saturne/Piscine Antigravité.png" alt="Piscine Antigravité" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+
+    <!-- L'effet de survol avec le titre reste INCHANGÉ -->
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        <h3 class="text-xl font-bold text-white title-font">Piscine Antigravité</h3>
+    </div>
+</div>
+                
+                <!-- Gallery Item 4 (avec image locale) -->
+<div class="relative h-64 rounded-xl overflow-hidden group">
+    <!-- On remplace le fond et l'icône par une image locale -->
+    <img src="Saturne/Restaurant Stellaris.png" alt="Restaurant Stellaris" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+
+    <!-- L'effet de survol avec le titre reste INCHANGÉ -->
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        <h3 class="text-xl font-bold text-white title-font">Restaurant Stellaris</h3>
+    </div>
+</div>
+                
+                <!-- Gallery Item 5 (avec image locale) -->
+<div class="relative h-64 rounded-xl overflow-hidden group">
+    <!-- On remplace le fond et l'icône par une image locale -->
+    <img src="Saturne/Suite Hotel.png" alt="Suite Master Orion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+
+    <!-- L'effet de survol avec le titre reste INCHANGÉ -->
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        <h3 class="text-xl font-bold text-white title-font">Suite Master Orion</h3>
+    </div>
+</div>
+                
+                <!-- Gallery Item 6 (avec image locale) -->
+<div class="relative h-64 rounded-xl overflow-hidden group">
+    <!-- On remplace le fond et l'icône par une image locale -->
+    <img src="Saturne/Observatoire privé.png" alt="Observatoire Privé" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+
+    <!-- L'effet de survol avec le titre reste INCHANGÉ -->
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        <h3 class="text-xl font-bold text-white title-font">Observatoire Privé</h3>
+    </div>
+</div>
+            
+            <div class="text-center mt-16">
+                <button class="btn-neon text-white font-bold py-3 px-8 rounded-full text-lg inline-block relative overflow-hidden">
+                    VISITE VIRTUELLE 360°
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="py-20 px-4 bg-black bg-opacity-50 backdrop-filter backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-bold mb-16 text-center title-font">
+                <span class="gradient-text">TÉMOIGNAGES</span> <span class="text-white">D'EXCEPTION</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-indigo-900 bg-opacity-20 p-6 rounded-xl border border-indigo-800">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold">JS</span>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold gradient-text">Jeanne Stern</h4>
+                            <p class="text-indigo-300 text-sm">CEO, Asteroid Mining Corp</p>
+                        </div>
+                    </div>
+                    <p class="text-indigo-200 italic">"Notre résidence à Titan Vue a révolutionné notre façon de travailler. Les vues sur les anneaux sont une source constante d'inspiration pour notre équipe."</p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-indigo-900 bg-opacity-20 p-6 rounded-xl border border-indigo-800">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-indigo-600 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold">MK</span>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold gradient-text">Marc Kessler</h4>
+                            <p class="text-indigo-300 text-sm">Investisseur Spatial</p>
+                        </div>
+                    </div>
+                    <p class="text-indigo-200 italic">"La qualité de construction et les technologies intégrées surpassent tout ce que j'ai vu sur Terre. Un investissement qui prend de la valeur chaque jour."</p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-indigo-900 bg-opacity-20 p-6 rounded-xl border border-indigo-800">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold">EL</span>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold gradient-text">Élodie Laurent</h4>
+                            <p class="text-indigo-300 text-sm">Artiste Spatiale</p>
+                        </div>
+                    </div>
+                    <p class="text-indigo-200 italic">"L'observatoire Stellar Horizon m'a permis de créer des œuvres d'art uniques sous des angles de lumière impossibles à reproduire."</p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 relative">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-bold mb-16 text-center title-font">
+                <span class="gradient-text">CONTACTEZ-NOUS</span> <span class="text-white">MAINTENANT</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="bg-indigo-950 bg-opacity-50 backdrop-filter backdrop-blur-sm rounded-xl p-8 border border-indigo-800">
+                    <h3 class="text-2xl font-bold mb-6 gradient-text title-font">Prêt pour le voyage ultime ?</h3>
+                    <p class="text-indigo-200 mb-8">Notre équipe d'experts en immobilier spatial est disponible 24/7 pour répondre à vos questions et organiser des visites virtuelles de nos propriétés.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt text-blue-400 mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-bold gradient-text">Téléphone Interstellaire</h4>
+                                <p class="text-indigo-300">+1 (555) STAR-LIV</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-blue-400 mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-bold gradient-text">Communication Quantique</h4>
+                                <p class="text-indigo-300">contact@saturnliving.space</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-bold gradient-text">Bureau Terrestre</h4>
+                                <p class="text-indigo-300">Niveau 450, Tour Spaceline, Paris, France</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-black bg-opacity-30 backdrop-filter backdrop-blur-sm rounded-xl p-8 border border-indigo-800">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-indigo-300 mb-2">Votre nom</label>
+                            <input type="text" id="name" class="w-full bg-indigo-950 bg-opacity-50 border border-indigo-800 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-indigo-600">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-indigo-300 mb-2">Votre email quantique</label>
+                            <input type="email" id="email" class="w-full bg-indigo-950 bg-opacity-50 border border-indigo-800 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-indigo-600">
+                        </div>
+                        <div>
+                            <label for="interest" class="block text-indigo-300 mb-2">Domaine d'intérêt</label>
+                            <select id="interest" class="w-full bg-indigo-950 bg-opacity-50 border border-indigo-800 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                                <option class="bg-indigo-950">Résidence sur les anneaux</option>
+                                <option class="bg-indigo-950">Hôtel orbital</option>
+                                <option class="bg-indigo-950">Observatoire privé</option>
+                                <option class="bg-indigo-950">Investissement</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-indigo-300 mb-2">Votre message</label>
+                            <textarea id="message" rows="4" class="w-full bg-indigo-950 bg-opacity-50 border border-indigo-800 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-indigo-600"></textarea>
+                        </div>
+                        <button type="submit" class="btn-neon w-full py-3 rounded-lg text-white font-bold text-lg">
+                            ENVOYER VOTRE MESSAGE <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-80 py-12 px-4 border-t border-indigo-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold gradient-text mb-4 title-font">SATURN LIVING</h3>
+                    <p class="text-indigo-300">Le leader mondial de l'immobilier orbital de luxe depuis 2042.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#properties" class="text-indigo-300 hover:text-white transition">Propriétés</a></li>
+                        <li><a href="#features" class="text-indigo-300 hover:text-white transition">Avantages</a></li>
+                        <li><a href="#gallery" class="text-indigo-300 hover:text-white transition">Galerie</a></li>
+                        <li><a href="#contact" class="text-indigo-300 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-indigo-300 hover:text-white transition">Conditions de séjour orbital</a></li>
+                        <li><a href="#" class="text-indigo-300 hover:text-white transition">Politique de confidentialité</a></li>
+                        <li><a href="#" class="text-indigo-300 hover:text-white transition">Certifications spatiales</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Reseaux</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-indigo-900 rounded-full flex items-center justify-center text-blue-300 hover:bg-blue-500 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-indigo-900 rounded-full flex items-center justify-center text-blue-300 hover:bg-blue-500 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-indigo-900 rounded-full flex items-center justify-center text-blue-300 hover:bg-blue-500 hover:text-white transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-indigo-900 rounded-full flex items-center justify-center text-blue-300 hover:bg-blue-500 hover:text-white transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    <div class="mt-6">
+                        <button class="flex items-center bg-indigo-900 bg-opacity-50 border border-indigo-800 px-4 py-2 rounded-lg text-blue-300 hover:bg-indigo-800 transition">
+                            <i class="fas fa-globe-americas mr-2"></i>
+                            <span>English Version</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-indigo-900 mt-12 pt-8 text-center text-indigo-500">
+                <p>&copy; 2053 Saturn Living Corporation. Tous droits réservés.</p>
+                <p class="mt-2 text-sm">Les images sont des représentations artistiques. Conditions d'accès spatial soumises à approbation.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scroll to top button -->
+    <button id="scrollToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-indigo-900 rounded-full flex items-center justify-center text-blue-300 shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-blue-500 hover:text-white">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <script>
+        // Scroll to top button
+        const scrollToTopButton = document.getElementById('scrollToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopButton.classList.remove('opacity-0', 'invisible');
+                scrollToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                scrollToTopButton.classList.remove('opacity-100', 'visible');
+                scrollToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animate elements when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeIn');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        document.querySelectorAll('.property-card, .testimonial, .feature').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

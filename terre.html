@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avertissement Destination : Terre - SolarEstateHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ---- Configuration Globale ---- */
+        :root {
+            --color-background: #101214;
+            --color-text-main: #a9a9a9;
+            --color-text-header: #e0e0e0;
+            --color-accent-toxic: #39ff14; /* Vert néon toxique */
+            --color-accent-alert: #ff2a2a; /* Rouge d'alerte */
+            --color-border: #333;
+            --font-main: 'Orbitron', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--color-background);
+            background-image: linear-gradient(to bottom, rgba(16, 18, 20, 0.95), rgba(16, 18, 20, 1)), url('https://images.unsplash.com/photo-1502175353174-a7a70a742b2c?q=80&w=2070&auto=format&fit=crop'); /* Image de fond : ville brumeuse/polluée */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            font-family: var(--font-main);
+            color: var(--color-text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.7;
+        }
+
+        /* ---- Bouton flottant Accueil ---- */
+        .bouton-accueil-flottant {
+            position: fixed; /* Fait flotter le bouton par-dessus tout */
+            top: 20px;       /* Distance depuis le haut */
+            left: 20px;      /* Distance depuis la gauche */
+            z-index: 1000;   /* S'assure qu'il est au-dessus des autres éléments */
+            
+            padding: 10px 20px;
+            background-color: rgba(16, 18, 20, 0.8); /* Fond semi-transparent comme le container */
+            border: 2px solid var(--color-accent-toxic);
+            color: var(--color-accent-toxic);
+            font-family: var(--font-main);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            backdrop-filter: blur(5px); /* Effet de flou derrière, cohérent avec le design */
+            transition: all 0.3s ease;
+        }
+
+        .bouton-accueil-flottant:hover {
+            background-color: var(--color-accent-toxic);
+            color: var(--color-background);
+            box-shadow: 0 0 15px var(--color-accent-toxic);
+        }
+
+        /* ---- Conteneur Principal ---- */
+        .container {
+            max-width: 900px;
+            width: 90%;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid var(--color-border);
+            background: rgba(20, 22, 25, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        /* ---- Typographie et Effets Visuels ---- */
+        h1, h2, h3 {
+            color: var(--color-text-header);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: var(--color-accent-alert);
+            animation: glitch 2s linear infinite;
+        }
+        
+        h1::before, h1::after {
+            content: 'AVERTISSEMENT OFFICIEL';
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            overflow: hidden;
+            background: var(--color-background);
+        }
+        
+        h1::before {
+            text-shadow: -2px 0 var(--color-accent-toxic);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: noise-anim 4s infinite linear alternate-reverse;
+        }
+
+        h1::after {
+            text-shadow: -2px 0 var(--color-accent-alert), 2px 2px var(--color-accent-toxic);
+            animation: noise-anim-2 2s infinite linear alternate-reverse;
+            clip: rect(85px, 450px, 100px, 0);
+        }
+
+        .header-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--color-text-main);
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--color-accent-alert);
+            padding-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-left: 4px solid var(--color-accent-toxic);
+            padding-left: 1rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 5px var(--color-accent-toxic);
+        }
+
+        p, li {
+            font-size: 1rem;
+        }
+
+        strong {
+            color: var(--color-text-header);
+        }
+        
+        .highlight-red {
+            color: var(--color-accent-alert);
+            font-weight: bold;
+        }
+        
+        .highlight-toxic {
+            color: var(--color-accent-toxic);
+        }
+
+        /* ---- Sections ---- */
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+        
+        li::before {
+            content: '»';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent-toxic);
+            font-weight: bold;
+        }
+        
+        /* ---- Bouton d'action ---- */
+        .cta-container {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            border: 2px solid var(--color-accent-toxic);
+            color: var(--color-accent-toxic);
+            background: transparent;
+            font-family: var(--font-main);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: var(--color-accent-toxic);
+            color: var(--color-background);
+            box-shadow: 0 0 20px var(--color-accent-toxic);
+        }
+
+        /* ---- Footer ---- */
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            padding: 1rem;
+            color: #666;
+        }
+
+        /* ---- Animations pour l'effet de glitch ---- */
+        @keyframes glitch {
+          0% { transform: translate(0); }
+          20% { transform: translate(-3px, 3px); }
+          40% { transform: translate(-3px, -3px); }
+          60% { transform: translate(3px, 3px); }
+          80% { transform: translate(3px, -3px); }
+          100% { transform: translate(0); }
+        }
+
+        @keyframes noise-anim {
+          0% { clip: rect(32px, 9999px, 91px, 0); }
+          25% { clip: rect(41px, 9999px, 98px, 0); }
+          50% { clip: rect(50px, 9999px, 94px, 0); }
+          75% { clip: rect(23px, 9999px, 84px, 0); }
+          100% { clip: rect(43px, 9999px, 97px, 0); }
+        }
+        
+        @keyframes noise-anim-2 {
+          0% { clip: rect(85px, 9999px, 32px, 0); }
+          25% { clip: rect(15px, 9999px, 42px, 0); }
+          50% { clip: rect(75px, 9999px, 52px, 0); }
+          75% { clip: rect(25px, 9999px, 72px, 0); }
+          100% { clip: rect(95px, 9999px, 32px, 0); }
+        }
+        
+        /* ---- Responsive Design ---- */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .container {
+                width: 95%;
+                padding: 1rem;
+            }
+            .bouton-accueil-flottant {
+                top: 10px;
+                left: 10px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <a href="index.html" class="bouton-accueil-flottant">Accueil</a>
+
+    <div class="container">
+        
+        <header>
+            <h1>Avertissement Officiel</h1>
+            <p class="header-subtitle">Fiche de risque - Destination : Planète Terre (Sol-3)</p>
+        </header>
+
+        <main>
+
+            <div class="section">
+                <p><strong>Dossier N°: SEH-734-TERRA-RISK</strong></p>
+                <p>Conformément à la régulation interplanétaire 227.B relative à la sécurité des colons et investisseurs, l'agence SolarEstateHub a l'obligation de vous informer des conditions critiques actuelles sur la planète Terre. <span class="highlight-red">Nous vous déconseillons fortement d'envisager une installation permanente ou un investissement sur ce monde classé "environnement hostile de catégorie 5".</span></p>
+            </div>
+
+            <section id="health-risks" class="section">
+                <h2>1. Risques Sanitaires Systémiques</h2>
+                <p>L'exposition prolongée à l'environnement terrestre est intrinsèquement dangereuse. Les infrastructures de survie de base sont obligatoires en dehors des zones sanctuarisées.</p>
+                <ul>
+                    <li><strong>Toxicité atmosphérique :</strong> Niveaux de particules fines (PM2.5) dépassant régulièrement 900 µg/m³. Le port d'un appareil de filtration de classe IV est non négociable.</li>
+                    <li><strong>Précipitations corrosives :</strong> Les pluies acides (pH moyen de 3.5) provoquent des brûlures cutanées et une dégradation rapide des matériaux non-protégés.</li>
+                    <li><strong>Contamination de la biosphère :</strong> L'eau et les sols sont saturés en métaux lourds et en composés synthétiques persistants, rendant toute agriculture locale non-viable sans décontamination industrielle.</li>
+                </ul>
+            </section>
+            
+            <section id="living-costs" class="section">
+                <h2>2. Coûts de Vie Insoutenables</h2>
+                <p>La survie sur Terre est un luxe. Les dépenses quotidiennes dépassent celles des colonies martiennes les plus isolées.</p>
+                <ul>
+                    <li><strong>Air respirable :</strong> Coût moyen de 80 Crédits Universels (C.U.) par cartouche de filtration (durée 24h).</li>
+                    <li><strong>Eau potable :</strong> L'eau purifiée est rationnée et se négocie à environ 150 C.U. le litre sur le marché régulé.</li>
+                    <li><strong>Énergie et sécurité :</strong> La dépendance aux générateurs privés et aux milices de sécurité pour la protection des habitations engendre des coûts mensuels exorbitants, souvent indexés sur le niveau de violence local.</li>
+                </ul>
+            </section>
+
+            <section id="access-restrictions" class="section">
+                <h2>3. Restrictions d'Accès et Chaos Social</h2>
+                <p>La gouvernance terrestre est fragmentée et instable. La liberté de mouvement est une illusion.</p>
+                <ul>
+                    <li><strong>Zonage extrême :</strong> 60% de la surface terrestre est classée "Zone Rouge" (inhabitable). Les "Zones Jaunes" requièrent des permis de transit coûteux et sont sous surveillance permanente.</li>
+                    <li><strong>Surveillance généralisée :</strong> Scans biométriques, drones de contrôle et suivi des identifiants numériques sont la norme. Toute déviation du comportement attendu peut entraîner un bannissement ou pire.</li>
+                    <li><strong>Insécurité endémique :</strong> Les conflits entre corporations, milices urbaines et factions autonomes rendent les déplacements imprévisibles et dangereux.</li>
+                </ul>
+            </section>
+            
+            <section id="last-bastions" class="section">
+                <h2>4. Derniers Bastions Viables : Le Prix de l'Illusion</h2>
+                <p>Quelques enclaves fortifiées et bio-dômes offrent une simulacre de vie normale. Ces "paradis" sont des prisons dorées dont le coût d'entrée est prohibitif et la sécurité, relative.</p>
+                <ul>
+                    <li><strong>Arcologie Alpin 'Le Sanctuaire' :</strong> Accessible à partir de <span class="highlight-toxic">1.2 milliard de C.U.</span> Billet d'entrée uniquement. Maintenance annuelle non-incluse. Vulnérable aux défaillances systémiques du dôme.</li>
+                    <li><strong>Citadelle Océanique 'New Atlantis' :</strong> Droit de résidence à <span class="highlight-toxic">2.5 milliards de C.U.</span> Tensions récurrentes avec les pirates des mers acides et les factions de la surface.</li>
+                </ul>
+                <p class="highlight-red">Note : SolarEstateHub ne garantit pas la pérennité de ces infrastructures. Les investissements sont considérés à perte dès la signature.</p>
+            </section>
+
+            <div class="cta-container">
+                <p>La Terre représente un passif, pas un actif. Votre avenir est ailleurs.</p>
+                <a href="index.html" class="cta-button">Explorer d'autres options interplanétaires</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2242 SolarEstateHub. Tous droits réservés. L'exploration à vos risques et périls.</p>
+    </footer>
+
+</body>
+</html>

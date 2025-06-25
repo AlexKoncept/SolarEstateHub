@@ -13,10 +13,10 @@
     }
 
     body {
-      background: url('fond-espace.jpg') no-repeat center center fixed;
+      background: #000 url('fond-espace.jpg') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Orbitron', sans-serif;
-      overflow-x: hidden; /* Empêche le défilement horizontal */
+      overflow-x: hidden;
     }
 
     header {
@@ -30,17 +30,15 @@
     .solar-system {
       position: relative;
       width: 100%;
-      height: calc(100vh - 6rem);
-      display: flex;
-      align-items: center; /* Centre les éléments verticalement pour un meilleur rendu */
+      min-height: 100vh;
+      padding: 2rem 0;
     }
 
-    /* Style commun pour les corps célestes */
     .sun, .planet {
       position: absolute;
       border-radius: 50%;
-      display: block;
       text-decoration: none;
+      display: block;
     }
 
     .sun img, .planet img {
@@ -49,27 +47,24 @@
       border-radius: 50%;
       object-fit: cover;
     }
-    
-    /* Style spécifique pour le Soleil */
+
     .sun {
-      width: 150px; /* Plus grand que les planètes */
-      height: 150px;
+      width: 120px;
+      height: 120px;
       left: 5%;
       top: 50%;
-      transform: translateY(-50%); /* Pour un centrage vertical parfait */
+      transform: translateY(-50%);
       z-index: 20;
       transition: box-shadow 0.4s;
     }
 
     .sun:hover {
-      box-shadow: 0 0 35px 15px rgba(255, 223, 0, 0.7); /* Effet de lueur */
+      box-shadow: 0 0 35px 15px rgba(255, 223, 0, 0.7);
     }
 
-    /* Style pour les planètes */
     .planet {
-      width: 80px;
-      height: 80px;
-      cursor: pointer;
+      width: 70px;
+      height: 70px;
       transition: transform 0.3s;
     }
 
@@ -83,7 +78,7 @@
       bottom: 110%;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0,0,0,0.8);
+      background: rgba(0, 0, 0, 0.8);
       padding: 0.5rem 1rem;
       border-radius: 5px;
       white-space: nowrap;
@@ -94,22 +89,45 @@
       color: #fff;
     }
 
-    /* Affiche le tooltip au survol pour le soleil ET les planètes */
     .sun:hover .tooltip,
     .planet:hover .tooltip {
       opacity: 1;
     }
 
-    /* --- NOUVEAU POSITIONNEMENT (décalé vers la droite) --- */
-    /* .sun est déjà positionné plus haut */
-    .mercury  { top: 60%; left: 22%; }
-    .venus    { top: 40%; left: 32%; }
-    .earth    { top: 70%; left: 42%; }
-    .mars     { top: 50%; left: 52%; }
-    .jupiter  { top: 30%; left: 62%; }
-    .saturn   { top: 60%; left: 72%; }
-    .uranus   { top: 40%; left: 82%; }
+    /* Positions adaptées pour écran large */
+    .mercury  { top: 15%; left: 22%; }
+    .venus    { top: 30%; left: 32%; }
+    .earth    { top: 45%; left: 42%; }
+    .mars     { top: 60%; left: 52%; }
+    .jupiter  { top: 20%; left: 62%; }
+    .saturn   { top: 35%; left: 72%; }
+    .uranus   { top: 50%; left: 82%; }
     .neptune  { top: 65%; left: 92%; }
+
+    /* ✅ Responsive mobile/tablette */
+    @media (max-width: 768px) {
+      .sun {
+        width: 90px;
+        height: 90px;
+        left: 50%;
+        top: 5%;
+        transform: translateX(-50%);
+      }
+
+      .planet {
+        width: 50px;
+        height: 50px;
+      }
+
+      .mercury  { top: 20%; left: 20%; }
+      .venus    { top: 30%; left: 40%; }
+      .earth    { top: 40%; left: 60%; }
+      .mars     { top: 50%; left: 30%; }
+      .jupiter  { top: 60%; left: 50%; }
+      .saturn   { top: 70%; left: 70%; }
+      .uranus   { top: 80%; left: 40%; }
+      .neptune  { top: 90%; left: 60%; }
+    }
   </style>
 </head>
 <body>
@@ -118,14 +136,11 @@
   </header>
 
   <main class="solar-system">
-    
-    <!-- SOLEIL -->
     <div class="sun" title="Le Soleil">
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Map_of_the_full_sun.jpg/1024px-Map_of_the_full_sun.jpg" alt="Le Soleil">
       <div class="tooltip">Soleil<br>Temp: 5,505°C<br>Notre étoile</div>
     </div>
 
-    <!-- PLANÈTES -->
     <a href="mercure.html" class="planet mercury" title="Mercure">
       <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Mercury_in_true_color.jpg" alt="Mercure">
       <div class="tooltip">Mercure<br>Temp: 167°C<br>Gravité: 0.38g</div>

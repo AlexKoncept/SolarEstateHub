@@ -6,98 +6,61 @@
     <title>MarsHabitat Prime | Propriétés Premium sur Mars</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/c8e8b083d2.js" crossorigin="anonymous"></script>
-    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        mars: {
-                            primary: '#e14e4e',
-                            secondary: '#9c3e3e',
-                            dust: '#a05245',
-                            sky: '#e9b58f',
-                            dark: '#3a1a10'
-                        }
+                        mars: { primary: '#e14e4e', secondary: '#9c3e3e', dust: '#a05245', sky: '#e9b58f', dark: '#3a1a10' }
                     },
-                    animation: {
-                        'pulse-slow': 'pulse 5s infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                    }
+                    animation: { 'pulse-slow': 'pulse 5s infinite', 'float': 'float 6s ease-in-out infinite' }
                 }
             }
         }
     </script>
     <style>
-.floating-back-button {
-  position: fixed;
-  top: 20px;
-  left: 20px; /* ou right: 20px; si tu préfères à droite */
-  z-index: 1000;
-}
-
-.floating-back-button a {
-  padding: 0.6rem 1rem;
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-  border: 2px solid #fff;
-  border-radius: 25px;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(4px);
-}
-
-.floating-back-button a:hover {
-  background-color: #fff;
-  color: #000;
-  transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(255,255,255,0.4);
-}
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        
-        .glass-effect {
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            background-color: rgba(58, 26, 16, 0.7);
-        }
-        
-        .text-stroke {
-            -webkit-text-stroke: 1px #e14e4e;
-            color: transparent;
-        }
-        
-        .hover-scale {
-            transition: all 0.3s ease;
-        }
-        
-        .hover-scale:hover {
-            transform: scale(1.03);
-        }
+        :root { --theme-toggle-icon: "🌙"; }
+        body.light-mode { --theme-toggle-icon: "☀️"; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #000; color: #fff; overflow-x: hidden; transition: background-color 0.3s, color 0.3s; }
+        body.light-mode { background-color: #e9b58f; color: #3a1a10; }
+        .floating-back-button { position: fixed; top: 20px; left: 20px; z-index: 1000; }
+        .floating-back-button a { padding: 0.6rem 1rem; background: rgba(255, 255, 255, 0.12); color: #fff; border: 2px solid #fff; border-radius: 25px; text-decoration: none; transition: all 0.3s ease; backdrop-filter: blur(4px); }
+        .floating-back-button a:hover { background-color: #fff; color: #000; transform: scale(1.1); box-shadow: 0 0 10px rgba(255,255,255,0.4); }
+        body.light-mode .floating-back-button a { color: #3a1a10; border-color: #3a1a10; }
+        body.light-mode .floating-back-button a:hover { background-color: #3a1a10; color: #e9b58f; }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+        .parallax { background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
+        .glass-effect { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); background-color: rgba(58, 26, 16, 0.7); }
+        body.light-mode .glass-effect { background-color: rgba(245, 241, 231, 0.7); }
+        .hover-scale:hover { transform: scale(1.03); }
+        body.light-mode .bg-mars-dark, body.light-mode .bg-mars-dark\/90, body.light-mode .bg-mars-dark\/70 { background-color: rgba(225, 181, 143, 0.5); }
+        body.light-mode .text-white { color: #3a1a10; }
+        body.light-mode .text-mars-primary { color: #c1442e; }
+        body.light-mode nav, body.light-mode #mobile-menu { border-color: rgba(58,26,16,0.3); }
+        .common-toggle-button { background-color: rgba(255,255,255,0.1); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 9999px; width: 40px; height: 40px; font-size: 1.2rem; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all 0.3s; z-index: 1000; padding: 0; }
+        body.light-mode .common-toggle-button { background-color: rgba(58,26,16,0.1); color: #3a1a10; border-color: rgba(58,26,16,0.2); }
+        .theme-toggle::before { content: var(--theme-toggle-icon); }
+        .top-right-controls { position: fixed; top: 1.25rem; right: 1.25rem; display: flex; align-items: center; gap: 8px; z-index: 1001; }
+        .lang-switcher { display: flex; gap: 5px; }
+        .lang-switcher button { opacity: 0.6; }
+        .lang-switcher button.lang-active { opacity: 1; border-color: #e14e4e !important; }
     </style>
 </head>
-<body class="bg-black text-white font-sans overflow-x-hidden">
-    <!-- Mars background -->
+<body class="overflow-x-hidden">
     <div class="fixed inset-0 z-0 opacity-20 pointer-events-none bg-[url('https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')] bg-center bg-cover"></div>
-    <!-- Floating particles -->
     <div id="particles" class="fixed inset-0 pointer-events-none z-10"></div>
-<div class="floating-back-button">
-  <a href="index.html" title="Retour à la carte">Accueil</a>
-</div>    
-    <!-- Navigation -->
+    
+    <div class="top-right-controls">
+        <div class="lang-switcher">
+            <button id="lang-fr-btn" class="common-toggle-button" aria-label="Passer en Français">🇫🇷</button>
+            <button id="lang-en-btn" class="common-toggle-button" aria-label="Switch to English">🇬🇧</button>
+        </div>
+        <button id="theme-toggle" class="theme-toggle common-toggle-button" data-key="theme_toggle_label"></button>
+    </div>
+    <div class="floating-back-button">
+        <a href="index.html" data-key-title="back_button_title"><span data-key="home_text">Accueil</span></a>
+    </div>
+    
     <nav class="glass-effect fixed w-full z-50 border-b border-mars-primary/30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
@@ -106,171 +69,93 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-center space-x-6">
-                        <a href="#properties" class="hover:text-mars-primary transition-colors">Propriétés</a>
-                        <a href="#terraforming" class="hover:text-mars-primary transition-colors">Terraformation</a>
-                        <a href="#services" class="hover:text-mars-primary transition-colors">Services</a>
-                        <a href="#contact" class="hover:text-mars-primary transition-colors">Contact</a>
-                        <button class="bg-mars-primary px-4 py-2 rounded-lg hover:bg-mars-secondary transition-colors">
-                            <i class="fas fa-rocket mr-2"></i>Départ Earth-Mars
-                        </button>
+                        <a href="#properties" class="hover:text-mars-primary transition-colors" data-key="nav_properties">Propriétés</a>
+                        <a href="#terraforming" class="hover:text-mars-primary transition-colors" data-key="nav_terraforming">Terraformation</a>
+                        <a href="#services" class="hover:text-mars-primary transition-colors" data-key="nav_services">Services</a>
+                        <a href="#contact" class="hover:text-mars-primary transition-colors" data-key="nav_contact">Contact</a>
+                        <button class="bg-mars-primary px-4 py-2 rounded-lg hover:bg-mars-secondary transition-colors" data-key="btn_departure"><i class="fas fa-rocket mr-2"></i>Départ Earth-Mars</button>
                     </div>
                 </div>
                 <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-mars-primary">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
+                    <button id="mobile-menu-button" class="text-mars-primary"><i class="fas fa-bars text-2xl"></i></button>
                 </div>
             </div>
         </div>
-        
-        <!-- Mobile menu -->
         <div id="mobile-menu" class="hidden md:hidden py-4 px-4 bg-mars-dark/95 border-t border-mars-primary/30">
-            <a href="#properties" class="block py-2 hover:text-mars-primary transition-colors">Propriétés</a>
-            <a href="#terraforming" class="block py-2 hover:text-mars-primary transition-colors">Terraformation</a>
-            <a href="#services" class="block py-2 hover:text-mars-primary transition-colors">Services</a>
-            <a href="#contact" class="block py-2 hover:text-mars-primary transition-colors">Contact</a>
-            <button class="mt-2 w-full bg-mars-primary px-4 py-2 rounded-lg hover:bg-mars-secondary transition-colors">
-                <i class="fas fa-rocket mr-2"></i>Départ Earth-Mars
-            </button>
+            <a href="#properties" class="block py-2 hover:text-mars-primary transition-colors" data-key="nav_properties">Propriétés</a>
+            <a href="#terraforming" class="block py-2 hover:text-mars-primary transition-colors" data-key="nav_terraforming">Terraformation</a>
+            <a href="#services" class="block py-2 hover:text-mars-primary transition-colors" data-key="nav_services">Services</a>
+            <a href="#contact" class="block py-2 hover:text-mars-primary transition-colors" data-key="nav_contact">Contact</a>
+            <button class="mt-2 w-full bg-mars-primary px-4 py-2 rounded-lg hover:bg-mars-secondary transition-colors" data-key="btn_departure"><i class="fas fa-rocket mr-2"></i>Départ Earth-Mars</button>
         </div>
     </nav>
     
-    <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center parallax" style="background-image: url('Mars/Haut.jpg')">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <div class="glass-effect p-8 rounded-xl max-w-3xl mx-auto">
-            <h1 class="text-5xl md:text-6xl font-bold mb-6">
-                <span class="text-mars-primary">Votre Nouveau Foyer</span> sur Mars
-            </h1>
-            <p class="text-xl mb-8 opacity-90">
-                <!-- Le reste de votre contenu -->
-            </p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="glass-effect p-8 rounded-xl max-w-3xl mx-auto">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6" data-key="hero_title"><span class="text-mars-primary">Votre Nouveau Foyer</span> sur Mars</h1>
+                <p class="text-xl mb-8 opacity-90" data-key="hero_subtitle">Des résidences de luxe au cœur du paysage rouge, où la technologie de pointe rencontre une vue spectaculaire.</p>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
     
-    <!-- Properties Section -->
     <section id="properties" class="py-20 bg-gradient-to-b from-mars-dark to-mars-dark/90">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Habitats Premium sur Mars</h2>
-                <p class="max-w-2xl mx-auto opacity-80">
-                    Nos dômes climatiques offrent une qualité de vie inégalée avec filtration d'air avancée, protection UV extrême et écosystèmes autonomes.
-                </p>
+                <h2 class="text-4xl font-bold mb-4" data-key="properties_title">Habitats Premium sur Mars</h2>
+                <p class="max-w-2xl mx-auto opacity-80" data-key="properties_subtitle">Nos dômes climatiques offrent une qualité de vie inégalée avec filtration d'air avancée, protection UV et écosystèmes autonomes.</p>
             </div>
-            
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Property 1 -->
-                <div class="bg-mars-dark/70 border border-mars-primary/20 rounded-xl overflow-hidden hover-scale hover:border-mars-primary/40 transition-all">
+                <div class="bg-mars-dark/70 border border-mars-primary/20 rounded-xl overflow-hidden hover-scale transition-all">
                     <div class="h-64 bg-cover bg-center" style="background-image: url('Mars/Dome Olympia.jpg');"></div>
                     <div class="p-6">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-1">Dôme Olympia</h3>
-                                <div class="text-mars-primary text-sm mb-3">Mars City, Terra Tharsis</div>
-                            </div>
-                            <div class="bg-mars-primary px-3 py-1 rounded-lg text-sm font-bold">Nouveau</div>
-                        </div>
-                        <p class="text-sm opacity-80 mb-4">
-                            Une résidence luxueuse de 5 chambres avec vue panoramique sur Valles Marineris. Système agro-dôme inclus.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <div class="text-xl font-bold">12.5M Mcr</div>
-                            <button class="text-mars-primary hover:text-mars-secondary transition-colors">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                        </div>
+                        <h3 class="text-xl font-bold mb-1" data-key="prop1_title">Dôme Olympia</h3>
+                        <div class="text-mars-primary text-sm mb-3" data-key="prop1_location">Mars City, Terra Tharsis</div>
+                        <p class="text-sm opacity-80 mb-4" data-key="prop1_desc">Une résidence luxueuse de 5 chambres avec vue panoramique sur Valles Marineris. Système agro-dôme inclus.</p>
+                        <div class="text-xl font-bold">12.5M Mcr</div>
                     </div>
                 </div>
-                
-                <!-- Property 2 -->
-                <div class="bg-mars-dark/70 border border-mars-primary/20 rounded-xl overflow-hidden hover-scale hover:border-mars-primary/40 transition-all">
+                <div class="bg-mars-dark/70 border border-mars-primary/20 rounded-xl overflow-hidden hover-scale transition-all">
                     <div class="h-64 bg-cover bg-center" style="background-image: url('Mars/Canyon Heights.jpg');"></div>
                     <div class="p-6">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-1">Canyon Heights</h3>
-                                <div class="text-mars-primary text-sm mb-3">Noctis Colony, Terra Sabaea</div>
-                            </div>
-                            <div class="bg-mars-dark px-3 py-1 rounded-lg text-sm font-bold border border-mars-primary/30">Spéléologie</div>
-                        </div>
-                        <p class="text-sm opacity-80 mb-4">
-                            Complexe résidentiel intégré dans les falaises, accès direct aux réseaux de grottes pressurisés. 3 chambres.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <div class="text-xl font-bold">8.2M Mcr</div>
-                            <button class="text-mars-primary hover:text-mars-secondary transition-colors">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                        </div>
+                        <h3 class="text-xl font-bold mb-1" data-key="prop2_title">Canyon Heights</h3>
+                        <div class="text-mars-primary text-sm mb-3" data-key="prop2_location">Noctis Colony, Terra Sabaea</div>
+                        <p class="text-sm opacity-80 mb-4" data-key="prop2_desc">Complexe résidentiel intégré dans les falaises, accès direct aux réseaux de grottes pressurisés. 3 chambres.</p>
+                        <div class="text-xl font-bold">8.2M Mcr</div>
                     </div>
                 </div>
-                
-                <!-- Property 3 -->
-                <div class="bg-mars-dark/70 border border-mars-primary/20 rounded-xl overflow-hidden hover-scale hover:border-mars-primary/40 transition-all">
+                <div class="bg-mars-dark/70 border border-mars-primary/20 rounded-xl overflow-hidden hover-scale transition-all">
                     <div class="h-64 bg-cover bg-center" style="background-image: url('Mars/Biosphère Verde.jpg');"></div>
                     <div class="p-6">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-1">Biosphère Verde</h3>
-                                <div class="text-mars-primary text-sm mb-3">Utopia Planitia</div>
-                            </div>
-                            <div class="bg-mars-secondary px-3 py-1 rounded-lg text-sm font-bold">Agriculture</div>
-                        </div>
-                        <p class="text-sm opacity-80 mb-4">
-                            Propriété agricole avec serres hydroponiques avancées. Production autonome pour 12 personnes. 2 unités d'habitation.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <div class="text-xl font-bold">6.9M Mcr</div>
-                            <button class="text-mars-primary hover:text-mars-secondary transition-colors">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                        </div>
+                        <h3 class="text-xl font-bold mb-1" data-key="prop3_title">Biosphère Verde</h3>
+                        <div class="text-mars-primary text-sm mb-3" data-key="prop3_location">Utopia Planitia</div>
+                        <p class="text-sm opacity-80 mb-4" data-key="prop3_desc">Propriété agricole avec serres hydroponiques avancées. Production autonome pour 12 personnes. 2 unités d'habitation.</p>
+                        <div class="text-xl font-bold">6.9M Mcr</div>
                     </div>
                 </div>
             </div>
-            
-            <div class="text-center mt-12">
-                <a href="#" class="inline-flex items-center text-mars-primary hover:text-mars-secondary transition-colors">
-                    Voir toutes les propriétés <i class="fas fa-long-arrow-alt-right ml-2"></i>
-                </a>
-            </div>
-        </div>10:50 24/06/2025
+            <div class="text-center mt-12"><a href="#" class="inline-flex items-center text-mars-primary hover:text-mars-secondary transition-colors" data-key="btn_view_all">Voir toutes les propriétés <i class="fas fa-long-arrow-alt-right ml-2"></i></a></div>
+        </div>
     </section>
     
-    <!-- Terraforming Section -->
     <section id="terraforming" class="py-20 parallax" style="background-image: url('Mars/Haut.jpg')">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="glass-effect rounded-xl p-8 md:p-12 max-w-4xl mx-auto">
                 <div class="md:flex items-center">
                     <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-                        <h2 class="text-4xl font-bold mb-4">Terraformation en Cours</h2>
-                        <p class="mb-6 opacity-90">
-                            Nos équipes travaillent sans relâche pour transformer l'environnement martien en un lieu plus accueillant. Chaque propriété bénéficie des derniers progrès en génie climatique.
-                        </p>
-                        <ul class="space-y-3">
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-mars-primary mt-1 mr-3"></i>
-                                <span>Augmentation progressive de l'oxygène grâce aux cyanobactéries modifiées</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-mars-primary mt-1 mr-3"></i>
-                                <span>Réseau de canaux pressurisés reliant toutes les colonies majeures</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-mars-primary mt-1 mr-3"></i>
-                                <span>Dômes agricoles auto-suffisants produisant oxygène et nourriture</span>
-                            </li>
+                        <h2 class="text-4xl font-bold mb-4" data-key="terra_title">Terraformation en Cours</h2>
+                        <p class="mb-6 opacity-90" data-key="terra_desc">Nos équipes travaillent sans relâche pour transformer l'environnement martien. Chaque propriété bénéficie des derniers progrès.</p>
+                        <ul class="space-y-3" data-key="terra_list">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-mars-primary mt-1 mr-3"></i><span>Augmentation progressive de l'oxygène</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-mars-primary mt-1 mr-3"></i><span>Réseau de canaux pressurisés</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-mars-primary mt-1 mr-3"></i><span>Dômes agricoles auto-suffisants</span></li>
                         </ul>
                     </div>
                     <div class="md:w-1/2 relative">
-                        <div class="relative h-64 md:h-80 bg-mars-dark rounded-lg overflow-hidden flex items-center justify-center">
-                            <div class="text-center p-4">
+                        <div class="h-64 md:h-80 bg-mars-dark rounded-lg flex items-center justify-center p-4">
+                            <div class="text-center">
                                 <div class="text-5xl font-bold text-mars-primary mb-2">68%</div>
-                                <div class="text-sm uppercase tracking-wider opacity-80">Taux d'oxygénation actuel</div>
-                            </div>
-                            <div class="absolute bottom-0 left-0 right-0 h-2 bg-mars-dark">
-                                <div class="h-full bg-mars-primary" style="width: 68%;"></div>
+                                <div class="text-sm uppercase tracking-wider opacity-80" data-key="terra_oxygen">Taux d'oxygénation actuel</div>
                             </div>
                         </div>
                     </div>
@@ -279,357 +164,175 @@
         </div>
     </section>
     
-    <!-- Services Section -->
     <section id="services" class="py-20 bg-gradient-to-b from-mars-dark/90 to-mars-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Services Exclusifs</h2>
-                <p class="max-w-2xl mx-auto opacity-80">
-                    MarsHabitat Prime fournit l'ensemble des solutions pour votre installation et votre vie quotidienne sur Mars.
-                </p>
+                <h2 class="text-4xl font-bold mb-4" data-key="services_title">Services Exclusifs</h2>
+                <p class="max-w-2xl mx-auto opacity-80" data-key="services_subtitle">Nous fournissons l'ensemble des solutions pour votre installation et vie quotidienne sur Mars.</p>
             </div>
-            
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-effect p-8 rounded-lg border border-mars-primary/20 hover-scale hover:border-mars-primary/40 transition-all">
-                    <div class="text-mars-primary text-4xl mb-4">
-                        <i class="fas fa-dome"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Installation Domestique</h3>
-                    <p class="opacity-80 text-sm">
-                        Configuration complète de votre habitat, système de survie, modules d'expansion et certification de pressurisation.
-                    </p>
-                </div>
-                
-                <div class="glass-effect p-8 rounded-lg border border-mars-primary/20 hover-scale hover:border-mars-primary/40 transition-all">
-                    <div class="text-mars-primary text-4xl mb-4">
-                        <i class="fas fa-road"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Transport Pressurisé</h3>
-                    <p class="opacity-80 text-sm">
-                        Abonnement au réseau de tubes pressurisés et location de véhicules tout-terrain adaptés à l'environnement martien.
-                    </p>
-                </div>
-                
-                <div class="glass-effect p-8 rounded-lg border border-mars-primary/20 hover-scale hover:border-mars-primary/40 transition-all">
-                    <div class="text-mars-primary text-4xl mb-4">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Agriculture Spatiale</h3>
-                    <p class="opacity-80 text-sm">
-                        Installation et maintenance de serres hydroponiques, sélection de cultures adaptées et formation à l'agriculture martienne.
-                    </p>
-                </div>
-                
-                <div class="glass-effect p-8 rounded-lg border border-mars-primary/20 hover-scale hover:border-mars-primary/40 transition-all">
-                    <div class="text-mars-primary text-4xl mb-4">
-                        <i class="fas fa-user-astronaut"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Formation Survivaliste</h3>
-                    <p class="opacity-80 text-sm">
-                        Programme intensif de 6 semaines pour s'adapter aux conditions martiennes, incluant sorties en combinaison et urgences.
-                    </p>
-                </div>
-                
-                <div class="glass-effect p-8 rounded-lg border border-mars-primary/20 hover-scale hover:border-mars-primary/40 transition-all">
-                    <div class="text-mars-primary text-4xl mb-4">
-                        <i class="fas fa-wifi"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Réseau Interplanétaire</h3>
-                    <p class="opacity-80 text-sm">
-                        Connexion haut débit avec la Terre (délai de 3-22 min), réseau local martien instantané et systèmes de communication d'urgence.
-                    </p>
-                </div>
-                
-                <div class="glass-effect p-8 rounded-lg border border-mars-primary/20 hover-scale hover:border-mars-primary/40 transition-all">
-                    <div class="text-mars-primary text-4xl mb-4">
-                        <i class="fas fa-hand-holding-water"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Gestion des Ressources</h3>
-                    <p class="opacity-80 text-sm">
-                        Recyclage avancé de l'eau et de l'air, extraction de glace polaire et systèmes de purification individuels.
-                    </p>
-                </div>
+                <div class="glass-effect p-8 rounded-lg border border-mars-primary/20 hover-scale"><h3 class="text-xl font-bold mb-3" data-key="service1_title">Installation Domestique</h3><p class="opacity-80 text-sm" data-key="service1_desc">Configuration complète de votre habitat, système de survie, et certification de pressurisation.</p></div>
+                <div class="glass-effect p-8 rounded-lg border border-mars-primary/20 hover-scale"><h3 class="text-xl font-bold mb-3" data-key="service2_title">Transport Pressurisé</h3><p class="opacity-80 text-sm" data-key="service2_desc">Abonnement au réseau de tubes et location de véhicules tout-terrain adaptés.</p></div>
+                <div class="glass-effect p-8 rounded-lg border border-mars-primary/20 hover-scale"><h3 class="text-xl font-bold mb-3" data-key="service3_title">Agriculture Spatiale</h3><p class="opacity-80 text-sm" data-key="service3_desc">Installation de serres hydroponiques et formation à l'agriculture martienne.</p></div>
+                <div class="glass-effect p-8 rounded-lg border border-mars-primary/20 hover-scale"><h3 class="text-xl font-bold mb-3" data-key="service4_title">Formation Survivaliste</h3><p class="opacity-80 text-sm" data-key="service4_desc">Programme intensif de 6 semaines pour s'adapter aux conditions martiennes.</p></div>
+                <div class="glass-effect p-8 rounded-lg border border-mars-primary/20 hover-scale"><h3 class="text-xl font-bold mb-3" data-key="service5_title">Réseau Interplanétaire</h3><p class="opacity-80 text-sm" data-key="service5_desc">Connexion haut débit avec la Terre et réseau local martien instantané.</p></div>
+                <div class="glass-effect p-8 rounded-lg border border-mars-primary/20 hover-scale"><h3 class="text-xl font-bold mb-3" data-key="service6_title">Gestion des Ressources</h3><p class="opacity-80 text-sm" data-key="service6_desc">Recyclage avancé de l'eau et de l'air, et extraction de glace polaire.</p></div>
             </div>
         </div>
     </section>
     
-    <!-- Testimonials -->
     <section class="py-20 bg-mars-dark/90">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Témoignages</h2>
-                <p class="max-w-2xl mx-auto opacity-80">
-                    Ce que nos résidents disent de leur expérience avec MarsHabitat Prime
-                </p>
-            </div>
-            
+            <div class="text-center mb-16"><h2 class="text-4xl font-bold mb-4" data-key="testimonials_title">Témoignages</h2><p class="max-w-2xl mx-auto opacity-80" data-key="testimonials_subtitle">Ce que nos résidents disent de leur expérience.</p></div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-effect p-8 rounded-lg border border-mars-primary/20 hover-scale transition-all relative">
-                    <div class="absolute -top-4 -left-4 text-6xl text-mars-primary/20">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <p class="mb-6 italic">
-                        "Après 18 mois dans le Dôme Olympia, je ne pourrais jamais revenir sur Terre. La vue sur Valles Marineris au lever du soleil est incomparable."
-                    </p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full bg-mars-primary/10 flex items-center justify-center text-mars-primary mr-4">
-                            <i class="fas fa-user-astronaut"></i>
-                        </div>
-                        <div>
-                            <div class="font-bold">Dr. Elara Voss</div>
-                            <div class="text-sm opacity-60">Astrobiologiste • Mars City</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="glass-effect p-8 rounded-lg border border-mars-primary/20 hover-scale transition-all relative">
-                    <div class="absolute -top-4 -left-4 text-6xl text-mars-primary/20">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <p class="mb-6 italic">
-                        "Notre ferme hydroponique produit assez pour nourrir 10 familles. L'assistance technique de MarsHabitat est exceptionnelle."
-                    </p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full bg-mars-primary/10 flex items-center justify-center text-mars-primary mr-4">
-                            <i class="fas fa-user-astronaut"></i>
-                        </div>
-                        <div>
-                            <div class="font-bold">Kiran & Mei Zhang</div>
-                            <div class="text-sm opacity-60">Agriculteurs • Utopia Planitia</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="glass-effect p-8 rounded-lg border border-mars-primary/20 hover-scale transition-all relative">
-                    <div class="absolute -top-4 -left-4 text-6xl text-mars-primary/20">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <p class="mb-6 italic">
-                        "Explorer les cavernes martiennes depuis ma résidence est un rêve devenu réalité. La sécurité des tunnels est parfaite."
-                    </p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full bg-mars-primary/10 flex items-center justify-center text-mars-primary mr-4">
-                            <i class="fas fa-user-astronaut"></i>
-                        </div>
-                        <div>
-                            <div class="font-bold">Tomas Rivera</div>
-                            <div class="text-sm opacity-60">Géologue • Noctis Colony</div>
-                        </div>
-                    </div>
-                </div>
+                <div class="glass-effect p-8 rounded-lg border border-mars-primary/20"><p class="mb-6 italic" data-key="testi1_quote">"Après 18 mois ici, je ne pourrais jamais revenir sur Terre. La vue sur Valles Marineris au lever du soleil est incomparable."</p><div class="font-bold" data-key="testi1_author">Dr. Elara Voss</div><div class="text-sm opacity-60" data-key="testi1_role">Astrobiologiste • Mars City</div></div>
+                <div class="glass-effect p-8 rounded-lg border border-mars-primary/20"><p class="mb-6 italic" data-key="testi2_quote">"Notre ferme hydroponique produit assez pour 10 familles. L'assistance de MarsHabitat est exceptionnelle."</p><div class="font-bold" data-key="testi2_author">Kiran & Mei Zhang</div><div class="text-sm opacity-60" data-key="testi2_role">Agriculteurs • Utopia Planitia</div></div>
+                <div class="glass-effect p-8 rounded-lg border border-mars-primary/20"><p class="mb-6 italic" data-key="testi3_quote">"Explorer les cavernes martiennes depuis ma résidence est un rêve. La sécurité des tunnels est parfaite."</p><div class="font-bold" data-key="testi3_author">Tomas Rivera</div><div class="text-sm opacity-60" data-key="testi3_role">Géologue • Noctis Colony</div></div>
             </div>
         </div>
     </section>
     
-    <!-- CTA Section -->
     <section class="py-20 parallax" style="background-image: url('Mars/Haut.jpg')">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="glass-effect rounded-xl p-8 md:p-12">
-                <h2 class="text-4xl font-bold mb-6">Prêt pour l'Expérience Martienne ?</h2>
-                <p class="text-xl mb-8 opacity-90">
-                    Réservez votre consultation virtuelle et commencez votre processus d'immigration interplanétaire dès aujourd'hui.
-                </p>
+                <h2 class="text-4xl font-bold mb-6" data-key="cta_title">Prêt pour l'Expérience Martienne ?</h2>
+                <p class="text-xl mb-8 opacity-90" data-key="cta_subtitle">Réservez votre consultation virtuelle et commencez votre processus d'immigration interplanétaire.</p>
                 <div class="flex flex-wrap justify-center gap-4">
-                    <button class="bg-mars-primary hover:bg-mars-secondary px-8 py-3 rounded-lg font-medium transition-colors">
-                        <i class="fas fa-calendar-alt mr-2"></i> Planifier un appel
-                    </button>
-                    <button class="border border-mars-primary hover:bg-mars-primary/20 px-8 py-3 rounded-lg font-medium transition-colors">
-                        <i class="fas fa-envelope mr-2"></i> Recevoir le catalogue
-                    </button>
+                    <button class="bg-mars-primary hover:bg-mars-secondary px-8 py-3 rounded-lg font-medium" data-key="btn_cta1"><i class="fas fa-calendar-alt mr-2"></i> Planifier un appel</button>
+                    <button class="border border-mars-primary hover:bg-mars-primary/20 px-8 py-3 rounded-lg font-medium" data-key="btn_cta2"><i class="fas fa-envelope mr-2"></i> Recevoir le catalogue</button>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-mars-dark">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="md:flex justify-between">
-                <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
-                    <h2 class="text-4xl font-bold mb-6">Nous Contacter</h2>
-                    <p class="mb-8 opacity-80">
-                        Notre équipe est disponible 24h/24 pour répondre à vos questions sur l'immobilier martien. Les délais de communication Terre-Mars sont actuellement de 7-22 minutes.
-                    </p>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="text-mars-primary text-xl mr-4 mt-1">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-1">Bureaux Principaux</h4>
-                                <p class="opacity-80 text-sm">Dôme Central, Mars City<br>Quadrant 7, Secteur Alpha-9</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="text-mars-primary text-xl mr-4 mt-1">
-                                <i class="fas fa-satellite-dish"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-1">Communication</h4>
-                                <p class="opacity-80 text-sm">Fréq. @MHP-REALTY.7<br>Délai moyen: 12min</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="text-mars-primary text-xl mr-4 mt-1">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-1">Heures Terriennes</h4>
-                                <p class="opacity-80 text-sm">UTC: 00:00 - 24:00<br>Sol martien: disponible via liaison</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="md:w-1/2">
-                    <form class="glass-effect p-8 rounded-xl">
-                        <div class="grid md:grid-cols-2 gap-6 mb-6">
-                            <div>
-                                <label class="block text-sm font-medium mb-1 opacity-80">Nom</label>
-                                <input type="text" class="w-full bg-mars-dark border border-mars-primary/30 rounded-lg px-4 py-2 focus:border-mars-primary focus:outline-none transition-colors">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium mb-1 opacity-80">Email</label>
-                                <input type="email" class="w-full bg-mars-dark border border-mars-primary/30 rounded-lg px-4 py-2 focus:border-mars-primary focus:outline-none transition-colors">
-                            </div>
-                        </div>
-                        
-                        <div class="mb-6">
-                            <label class="block text-sm font-medium mb-1 opacity-80">Sujet</label>
-                            <select class="w-full bg-mars-dark border border-mars-primary/30 rounded-lg px-4 py-2 focus:border-mars-primary focus:outline-none transition-colors">
-                                <option>Demande d'information</option>
-                                <option>Visite virtuelle</option>
-                                <option>Processus d'immigration</option>
-                                <option>Autre question</option>
-                            </select>
-                        </div>
-                        
-                        <div class="mb-6">
-                            <label class="block text-sm font-medium mb-1 opacity-80">Message</label>
-                            <textarea rows="5" class="w-full bg-mars-dark border border-mars-primary/30 rounded-lg px-4 py-2 focus:border-mars-primary focus:outline-none transition-colors"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="w-full bg-mars-primary hover:bg-mars-secondary py-3 rounded-lg font-medium transition-colors">
-                            <i class="fas fa-paper-plane mr-2"></i> Envoyer Message
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+    <section id="contact" class="py-20 bg-mars-dark"></section>
     
-    <!-- Footer -->
     <footer class="bg-mars-dark/90 border-t border-mars-primary/10 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="md:flex justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="flex items-center">
-                        <i class="fas fa-planet-ringed text-mars-primary text-2xl mr-3"></i>
-                        <span class="text-xl font-bold">MarsHabitat Prime</span>
-                    </div>
-                    <div class="text-sm opacity-60 mt-2">
-                        Agence Immobilière Interplanétaire • Depuis 2057
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-                    <div>
-                        <h5 class="text-sm font-bold uppercase tracking-wider mb-4">Navigation</h5>
-                        <ul class="space-y-2">
-                            <li><a href="#properties" class="opacity-60 hover:opacity-100 hover:text-mars-primary transition-colors">Propriétés</a></li>
-                            <li><a href="#terraforming" class="opacity-60 hover:opacity-100 hover:text-mars-primary transition-colors">Terraformation</a></li>
-                            <li><a href="#services" class="opacity-60 hover:opacity-100 hover:text-mars-primary transition-colors">Services</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h5 class="text-sm font-bold uppercase tracking-wider mb-4">Légal</h5>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="opacity-60 hover:opacity-100 hover:text-mars-primary transition-colors">Conditions</a></li>
-                            <li><a href="#" class="opacity-60 hover:opacity-100 hover:text-mars-primary transition-colors">Confidentialité</a></li>
-                            <li><a href="#" class="opacity-60 hover:opacity-100 hover:text-mars-primary transition-colors">Accords Mars-Terre</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h5 class="text-sm font-bold uppercase tracking-wider mb-4">Réseaux</h5>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-xl opacity-60 hover:opacity-100 hover:text-mars-primary transition-colors"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="text-xl opacity-60 hover:opacity-100 hover:text-mars-primary transition-colors"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="text-xl opacity-60 hover:opacity-100 hover:text-mars-primary transition-colors"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" class="text-xl opacity-60 hover:opacity-100 hover:text-mars-primary transition-colors"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="border-t border-mars-primary/10 mt-12 pt-8 text-sm opacity-60">
-                <p>
-                    © 2157 MarsHabitat Prime. Tous droits réservés. MarsHabitat Prime est une division de SolSys Realty Group.<br>
-                    Les transactions sont effectuées en Mars Credits (Mcr). Taux de change variable selon les économies Terre-Mars.
-                </p>
-            </div>
+            <p class="text-center text-sm opacity-60" data-key="copyright">© 2157 MarsHabitat Prime. Tous droits réservés.</p>
         </div>
     </footer>
     
     <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-        
-        // Floating particles
-        document.addEventListener('DOMContentLoaded', function() {
-            const particlesContainer = document.getElementById('particles');
-            
-            for (let i = 0; i < 100; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'absolute rounded-full bg-mars-primary/20';
-                
-                // Random size between 1 and 3 pixels
-                const size = Math.random() * 2 + 1;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                // Random position
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                
-                // Random animation
-                const duration = Math.random() * 10 + 10;
-                const delay = Math.random() * 5;
-                particle.style.animation = `float ${duration}s ease-in-out infinite ${delay}s`;
-                
-                particlesContainer.appendChild(particle);
+    document.addEventListener('DOMContentLoaded', () => {
+        const translations = {
+            fr: {
+                theme_toggle_label: "Changer le thème", home_text: "Accueil", back_button_title: "Retour à l'accueil",
+                nav_properties: "Propriétés", nav_terraforming: "Terraformation", nav_services: "Services", nav_contact: "Contact", btn_departure: '<i class="fas fa-rocket mr-2"></i>Départ Earth-Mars',
+                hero_title: '<span class="text-mars-primary">Votre Nouveau Foyer</span> sur Mars', hero_subtitle: "Des résidences de luxe au cœur du paysage rouge, où la technologie de pointe rencontre une vue spectaculaire.",
+                properties_title: "Habitats Premium sur Mars", properties_subtitle: "Nos dômes climatiques offrent une qualité de vie inégalée avec filtration d'air avancée, protection UV et écosystèmes autonomes.",
+                prop1_title: "Dôme Olympia", prop1_location: "Mars City, Terra Tharsis", prop1_desc: "Une résidence luxueuse de 5 chambres avec vue panoramique sur Valles Marineris. Système agro-dôme inclus.",
+                prop2_title: "Canyon Heights", prop2_location: "Noctis Colony, Terra Sabaea", prop2_desc: "Complexe résidentiel intégré dans les falaises, accès direct aux réseaux de grottes pressurisés. 3 chambres.",
+                prop3_title: "Biosphère Verde", prop3_location: "Utopia Planitia", prop3_desc: "Propriété agricole avec serres hydroponiques avancées. Production autonome pour 12 personnes. 2 unités d'habitation.",
+                btn_view_all: "Voir toutes les propriétés <i class=\"fas fa-long-arrow-alt-right ml-2\"></i>",
+                terra_title: "Terraformation en Cours", terra_desc: "Nos équipes travaillent sans relâche pour transformer l'environnement martien. Chaque propriété bénéficie des derniers progrès.", terra_list: '<li class="flex items-start"><i class="fas fa-check-circle text-mars-primary mt-1 mr-3"></i><span>Augmentation progressive de l\'oxygène</span></li><li class="flex items-start"><i class="fas fa-check-circle text-mars-primary mt-1 mr-3"></i><span>Réseau de canaux pressurisés</span></li><li class="flex items-start"><i class="fas fa-check-circle text-mars-primary mt-1 mr-3"></i><span>Dômes agricoles auto-suffisants</span></li>', terra_oxygen: "Taux d'oxygénation actuel",
+                services_title: "Services Exclusifs", services_subtitle: "Nous fournissons l'ensemble des solutions pour votre installation et vie quotidienne sur Mars.",
+                service1_title: "Installation Domestique", service1_desc: "Configuration complète de votre habitat, système de survie, et certification de pressurisation.",
+                service2_title: "Transport Pressurisé", service2_desc: "Abonnement au réseau de tubes et location de véhicules tout-terrain adaptés.",
+                service3_title: "Agriculture Spatiale", service3_desc: "Installation de serres hydroponiques et formation à l'agriculture martienne.",
+                service4_title: "Formation Survivaliste", service4_desc: "Programme intensif de 6 semaines pour s'adapter aux conditions martiennes.",
+                service5_title: "Réseau Interplanétaire", service5_desc: "Connexion haut débit avec la Terre et réseau local martien instantané.",
+                service6_title: "Gestion des Ressources", service6_desc: "Recyclage avancé de l'eau et de l'air, et extraction de glace polaire.",
+                testimonials_title: "Témoignages", testimonials_subtitle: "Ce que nos résidents disent de leur expérience.",
+                testi1_quote: '"Après 18 mois ici, je ne pourrais jamais revenir sur Terre. La vue sur Valles Marineris au lever du soleil est incomparable."', testi1_author: "Dr. Elara Voss", testi1_role: "Astrobiologiste • Mars City",
+                testi2_quote: '"Notre ferme hydroponique produit assez pour 10 familles. L\'assistance de MarsHabitat est exceptionnelle."', testi2_author: "Kiran & Mei Zhang", testi2_role: "Agriculteurs • Utopia Planitia",
+                testi3_quote: '"Explorer les cavernes martiennes depuis ma résidence est un rêve. La sécurité des tunnels est parfaite."', testi3_author: "Tomas Rivera", testi3_role: "Géologue • Noctis Colony",
+                cta_title: "Prêt pour l'Expérience Martienne ?", cta_subtitle: "Réservez votre consultation virtuelle et commencez votre processus d'immigration interplanétaire.", btn_cta1: '<i class="fas fa-calendar-alt mr-2"></i> Planifier un appel', btn_cta2: '<i class="fas fa-envelope mr-2"></i> Recevoir le catalogue',
+                copyright: "© 2157 MarsHabitat Prime. Tous droits réservés."
+            },
+            en: {
+                theme_toggle_label: "Change theme", home_text: "Home", back_button_title: "Back to home",
+                nav_properties: "Properties", nav_terraforming: "Terraforming", nav_services: "Services", nav_contact: "Contact", btn_departure: '<i class="fas fa-rocket mr-2"></i>Earth-Mars Departure',
+                hero_title: '<span class="text-mars-primary">Your New Home</span> on Mars', hero_subtitle: "Luxury residences in the heart of the red landscape, where cutting-edge technology meets spectacular views.",
+                properties_title: "Premium Habitats on Mars", properties_subtitle: "Our climate domes offer an unparalleled quality of life with advanced air filtration, UV protection, and autonomous ecosystems.",
+                prop1_title: "Olympus Dome", prop1_location: "Mars City, Terra Tharsis", prop1_desc: "A luxurious 5-bedroom residence with panoramic views of Valles Marineris. Agro-dome system included.",
+                prop2_title: "Canyon Heights", prop2_location: "Noctis Colony, Terra Sabaea", prop2_desc: "Residential complex integrated into the cliffs, with direct access to pressurized cave networks. 3 bedrooms.",
+                prop3_title: "Verde Biosphere", prop3_location: "Utopia Planitia", prop3_desc: "Agricultural property with advanced hydroponic greenhouses. Autonomous production for 12 people. 2 housing units.",
+                btn_view_all: "View All Properties <i class=\"fas fa-long-arrow-alt-right ml-2\"></i>",
+                terra_title: "Terraforming in Progress", terra_desc: "Our teams work tirelessly to transform the Martian environment. Each property benefits from the latest advancements.", terra_list: '<li class="flex items-start"><i class="fas fa-check-circle text-mars-primary mt-1 mr-3"></i><span>Progressive oxygen increase</span></li><li class="flex items-start"><i class="fas fa-check-circle text-mars-primary mt-1 mr-3"></i><span>Pressurized canal network</span></li><li class="flex items-start"><i class="fas fa-check-circle text-mars-primary mt-1 mr-3"></i><span>Self-sufficient agricultural domes</span></li>', terra_oxygen: "Current Oxygenation Rate",
+                services_title: "Exclusive Services", services_subtitle: "We provide all the solutions for your settlement and daily life on Mars.",
+                service1_title: "Domestic Installation", service1_desc: "Complete setup of your habitat, life support system, and pressurization certification.",
+                service2_title: "Pressurized Transport", service2_desc: "Subscription to the tube network and rental of adapted all-terrain vehicles.",
+                service3_title: "Space Agriculture", service3_desc: "Installation of hydroponic greenhouses and training in Martian agriculture.",
+                service4_title: "Survivalist Training", service4_desc: "Intensive 6-week program to adapt to Martian conditions.",
+                service5_title: "Interplanetary Network", service5_desc: "High-speed connection with Earth and instant local Martian network.",
+                service6_title: "Resource Management", service6_desc: "Advanced water and air recycling, and polar ice extraction.",
+                testimonials_title: "Testimonials", testimonials_subtitle: "What our residents say about their experience.",
+                testi1_quote: '"After 18 months here, I could never go back to Earth. The view of Valles Marineris at sunrise is unparalleled."', testi1_author: "Dr. Elara Voss", testi1_role: "Astrobiologist • Mars City",
+                testi2_quote: '"Our hydroponic farm produces enough to feed 10 families. The technical support from MarsHabitat is exceptional."', testi2_author: "Kiran & Mei Zhang", testi2_role: "Farmers • Utopia Planitia",
+                testi3_quote: '"Exploring the Martian caves from my residence is a dream come true. The tunnel security is perfect."', testi3_author: "Tomas Rivera", testi3_role: "Geologist • Noctis Colony",
+                cta_title: "Ready for the Martian Experience?", cta_subtitle: "Book your virtual consultation and start your interplanetary immigration process today.", btn_cta1: '<i class="fas fa-calendar-alt mr-2"></i> Schedule a Call', btn_cta2: '<i class="fas fa-envelope mr-2"></i> Receive Catalogue',
+                copyright: "© 2157 MarsHabitat Prime. All rights reserved."
             }
+        };
+
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('marsTheme') || 'dark';
+        if (currentTheme === 'light') body.classList.add('light-mode');
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            localStorage.setItem('marsTheme', body.classList.contains('light-mode') ? 'light' : 'dark');
         });
         
-        // Smooth scroll for anchor links
+        const setLanguage = (lang) => {
+            document.documentElement.lang = lang;
+            localStorage.setItem('marsLang', lang);
+            document.querySelectorAll('[data-key]').forEach(elem => {
+                const key = elem.dataset.key;
+                const translation = translations[lang]?.[key];
+                if (translation) {
+                    if (elem.id === 'theme-toggle') { elem.setAttribute('aria-label', translation); }
+                    else { elem.innerHTML = translation; }
+                }
+            });
+            document.querySelectorAll('[data-key-title]').forEach(elem => {
+                const key = elem.dataset.keyTitle;
+                if (translations[lang]?.[key]) { elem.title = translations[lang][key]; }
+            });
+            if (lang === 'fr') {
+                document.getElementById('lang-fr-btn').classList.add('lang-active');
+                document.getElementById('lang-en-btn').classList.remove('lang-active');
+            } else {
+                document.getElementById('lang-en-btn').classList.add('lang-active');
+                document.getElementById('lang-fr-btn').classList.remove('lang-active');
+            }
+        };
+        const langFrBtn = document.getElementById('lang-fr-btn');
+        const langEnBtn = document.getElementById('lang-en-btn');
+        langFrBtn.addEventListener('click', () => setLanguage('fr'));
+        langEnBtn.addEventListener('click', () => setLanguage('en'));
+        const initialLang = localStorage.getItem('marsLang') || (navigator.language.startsWith('fr') ? 'fr' : 'en');
+        setLanguage(initialLang);
+
+        document.getElementById('mobile-menu-button').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'absolute rounded-full bg-mars-primary/20';
+            const size = Math.random() * 2 + 1;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.animation = `float ${Math.random() * 10 + 10}s ease-in-out infinite ${Math.random() * 5}s`;
+            particlesContainer.appendChild(particle);
+        }
+        
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
+                if (targetId !== '#') {
+                    document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+                    document.getElementById('mobile-menu').classList.add('hidden');
                 }
             });
         });
+    });
     </script>
 </body>
 </html>

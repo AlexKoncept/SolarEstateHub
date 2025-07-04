@@ -5,94 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SolarEstateHub - Carte du Système Solaire</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    :root {
+      --bg-color: #000;
+      --text-color: #fff;
+      --header-bg: rgba(0, 0, 0, 0.5);
+      --tooltip-bg: rgba(0, 0, 0, 0.8);
+      --theme-toggle-icon: "🌙";
+    }
+    body.light-mode {
+      --bg-color: #e0e5f0;
+      --text-color: #1a2a45;
+      --header-bg: rgba(255, 255, 255, 0.5);
+      --tooltip-bg: rgba(255, 255, 255, 0.9);
+      --theme-toggle-icon: "☀️";
     }
 
-    body {
-      background: #000 url('fond-espace.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: 'Orbitron', sans-serif;
-      overflow-x: hidden;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg-color) url('fond-espace.jpg') no-repeat center center fixed; background-size: cover; font-family: 'Orbitron', sans-serif; overflow-x: hidden; transition: background-color 0.3s, color 0.3s; color: var(--text-color); }
+    
     header {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 2rem;
-      color: #fff;
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-
-    .solar-system {
       position: relative;
-      width: 100%;
-      min-height: 100vh;
-      padding: 2rem 0;
+      text-align: center;
+      padding: 1rem;
+      font-size: 1.2rem;
+      background-color: var(--header-bg);
+      backdrop-filter: blur(5px);
     }
-
-    .sun, .planet {
-      position: absolute;
-      border-radius: 50%;
-      text-decoration: none;
-      display: block;
-    }
-
-    .sun img, .planet img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .sun {
-      width: 120px;
-      height: 120px;
-      left: 5%;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 20;
-      transition: box-shadow 0.4s;
-    }
-
-    .sun:hover {
-      box-shadow: 0 0 35px 15px rgba(255, 223, 0, 0.7);
-    }
-
-    .planet {
-      width: 70px;
-      height: 70px;
-      transition: transform 0.3s;
-    }
-
-    .planet:hover {
-      transform: scale(1.2);
-      z-index: 10;
-    }
-
-    .tooltip {
-      position: absolute;
-      bottom: 110%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.8);
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      white-space: nowrap;
-      opacity: 0;
-      transition: opacity 0.3s;
-      pointer-events: none;
-      font-size: 0.8rem;
-      color: #fff;
-    }
-
-    .sun:hover .tooltip,
-    .planet:hover .tooltip {
-      opacity: 1;
-    }
+    
+    .solar-system { position: relative; width: 100%; min-height: 100vh; padding: 2rem 0; }
+    .sun, .planet { position: absolute; border-radius: 50%; text-decoration: none; display: block; }
+    .sun img, .planet img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+    .sun { width: 120px; height: 120px; left: 5%; top: 50%; transform: translateY(-50%); z-index: 20; transition: box-shadow 0.4s; }
+    .sun:hover { box-shadow: 0 0 35px 15px rgba(255, 223, 0, 0.7); }
+    .planet { width: 70px; height: 70px; transition: transform 0.3s; }
+    .planet:hover { transform: scale(1.2); z-index: 10; }
+    .tooltip { position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%); background: var(--tooltip-bg); color: var(--text-color); padding: 0.5rem 1rem; border-radius: 5px; white-space: nowrap; opacity: 0; transition: opacity 0.3s; pointer-events: none; font-size: 0.8rem; }
+    .sun:hover .tooltip, .planet:hover .tooltip { opacity: 1; }
 
     .mercury  { top: 15%; left: 22%; }
     .venus    { top: 30%; left: 32%; }
@@ -102,21 +52,36 @@
     .saturn   { top: 35%; left: 72%; }
     .uranus   { top: 50%; left: 82%; }
     .neptune  { top: 65%; left: 92%; }
+    
+    .header-controls {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .common-toggle-button { background-color: rgba(0,0,0,0.3); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2); color: #fff; border-radius: 9999px; width: 40px; height: 40px; font-size: 1.2rem; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all 0.3s; padding: 0; }
+    .theme-toggle::before { content: var(--theme-toggle-icon); }
+    .lang-switcher { display: flex; gap: 5px; }
+    .lang-switcher button { opacity: 0.6; }
+    .lang-switcher button.lang-active { opacity: 1; border-color: #fff !important; }
+    body.light-mode .common-toggle-button { background-color: rgba(255,255,255,0.3); color: #1a2a45; border-color: rgba(26,42,69,0.2); }
 
     @media (max-width: 768px) {
-      .sun {
-        width: 90px;
-        height: 90px;
+      header { font-size: 1rem; padding-bottom: 3.5rem; }
+      .header-controls {
+        position: absolute;
+        bottom: 0.5rem;
         left: 50%;
-        top: 5%;
+        top: auto;
         transform: translateX(-50%);
+        width: auto;
       }
-
-      .planet {
-        width: 50px;
-        height: 50px;
-      }
-
+      .sun { width: 90px; height: 90px; left: 50%; top: 5%; transform: translateX(-50%); }
+      .planet { width: 50px; height: 50px; }
       .mercury  { top: 20%; left: 20%; }
       .venus    { top: 30%; left: 40%; }
       .earth    { top: 40%; left: 60%; }
@@ -130,47 +95,127 @@
 </head>
 <body>
   <header>
-    🌌 Bienvenue sur SolarEstateHub – Choisissez votre planète 🌌
+    <h1 data-key="header_title">🌌 Bienvenue sur SolarEstateHub – Choisissez votre planète 🌌</h1>
+    <div class="header-controls">
+        <div class="lang-switcher">
+            <button id="lang-fr-btn" class="common-toggle-button" aria-label="Passer en Français">🇫🇷</button>
+            <button id="lang-en-btn" class="common-toggle-button" aria-label="Switch to English">🇬🇧</button>
+        </div>
+        <button id="theme-toggle" class="theme-toggle common-toggle-button" data-key="theme_toggle_label"></button>
+    </div>
   </header>
 
   <main class="solar-system">
     <div class="sun" title="Le Soleil">
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Map_of_the_full_sun.jpg/1024px-Map_of_the_full_sun.jpg" alt="Le Soleil">
-      <div class="tooltip">Soleil<br>Temp: 5,505°C<br>Notre étoile</div>
+      <div class="tooltip" data-key="tooltip_sun"></div>
     </div>
 
     <a href="mercure.html" class="planet mercury" title="Mercure">
       <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Mercury_in_true_color.jpg" alt="Mercure">
-      <div class="tooltip">Mercure<br>Temp: 167°C<br>Gravité: 0.38g</div>
+      <div class="tooltip" data-key="tooltip_mercury"></div>
     </a>
     <a href="venus.html" class="planet venus" title="Vénus">
       <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Venus-real_color.jpg" alt="Vénus">
-      <div class="tooltip">Vénus<br>Temp: 464°C<br>Gravité: 0.9g</div>
+      <div class="tooltip" data-key="tooltip_venus"></div>
     </a>
     <a href="terre.html" class="planet earth" title="Terre">
       <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" alt="Terre">
-      <div class="tooltip">Terre<br>Temp: 15°C<br>Gravité: 1g</div>
+      <div class="tooltip" data-key="tooltip_earth"></div>
     </a>
     <a href="mars.html" class="planet mars" title="Mars">
       <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" alt="Mars">
-      <div class="tooltip">Mars<br>Temp: -60°C<br>Gravité: 0.38g</div>
+      <div class="tooltip" data-key="tooltip_mars"></div>
     </a>
     <a href="jupiter.html" class="planet jupiter" title="Jupiter">
       <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" alt="Jupiter">
-      <div class="tooltip">Jupiter<br>Temp: -110°C<br>Gravité: 2.4g</div>
+      <div class="tooltip" data-key="tooltip_jupiter"></div>
     </a>
     <a href="saturne.html" class="planet saturn" title="Saturne">
       <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_during_Equinox.jpg" alt="Saturne">
-      <div class="tooltip">Saturne<br>Temp: -140°C<br>Gravité: 1.1g</div>
+      <div class="tooltip" data-key="tooltip_saturn"></div>
     </a>
     <a href="uranus.html" class="planet uranus" title="Uranus">
       <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Uranus2.jpg" alt="Uranus">
-      <div class="tooltip">Uranus<br>Temp: -195°C<br>Gravité: 0.89g</div>
+      <div class="tooltip" data-key="tooltip_uranus"></div>
     </a>
     <a href="neptune.html" class="planet neptune" title="Neptune">
       <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Neptune_Full.jpg" alt="Neptune">
-      <div class="tooltip">Neptune<br>Temp: -200°C<br>Gravité: 1.14g</div>
+      <div class="tooltip" data-key="tooltip_neptune"></div>
     </a>
   </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const translations = {
+            fr: {
+                page_title: "SolarEstateHub - Carte du Système Solaire",
+                theme_toggle_label: "Changer le thème",
+                header_title: "🌌 Bienvenue sur SolarEstateHub – Choisissez votre planète 🌌",
+                tooltip_sun: "Soleil<br>Temp: 5,505°C<br>Notre étoile",
+                tooltip_mercury: "Mercure<br>Temp: 167°C<br>Gravité: 0.38g",
+                tooltip_venus: "Vénus<br>Temp: 464°C<br>Gravité: 0.9g",
+                tooltip_earth: "Terre<br>Temp: 15°C<br>Gravité: 1g<br>AVERTISSEMENT",
+                tooltip_mars: "Mars<br>Temp: -60°C<br>Gravité: 0.38g",
+                tooltip_jupiter: "Jupiter<br>Temp: -110°C<br>Gravité: 2.4g",
+                tooltip_saturn: "Saturne<br>Temp: -140°C<br>Gravité: 1.1g",
+                tooltip_uranus: "Uranus<br>Temp: -195°C<br>Gravité: 0.89g",
+                tooltip_neptune: "Neptune<br>Temp: -200°C<br>Gravité: 1.14g"
+            },
+            en: {
+                page_title: "SolarEstateHub - Solar System Map",
+                theme_toggle_label: "Change theme",
+                header_title: "🌌 Welcome to SolarEstateHub – Choose your planet 🌌",
+                tooltip_sun: "Sun<br>Temp: 9,941°F<br>Our star",
+                tooltip_mercury: "Mercury<br>Temp: 333°F<br>Gravity: 0.38g",
+                tooltip_venus: "Venus<br>Temp: 867°F<br>Gravity: 0.9g",
+                tooltip_earth: "Earth<br>Temp: 59°F<br>Gravity: 1g<br>WARNING",
+                tooltip_mars: "Mars<br>Temp: -76°F<br>Gravity: 0.38g",
+                tooltip_jupiter: "Jupiter<br>Temp: -166°F<br>Gravity: 2.4g",
+                tooltip_saturn: "Saturn<br>Temp: -220°F<br>Gravity: 1.1g",
+                tooltip_uranus: "Uranus<br>Temp: -319°F<br>Gravity: 0.89g",
+                tooltip_neptune: "Neptune<br>Temp: -328°F<br>Gravity: 1.14g"
+            }
+        };
+
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('hubTheme') || 'dark';
+        if (currentTheme === 'light') { body.classList.add('light-mode'); }
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const newTheme = body.classList.contains('light-mode') ? 'light' : 'dark';
+            localStorage.setItem('hubTheme', newTheme);
+        });
+
+        const setLanguage = (lang) => {
+            document.documentElement.lang = lang;
+            localStorage.setItem('hubLang', lang);
+            document.querySelectorAll('[data-key]').forEach(elem => {
+                const key = elem.dataset.key;
+                const translation = translations[lang]?.[key];
+                if (translation !== undefined) {
+                    if (elem.id === 'theme-toggle') { elem.setAttribute('aria-label', translation); }
+                    else { elem.innerHTML = translation; }
+                }
+            });
+            document.title = translations[lang].page_title;
+            if (lang === 'fr') {
+                document.getElementById('lang-fr-btn').classList.add('lang-active');
+                document.getElementById('lang-en-btn').classList.remove('lang-active');
+            } else {
+                document.getElementById('lang-en-btn').classList.add('lang-active');
+                document.getElementById('lang-fr-btn').classList.remove('lang-active');
+            }
+        };
+
+        const langFrBtn = document.getElementById('lang-fr-btn');
+        const langEnBtn = document.getElementById('lang-en-btn');
+        langFrBtn.addEventListener('click', () => setLanguage('fr'));
+        langEnBtn.addEventListener('click', () => setLanguage('en'));
+        const initialLang = localStorage.getItem('hubLang') || (navigator.language.startsWith('fr') ? 'fr' : 'en');
+        setLanguage(initialLang);
+    });
+  </script>
 </body>
 </html>

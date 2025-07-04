@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mercure Colonisation - Résidences d'élite interplanétaires</title>
+    <title>Mercure Colonisation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
@@ -30,32 +30,21 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap');
         
+        :root { --theme-toggle-icon: "🌙"; }
+        body.light-mode { --theme-toggle-icon: "☀️"; }
+        
         body {
             background-color: #1a1a2e;
             color: #e5e5e5;
             font-family: 'Rajdhani', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
         }
         
-        .glow {
-            text-shadow: 0 0 10px rgba(247, 127, 0, 0.7);
-        }
-        
-        .metal-border {
-            border: 1px solid #4a4e69;
-            box-shadow: 0 0 15px rgba(74, 78, 105, 0.5);
-        }
-        
-        .hover-grow {
-            transition: all 0.3s ease;
-        }
-        
-        .hover-grow:hover {
-            transform: scale(1.05);
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
+        .glow { text-shadow: 0 0 10px rgba(247, 127, 0, 0.7); }
+        .metal-border { border: 1px solid #4a4e69; box-shadow: 0 0 15px rgba(74, 78, 105, 0.5); }
+        .hover-grow { transition: all 0.3s ease; }
+        .hover-grow:hover { transform: scale(1.05); }
+        .pulse { animation: pulse 2s infinite; }
         
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(247, 127, 0, 0.4); }
@@ -63,37 +52,72 @@
             100% { box-shadow: 0 0 0 0 rgba(247, 127, 0, 0); }
         }
         
-        .mercure-map {
-            background: url('https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover;
-            position: relative;
+        .mercure-map { background: url('https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover; position: relative; }
+        .mercure-map::before { content: ''; position: absolute; inset: 0; background: rgba(26, 26, 46, 0.7); }
+
+        .common-toggle-button {
+            background-color: rgba(74, 78, 105, 0.3);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(74, 78, 105, 0.5);
+            color: #e5e5e5;
+            border-radius: 9999px;
+            width: 40px; height: 40px; font-size: 1.2rem;
+            cursor: pointer; display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            padding: 0;
         }
-        
-        .mercure-map::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(26, 26, 46, 0.7);
+        .theme-toggle::before { content: var(--theme-toggle-icon); }
+        .top-right-controls { position: fixed; top: 1.25rem; right: 1.25rem; display: flex; align-items: center; gap: 8px; z-index: 1001; }
+        .lang-switcher { display: flex; gap: 5px; }
+        .lang-switcher button { opacity: 0.6; }
+        .lang-switcher button.lang-active { opacity: 1; border-color: #f77f00 !important; }
+
+        body.light-mode { background-color: #e5e5e5; color: #1a1a2e; }
+        body.light-mode nav,
+        body.light-mode section,
+        body.light-mode footer { background-color: #f0f0f5; }
+        body.light-mode .bg-mercure-dark { background-color: #ffffff; }
+        body.light-mode .text-mercure-light { color: #1a1a2e; }
+        body.light-mode .text-mercure-accent { color: #d96d00; }
+        body.light-mode .glow { text-shadow: none; }
+        body.light-mode .metal-border { border-color: #c9cddb; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        body.light-mode .bg-mercure-metal { background-color: #e0e2eb; }
+        body.light-mode .bg-opacity-50 { background-color: rgba(26, 26, 46, 0.05); }
+        body.light-mode .border-mercure-metal { border-color: #c9cddb; }
+        body.light-mode .common-toggle-button {
+            background-color: rgba(26, 26, 46, 0.1);
+            color: #1a1a2e;
+            border-color: rgba(26, 26, 46, 0.2);
         }
+        body.light-mode input[type="email"] { background-color: #d1d5db; color: #1a1a2e; }
+        body.light-mode input[type="email"]::placeholder { color: #4a4e69; }
     </style>
 </head>
 <body class="min-h-screen">
-    <!-- Navbar -->
+    <a href="index.html" class="fixed top-20 left-5 z-50 inline-flex items-center px-4 py-2 rounded-full bg-mercure-metal/30 backdrop-blur-sm border border-mercure-metal/50 text-mercure-light font-semibold hover:bg-mercure-metal/50 transition-all duration-300" title="Retour à la page d'accueil" data-key="back_button">
+    </a>
 
-    <nav class="bg-mercure-dark border-b border-mercure-metal sticky top-0 z-50">
+    <div class="top-right-controls">
+        <div class="lang-switcher">
+            <button id="lang-fr-btn" class="common-toggle-button" aria-label="Passer en Français">🇫🇷</button>
+            <button id="lang-en-btn" class="common-toggle-button" aria-label="Switch to English">🇬🇧</button>
+        </div>
+        <button id="theme-toggle" class="theme-toggle common-toggle-button" data-key="theme_toggle_label"></button>
+    </div>
+
+    <nav class="bg-mercure-dark border-b border-mercure-metal sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex-shrink-0 flex items-center">
                     <i class="fas fa-planet-ringed text-mercure-accent text-2xl mr-2"></i>
-                    <span class="text-mercure-light font-orbitron text-xl tracking-wider">MERCURE COLONISATION</span>
+                    <span class="text-mercure-light font-orbitron text-xl tracking-wider" data-key="nav_brand">MERCURE COLONISATION</span>
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#habitations" class="text-mercure-light hover:text-mercure-accent font-bold">HABITATIONS</a>
-                    <a href="#localisations" class="text-mercure-light hover:text-mercure-accent font-bold">LOCALISATIONS</a>
-                    <a href="#technologies" class="text-mercure-light hover:text-mercure-accent font-bold">TECHNOLOGIES</a>
-                    <a href="#contact" class="text-mercure-light hover:text-mercure-accent font-bold">CONTACT</a>
+                    <a href="#habitations" class="text-mercure-light hover:text-mercure-accent font-bold" data-key="nav_habitations">HABITATIONS</a>
+                    <a href="#localisations" class="text-mercure-light hover:text-mercure-accent font-bold" data-key="nav_locations">LOCALISATIONS</a>
+                    <a href="#technologies" class="text-mercure-light hover:text-mercure-accent font-bold" data-key="nav_technologies">TECHNOLOGIES</a>
+                    <a href="#contact" class="text-mercure-light hover:text-mercure-accent font-bold" data-key="nav_contact">CONTACT</a>
                 </div>
                 <div class="md:hidden">
                     <button class="text-mercure-light focus:outline-none">
@@ -103,80 +127,51 @@
             </div>
         </div>
     </nav>
-
-    <!-- Hero Section -->
-
-    <!-- === CODE DU BOUTON À AJOUTER ICI === -->
     
-    <!-- Hero section -->
-    <header class="pt-24 pb-32 relative">
-        <!-- Hero section -->
-        <header class="pt-24 pb-32 relative">
-
-<!-- === Bouton Retour Flottant === -->
-<a href="index.html" 
-   class="fixed top-5 left-5 z-50 inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold hover:bg-white/20 hover:border-white/40 transition-all duration-300"
-   title="Retour à la page d'accueil">
-    <i class="fas fa-arrow-left mr-2"></i>
-    <span>Accueil</span>
-</a>
-<!-- =============================== -->
-
-
     <section class="mercure-map relative flex items-center justify-center py-32 px-4 text-center">
         <div class="relative z-10 max-w-4xl">
-            <h1 class="text-4xl md:text-6xl font-orbitron font-bold text-mercure-accent glow mb-6">
+            <h1 class="text-4xl md:text-6xl font-orbitron font-bold text-mercure-accent glow mb-6" data-key="hero_title">
                 VOTRE RÉSIDENCE EXCLUSIVE SUR MERCURE
             </h1>
-            <p class="text-xl md:text-2xl text-mercure-light mb-8">
+            <p class="text-xl md:text-2xl text-mercure-light mb-8" data-key="hero_subtitle">
                 Découvrez les habitats de luxe conçus pour résister aux conditions extrêmes de la planète la plus proche du Soleil.
             </p>
-            <button class="bg-mercure-accent hover:bg-opacity-90 text-mercure-dark font-bold py-3 px-8 rounded-full text-lg transition duration-300 pulse">
+            <button class="bg-mercure-accent hover:bg-opacity-90 text-mercure-dark font-bold py-3 px-8 rounded-full text-lg transition duration-300 pulse" data-key="hero_button">
                 EXPLORER LES DISPONIBILITÉS
             </button>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="py-16 bg-mercure-dark">
+    <section id="localisations" class="py-16 bg-mercure-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-orbitron text-mercure-accent mb-4">
+                <h2 class="text-3xl md:text-4xl font-orbitron text-mercure-accent mb-4" data-key="features_title">
                     VIVRE SUR MERCURE
                 </h2>
                 <div class="w-24 h-1 bg-mercure-accent mx-auto"></div>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Feature 1 -->
                 <div class="bg-mercure-metal bg-opacity-50 rounded-xl p-6 metal-border hover-glow transition duration-300 hover:bg-opacity-70">
-                    <div class="text-mercure-accent mb-4">
-                        <i class="fas fa-city text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-mercure-light mb-3">CITÉS SOUTERRAINES</h3>
-                    <p class="text-mercure-light">
+                    <div class="text-mercure-accent mb-4"><i class="fas fa-city text-4xl"></i></div>
+                    <h3 class="text-xl font-bold text-mercure-light mb-3" data-key="feature1_title">CITÉS SOUTERRAINES</h3>
+                    <p class="text-mercure-light" data-key="feature1_desc">
                         Nos villes enfouies près des pôles offrent une protection maximale contre les radiations solaires et les températures extrêmes.
                     </p>
                 </div>
                 
-                <!-- Feature 2 -->
                 <div class="bg-mercure-metal bg-opacity-50 rounded-xl p-6 metal-border hover-glow transition duration-300 hover:bg-opacity-70">
-                    <div class="text-mercure-accent mb-4">
-                        <i class="fas fa-temperature-low text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-mercure-light mb-3">DÔMES THERMORÉGULÉS</h3>
-                    <p class="text-mercure-light">
+                    <div class="text-mercure-accent mb-4"><i class="fas fa-temperature-low text-4xl"></i></div>
+                    <h3 class="text-xl font-bold text-mercure-light mb-3" data-key="feature2_title">DÔMES THERMORÉGULÉS</h3>
+                    <p class="text-mercure-light" data-key="feature2_desc">
                         Des habitats à température contrôlée avec des matériaux à changement de phase pour une régulation passive optimale.
                     </p>
                 </div>
                 
-                <!-- Feature 3 -->
                 <div class="bg-mercure-metal bg-opacity-50 rounded-xl p-6 metal-border hover-glow transition duration-300 hover:bg-opacity-70">
-                    <div class="text-mercure-accent mb-4">
-                        <i class="fas fa-shield-alt text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-mercure-light mb-3">PROTECTION ANTI-RADIATION</h3>
-                    <p class="text-mercure-light">
+                    <div class="text-mercure-accent mb-4"><i class="fas fa-shield-alt text-4xl"></i></div>
+                    <h3 class="text-xl font-bold text-mercure-light mb-3" data-key="feature3_title">PROTECTION ANTI-RADIATION</h3>
+                    <p class="text-mercure-light" data-key="feature3_desc">
                         Murs intelligents en composite nanostructuré bloquant 99.9% des radiations solaires et cosmiques.
                     </p>
                 </div>
@@ -184,61 +179,52 @@
         </div>
     </section>
 
-    <!-- Habitations Section -->
     <section id="habitations" class="py-16 bg-gradient-to-b from-mercure-dark to-mercure-metal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-orbitron text-mercure-accent mb-4">
+                <h2 class="text-3xl md:text-4xl font-orbitron text-mercure-accent mb-4" data-key="habitations_title">
                     NOS MODÈLES D'HABITATIONS
                 </h2>
                 <div class="w-24 h-1 bg-mercure-accent mx-auto"></div>
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-<!-- Residence 1 -->
-<div class="bg-mercure-dark rounded-xl overflow-hidden metal-border hover-grow">
-    <div class="relative h-64 bg-mercure-metal bg-opacity-50 flex items-center justify-center">
-
-        <!-- === LIGNE MODIFIÉE ICI === -->
-        <img src="Mercure/POLARIS DOME.jpg" alt=""Vue du dôme Polaris" class="w-full h-full object-cover">
-        
-        <!-- Le badge reste au même endroit, par-dessus votre image -->
-        <span class="absolute bottom-4 right-4 bg-mercure-danger text-sm text-mercure-light px-3 py-1 rounded-full">
-            DISPONIBLE
-        </span>
-    </div>
-    <div class="p-6">
-        <h3 class="text-xl font-bold text-mercure-accent mb-2">POLARIS DOME</h3>
-        <p class="text-mercure-light mb-4">
-            Dôme résidentiel de 2000m² près du pôle nord, avec observatoire solaire intégré et accès direct aux tunnels magnétiques.
-        </p>
-        <div class="flex justify-between items-center">
-            <span class="text-lg font-bold text-mercure-light">1.2M Crédits</span>
-            <button class="bg-mercure-accent hover:bg-opacity-90 text-mercure-dark font-bold py-2 px-4 rounded-full text-sm transition duration-300">
-                Voir les détails
-            </button>
-        </div>
-    </div>
-</div>
-                <!-- Residence 2 -->
                 <div class="bg-mercure-dark rounded-xl overflow-hidden metal-border hover-grow">
                     <div class="relative h-64 bg-mercure-metal bg-opacity-50 flex items-center justify-center">
-        <!-- === LIGNE MODIFIÉE ICI === -->
-        <img src="Mercure/HELIOS UNDERGROUND.jpg" alt=""HELIOS UNDERGROUND" class="w-full h-full object-cover">
-        
-        <!-- Le badge reste au même endroit, par-dessus votre image -->
-                        <span class="absolute bottom-4 right-4 bg-mercure-danger text-sm text-mercure-light px-3 py-1 rounded-full">
+                        <img src="Mercure/POLARIS DOME.jpg" alt="Vue du dôme Polaris" class="w-full h-full object-cover">
+                        <span class="absolute bottom-4 right-4 bg-mercure-danger text-sm text-mercure-light px-3 py-1 rounded-full" data-key="status_available">
                             DISPONIBLE
                         </span>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-mercure-accent mb-2">HELIOS UNDERGROUND</h3>
-                        <p class="text-mercure-light mb-4">
+                        <h3 class="text-xl font-bold text-mercure-accent mb-2" data-key="habitation1_title">POLARIS DOME</h3>
+                        <p class="text-mercure-light mb-4" data-key="habitation1_desc">
+                            Dôme résidentiel de 2000m² près du pôle nord, avec observatoire solaire intégré et accès direct aux tunnels magnétiques.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-mercure-light" data-key="habitation1_price">1.2M Crédits</span>
+                            <button class="bg-mercure-accent hover:bg-opacity-90 text-mercure-dark font-bold py-2 px-4 rounded-full text-sm transition duration-300" data-key="btn_details">
+                                Voir les détails
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-mercure-dark rounded-xl overflow-hidden metal-border hover-grow">
+                    <div class="relative h-64 bg-mercure-metal bg-opacity-50 flex items-center justify-center">
+                        <img src="Mercure/HELIOS UNDERGROUND.jpg" alt="HELIOS UNDERGROUND" class="w-full h-full object-cover">
+                        <span class="absolute bottom-4 right-4 bg-mercure-danger text-sm text-mercure-light px-3 py-1 rounded-full" data-key="status_available">
+                            DISPONIBLE
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-mercure-accent mb-2" data-key="habitation2_title">HELIOS UNDERGROUND</h3>
+                        <p class="text-mercure-light mb-4" data-key="habitation2_desc">
                             Complexe souterrain de luxe avec 5 chambres, laboratoire privé et accès exclusif au réseau de transport magnétique inter-dômes.
                         </p>
                         <div class="flex justify-between items-center">
-                            <span class="text-lg font-bold text-mercure-light">2.5M Crédits</span>
-                            <button class="bg-mercure-accent hover:bg-opacity-90 text-mercure-dark font-bold py-2 px-4 rounded-full text-sm transition duration-300">
+                            <span class="text-lg font-bold text-mercure-light" data-key="habitation2_price">2.5M Crédits</span>
+                            <button class="bg-mercure-accent hover:bg-opacity-90 text-mercure-dark font-bold py-2 px-4 rounded-full text-sm transition duration-300" data-key="btn_details">
                                 Voir les détails
                             </button>
                         </div>
@@ -248,11 +234,10 @@
         </div>
     </section>
 
-    <!-- Technologies Section -->
     <section id="technologies" class="py-16 bg-mercure-metal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-orbitron text-mercure-accent mb-4">
+                <h2 class="text-3xl md:text-4xl font-orbitron text-mercure-accent mb-4" data-key="tech_title">
                       TECHNOLOGIES EXCLUSIVES
                 </h2>
                 <div class="w-24 h-1 bg-mercure-accent mx-auto"></div>
@@ -260,111 +245,65 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                 <div class="order-1 md:order-none">
-                    <h3 class="text-2xl font-bold text-mercure-light mb-4">TUNNELS MAGNÉTIQUES</h3>
-                    <p class="text-mercure-light mb-6">
+                    <h3 class="text-2xl font-bold text-mercure-light mb-4" data-key="tech1_title">TUNNELS MAGNÉTIQUES</h3>
+                    <p class="text-mercure-light mb-6" data-key="tech1_desc">
                         Notre réseau exclusif de tunnels à lévitation magnétique vous permet de traverser Mercure en quelques minutes, évitant ainsi les conditions de surface extrêmes.
                     </p>
-                    <ul class="space-y-3 text-mercure-light">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-mercure-accent mt-1 mr-2"></i>
-                            <span>Vitesses atteignant 1200km/h en environnement contrôlé</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-mercure-accent mt-1 mr-2"></i>
-                            <span>Accès direct depuis votre résidence</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-mercure-accent mt-1 mr-2"></i>
-                            <span>Zero émission, zero friction</span>
-                        </li>
+                    <ul class="space-y-3 text-mercure-light" data-key="tech1_list">
                     </ul>
                  </div>
-                
-                <!-- === BLOC 1 MODIFIÉ (anciennement icône de métro) === -->
-                <!-- L'icône <i> est supprimée et l'image est mise en fond du div -->
-                <div class="bg-mercure-dark h-80 rounded-xl metal-border bg-cover bg-center" 
-                     style="background-image: url('Mercure/MAGNETIC TUNNELS.jpg');">
-                    <!-- Ce div est maintenant vide car son fond est l'image -->
-                </div>
-
-            </div> <!-- Fin du premier grid -->
+                <div class="bg-mercure-dark h-80 rounded-xl metal-border bg-cover bg-center" style="background-image: url('Mercure/MAGNETIC TUNNELS.jpg');"></div>
+            </div>
             
-            <!-- Nouveau grid qui commence -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center mt-20">
-                
-                <!-- === BLOC 2 MODIFIÉ (anciennement icône panneau solaire) === -->
-                <!-- On fait la même chose ici avec une autre image -->
-                <div class="bg-mercure-dark h-80 rounded-xl metal-border bg-cover bg-center" 
-                     style="background-image: url('Mercure/SOLAR OBSERVATOIR.jpg');">
-                     <!-- Vide également -->
-                </div>
-
-                <!-- La colonne de texte qui suit -->
+                <div class="bg-mercure-dark h-80 rounded-xl metal-border bg-cover bg-center" style="background-image: url('Mercure/SOLAR OBSERVATOIR.jpg');"></div>
                 <div class="order-1 md:order-none">
-                    <!-- Le reste de votre contenu texte... -->
-                    <h3 class="text-2xl font-bold text-mercure-light mb-4">OBSERVATOIRES SOLAIRES</h3>
-                    <p class="text-mercure-light mb-6">
+                    <h3 class="text-2xl font-bold text-mercure-light mb-4" data-key="tech2_title">OBSERVATOIRES SOLAIRES</h3>
+                    <p class="text-mercure-light mb-6" data-key="tech2_desc">
                         Chaque résidence inclut un accès privilégié à nos observatoires équipés de filtres quantiques, offrant des vues spectaculaires sur le Soleil sans pareil dans le système solaire.
                     </p>
-                    <ul class="space-y-3 text-mercure-light">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-mercure-accent mt-1 mr-2"></i>
-                            <span>Instruments scientifiques de pointe inclus</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-mercure-accent mt-1 mr-2"></i>
-                            <span>Accès aux données solaires en temps réel</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-mercure-accent mt-1 mr-2"></i>
-                            <span>Places réservées pour les événements solaires majeurs</span>
-                        </li>
+                    <ul class="space-y-3 text-mercure-light" data-key="tech2_list">
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
     <section class="py-20 bg-mercure-dark metal-border-t metal-border-b">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-4xl font-orbitron text-mercure-accent mb-6">
+            <h2 class="text-3xl md:text-4xl font-orbitron text-mercure-accent mb-6" data-key="cta_title">
                 PRÊT À REJOINDRE L'ÉLITE INTERPLANÉTAIRE?
             </h2>
-            <p class="text-xl text-mercure-light mb-8">
+            <p class="text-xl text-mercure-light mb-8" data-key="cta_subtitle">
                 Nos conseillers en colonisation sont disponibles 24/7 pour répondre à vos questions et vous guider dans l'acquisition de votre propriété sur Mercure.
             </p>
-            <button class="bg-mercure-accent hover:bg-opacity-90 text-mercure-dark font-bold py-3 px-8 rounded-full text-lg transition duration-300 mr-4">
+            <button class="bg-mercure-accent hover:bg-opacity-90 text-mercure-dark font-bold py-3 px-8 rounded-full text-lg transition duration-300 mr-4" data-key="cta_btn1">
                 CONTACTER UN CONSEILLER
             </button>
-            <button class="border border-mercure-accent hover:bg-mercure-accent hover:bg-opacity-10 text-mercure-accent font-bold py-3 px-8 rounded-full text-lg transition duration-300">
+            <button class="border border-mercure-accent hover:bg-mercure-accent hover:bg-opacity-10 text-mercure-accent font-bold py-3 px-8 rounded-full text-lg transition duration-300" data-key="cta_btn2">
                 VISITE VIRTUELLE
             </button>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer id="contact" class="bg-mercure-dark py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
                 <div>
-                    <h3 class="text-lg font-bold text-mercure-accent mb-4">MERCURE COLONISATION</h3>
-                    <p class="text-mercure-light">
+                    <h3 class="text-lg font-bold text-mercure-accent mb-4" data-key="footer_brand">MERCURE COLONISATION</h3>
+                    <p class="text-mercure-light" data-key="footer_brand_desc">
                         Leaders en développement résidentiel extraterrestre depuis 2154.
                     </p>
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-bold text-mercure-accent mb-4">CONTACT</h3>
-                    <ul class="space-y-2 text-mercure-light">
-                        <li><i class="fas fa-map-marker-alt mr-2 text-mercure-accent"></i> Siège social: Station Orbite Terrestre 7</li>
-                        <li><i class="fas fa-phone-alt mr-2 text-mercure-accent"></i> +0(800)MERCURE</li>
-                        <li><i class="fas fa-envelope mr-2 text-mercure-accent"></i> contact@mercure-colonisation.space</li>
+                    <h3 class="text-lg font-bold text-mercure-accent mb-4" data-key="footer_contact_title">CONTACT</h3>
+                    <ul class="space-y-2 text-mercure-light" data-key="footer_contact_list">
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-bold text-mercure-accent mb-4">RÉSEAUX</h3>
+                    <h3 class="text-lg font-bold text-mercure-accent mb-4" data-key="footer_networks_title">RÉSEAUX</h3>
                     <div class="flex space-x-4">
                         <a href="#" class="text-mercure-light hover:text-mercure-accent text-xl"><i class="fab fa-facebook"></i></a>
                         <a href="#" class="text-mercure-light hover:text-mercure-accent text-xl"><i class="fab fa-twitter"></i></a>
@@ -374,36 +313,191 @@
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-bold text-mercure-accent mb-4">NEWSLETTER</h3>
-                    <p class="text-mercure-light mb-3">Recevez nos dernières offres exclusives</p>
+                    <h3 class="text-lg font-bold text-mercure-accent mb-4" data-key="footer_newsletter_title">NEWSLETTER</h3>
+                    <p class="text-mercure-light mb-3" data-key="footer_newsletter_desc">Recevez nos dernières offres exclusives</p>
                     <div class="flex">
-                        <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-full bg-mercure-metal text-mercure-light focus:outline-none w-full">
-                        <button class="bg-mercure-accent hover:bg-opacity-90 text-mercure-dark px-4 rounded-r-full">
+                        <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-full bg-mercure-metal text-mercure-light focus:outline-none w-full" data-key="footer_newsletter_placeholder" aria-label="Email for newsletter">
+                        <button class="bg-mercure-accent hover:bg-opacity-90 text-mercure-dark px-4 rounded-r-full" data-key="footer_newsletter_button" aria-label="Subscribe to newsletter">
                             <i class="fas fa-paper-plane"></i>
                         </button>
                     </div>
                 </div>
             </div>
             
-            <div class="border-t border-mercure-metal mt-12 pt-8 text-center text-mercure-light">
+            <div class="border-t border-mercure-metal mt-12 pt-8 text-center text-mercure-light" data-key="copyright">
                 <p>© 2187 Mercure Colonisation. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Floating CTA -->
-    <div class="fixed bottom-6 right-6 z-50">
-        <button class="bg-mercure-accent text-mercure-dark rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 pulse">
+    <div class="fixed bottom-6 right-6 z-40">
+        <button class="bg-mercure-accent text-mercure-dark rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 pulse" data-key="floating_cta_label" aria-label="Chat with an advisor">
             <i class="fas fa-comment-alt text-xl"></i>
         </button>
     </div>
 
     <script>
-        // Simple script for mobile menu toggle (would be expanded in a real implementation)
-        document.querySelector('.md\\:hidden button').addEventListener('click', function() {
-            const mobileMenu = document.querySelector('.md\\:hidden + div');
-            mobileMenu.classList.toggle('hidden');
+    document.addEventListener('DOMContentLoaded', () => {
+        const translations = {
+            fr: {
+                page_title: "Mercure Colonisation - Résidences d'élite interplanétaires",
+                back_button: '<i class="fas fa-arrow-left mr-2"></i><span>Accueil</span>',
+                theme_toggle_label: "Changer le thème",
+                nav_brand: "MERCURE COLONISATION",
+                nav_habitations: "HABITATIONS",
+                nav_locations: "LOCALISATIONS",
+                nav_technologies: "TECHNOLOGIES",
+                nav_contact: "CONTACT",
+                hero_title: "VOTRE RÉSIDENCE EXCLUSIVE SUR MERCURE",
+                hero_subtitle: "Découvrez les habitats de luxe conçus pour résister aux conditions extrêmes de la planète la plus proche du Soleil.",
+                hero_button: "EXPLORER LES DISPONIBILITÉS",
+                features_title: "VIVRE SUR MERCURE",
+                feature1_title: "CITÉS SOUTERRAINES",
+                feature1_desc: "Nos villes enfouies près des pôles offrent une protection maximale contre les radiations solaires et les températures extrêmes.",
+                feature2_title: "DÔMES THERMORÉGULÉS",
+                feature2_desc: "Des habitats à température contrôlée avec des matériaux à changement de phase pour une régulation passive optimale.",
+                feature3_title: "PROTECTION ANTI-RADIATION",
+                feature3_desc: "Murs intelligents en composite nanostructuré bloquant 99.9% des radiations solaires et cosmiques.",
+                habitations_title: "NOS MODÈLES D'HABITATIONS",
+                status_available: "DISPONIBLE",
+                habitation1_title: "POLARIS DOME",
+                habitation1_desc: "Dôme résidentiel de 2000m² près du pôle nord, avec observatoire solaire intégré et accès direct aux tunnels magnétiques.",
+                habitation1_price: "1.2M Crédits",
+                btn_details: "Voir les détails",
+                habitation2_title: "HELIOS UNDERGROUND",
+                habitation2_desc: "Complexe souterrain de luxe avec 5 chambres, laboratoire privé et accès exclusif au réseau de transport magnétique inter-dômes.",
+                habitation2_price: "2.5M Crédits",
+                tech_title: "TECHNOLOGIES EXCLUSIVES",
+                tech1_title: "TUNNELS MAGNÉTIQUES",
+                tech1_desc: "Notre réseau exclusif de tunnels à lévitation magnétique vous permet de traverser Mercure en quelques minutes, évitant ainsi les conditions de surface extrêmes.",
+                tech1_list: '<li class="flex items-start"><i class="fas fa-check-circle text-mercure-accent mt-1 mr-2"></i><span>Vitesses atteignant 1200km/h en environnement contrôlé</span></li><li class="flex items-start"><i class="fas fa-check-circle text-mercure-accent mt-1 mr-2"></i><span>Accès direct depuis votre résidence</span></li><li class="flex items-start"><i class="fas fa-check-circle text-mercure-accent mt-1 mr-2"></i><span>Zero émission, zero friction</span></li>',
+                tech2_title: "OBSERVATOIRES SOLAIRES",
+                tech2_desc: "Chaque résidence inclut un accès privilégié à nos observatoires équipés de filtres quantiques, offrant des vues spectaculaires sur le Soleil sans pareil dans le système solaire.",
+                tech2_list: '<li class="flex items-start"><i class="fas fa-check-circle text-mercure-accent mt-1 mr-2"></i><span>Instruments scientifiques de pointe inclus</span></li><li class="flex items-start"><i class="fas fa-check-circle text-mercure-accent mt-1 mr-2"></i><span>Accès aux données solaires en temps réel</span></li><li class="flex items-start"><i class="fas fa-check-circle text-mercure-accent mt-1 mr-2"></i><span>Places réservées pour les événements solaires majeurs</span></li>',
+                cta_title: "PRÊT À REJOINDRE L'ÉLITE INTERPLANÉTAIRE?",
+                cta_subtitle: "Nos conseillers en colonisation sont disponibles 24/7 pour répondre à vos questions et vous guider dans l'acquisition de votre propriété sur Mercure.",
+                cta_btn1: "CONTACTER UN CONSEILLER",
+                cta_btn2: "VISITE VIRTUELLE",
+                footer_brand: "MERCURE COLONISATION",
+                footer_brand_desc: "Leaders en développement résidentiel extraterrestre depuis 2154.",
+                footer_contact_title: "CONTACT",
+                footer_contact_list: '<li><i class="fas fa-map-marker-alt mr-2 text-mercure-accent"></i> Siège social: Station Orbite Terrestre 7</li><li><i class="fas fa-phone-alt mr-2 text-mercure-accent"></i> +0(800)MERCURE</li><li><i class="fas fa-envelope mr-2 text-mercure-accent"></i> contact@mercure-colonisation.space</li>',
+                footer_networks_title: "RÉSEAUX",
+                footer_newsletter_title: "NEWSLETTER",
+                footer_newsletter_desc: "Recevez nos dernières offres exclusives",
+                footer_newsletter_placeholder: "Votre email",
+                copyright: "<p>© 2187 Mercure Colonisation. Tous droits réservés.</p>",
+                floating_cta_label: "Discuter avec un conseiller"
+            },
+            en: {
+                page_title: "Mercury Colonization - Interplanetary Elite Residences",
+                back_button: '<i class="fas fa-arrow-left mr-2"></i><span>Home</span>',
+                theme_toggle_label: "Change theme",
+                nav_brand: "MERCURY COLONIZATION",
+                nav_habitations: "HABITATS",
+                nav_locations: "LOCATIONS",
+                nav_technologies: "TECHNOLOGIES",
+                nav_contact: "CONTACT",
+                hero_title: "YOUR EXCLUSIVE RESIDENCE ON MERCURY",
+                hero_subtitle: "Discover luxury habitats designed to withstand the extreme conditions of the closest planet to the Sun.",
+                hero_button: "EXPLORE AVAILABILITY",
+                features_title: "LIVING ON MERCURY",
+                feature1_title: "UNDERGROUND CITIES",
+                feature1_desc: "Our cities, buried near the poles, offer maximum protection against solar radiation and extreme temperatures.",
+                feature2_title: "THERMOREGULATED DOMES",
+                feature2_desc: "Temperature-controlled habitats with phase-change materials for optimal passive regulation.",
+                feature3_title: "ANTI-RADIATION SHIELDING",
+                feature3_desc: "Smart walls made of nanostructured composite blocking 99.9% of solar and cosmic radiation.",
+                habitations_title: "OUR HABITAT MODELS",
+                status_available: "AVAILABLE",
+                habitation1_title: "POLARIS DOME",
+                habitation1_desc: "2000m² residential dome near the north pole, with an integrated solar observatory and direct access to magnetic tunnels.",
+                habitation1_price: "1.2M Credits",
+                btn_details: "View Details",
+                habitation2_title: "HELIOS UNDERGROUND",
+                habitation2_desc: "Luxury underground complex with 5 bedrooms, a private laboratory, and exclusive access to the inter-dome magnetic transport network.",
+                habitation2_price: "2.5M Credits",
+                tech_title: "EXCLUSIVE TECHNOLOGIES",
+                tech1_title: "MAGNETIC TUNNELS",
+                tech1_desc: "Our exclusive network of magnetic levitation tunnels allows you to cross Mercury in minutes, avoiding extreme surface conditions.",
+                tech1_list: '<li class="flex items-start"><i class="fas fa-check-circle text-mercure-accent mt-1 mr-2"></i><span>Speeds reaching 1200km/h in a controlled environment</span></li><li class="flex items-start"><i class="fas fa-check-circle text-mercure-accent mt-1 mr-2"></i><span>Direct access from your residence</span></li><li class="flex items-start"><i class="fas fa-check-circle text-mercure-accent mt-1 mr-2"></i><span>Zero emission, zero friction</span></li>',
+                tech2_title: "SOLAR OBSERVATORIES",
+                tech2_desc: "Each residence includes privileged access to our observatories equipped with quantum filters, offering spectacular views of the Sun unmatched in the solar system.",
+                tech2_list: '<li class="flex items-start"><i class="fas fa-check-circle text-mercure-accent mt-1 mr-2"></i><span>State-of-the-art scientific instruments included</span></li><li class="flex items-start"><i class="fas fa-check-circle text-mercure-accent mt-1 mr-2"></i><span>Access to real-time solar data</span></li><li class="flex items-start"><i class="fas fa-check-circle text-mercure-accent mt-1 mr-2"></i><span>Reserved seats for major solar events</span></li>',
+                cta_title: "READY TO JOIN THE INTERPLANETARY ELITE?",
+                cta_subtitle: "Our colonization advisors are available 24/7 to answer your questions and guide you in acquiring your property on Mercury.",
+                cta_btn1: "CONTACT AN ADVISOR",
+                cta_btn2: "VIRTUAL TOUR",
+                footer_brand: "MERCURY COLONIZATION",
+                footer_brand_desc: "Leaders in extraterrestrial residential development since 2154.",
+                footer_contact_title: "CONTACT",
+                footer_contact_list: '<li><i class="fas fa-map-marker-alt mr-2 text-mercure-accent"></i> HQ: Earth Orbit Station 7</li><li><i class="fas fa-phone-alt mr-2 text-mercure-accent"></i> +0(800)MERCURY</li><li><i class="fas fa-envelope mr-2 text-mercure-accent"></i> contact@mercury-colonization.space</li>',
+                footer_networks_title: "NETWORKS",
+                footer_newsletter_title: "NEWSLETTER",
+                footer_newsletter_desc: "Receive our latest exclusive offers",
+                footer_newsletter_placeholder: "Your email",
+                copyright: "<p>© 2187 Mercury Colonization. All rights reserved.</p>",
+                floating_cta_label: "Chat with an advisor"
+            }
+        };
+
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        const currentTheme = localStorage.getItem('mercureTheme') || 'dark';
+        if (currentTheme === 'light') {
+            body.classList.add('light-mode');
+        }
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const newTheme = body.classList.contains('light-mode') ? 'light' : 'dark';
+            localStorage.setItem('mercureTheme', newTheme);
         });
+
+        const setLanguage = (lang) => {
+            document.documentElement.lang = lang;
+            localStorage.setItem('mercureLang', lang);
+
+            document.querySelectorAll('[data-key]').forEach(elem => {
+                const key = elem.dataset.key;
+                const translation = translations[lang]?.[key];
+                if (translation) {
+                    if (elem.id === 'theme-toggle' || key === 'floating_cta_label') {
+                        elem.setAttribute('aria-label', translation);
+                    } else if (elem.hasAttribute('placeholder')) {
+                         elem.setAttribute('placeholder', translation);
+                    } else {
+                        elem.innerHTML = translation;
+                    }
+                }
+            });
+            
+            document.title = translations[lang].page_title;
+
+            if (lang === 'fr') {
+                document.getElementById('lang-fr-btn').classList.add('lang-active');
+                document.getElementById('lang-en-btn').classList.remove('lang-active');
+            } else {
+                document.getElementById('lang-en-btn').classList.add('lang-active');
+                document.getElementById('lang-fr-btn').classList.remove('lang-active');
+            }
+        };
+
+        const langFrBtn = document.getElementById('lang-fr-btn');
+        const langEnBtn = document.getElementById('lang-en-btn');
+
+        langFrBtn.addEventListener('click', () => setLanguage('fr'));
+        langEnBtn.addEventListener('click', () => setLanguage('en'));
+
+        const initialLang = localStorage.getItem('mercureLang') || (navigator.language.startsWith('fr') ? 'fr' : 'en');
+        setLanguage(initialLang);
+        
+        const mobileMenuButton = document.querySelector('.md\\:hidden button');
+        if(mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', function() {
+            });
+        }
+    });
     </script>
 </body>
 </html>

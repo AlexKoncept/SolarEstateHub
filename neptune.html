@@ -13,52 +13,60 @@
             100% { transform: translateY(0px); }
         }
         
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
+        .floating { animation: float 6s ease-in-out infinite; }
+        .bg-neptune { background: linear-gradient(135deg, #0c1445 0%, #1a237e 25%, #4a148c 50%, #7b1fa2 75%, #9c27b0 100%); }
+        .glass-card { background: rgba(16, 42, 67, 0.25); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(108, 207, 223, 0.3); }
+        .text-glow { text-shadow: 0 0 8px rgba(108, 207, 223, 0.8); }
         
-        .bg-neptune {
-            background: linear-gradient(135deg, #0c1445 0%, #1a237e 25%, #4a148c 50%, #7b1fa2 75%, #9c27b0 100%);
-        }
+        :root { --theme-toggle-icon: "🌙"; }
+        body.light-mode { --theme-toggle-icon: "☀️"; }
         
-        .glass-card {
-            background: rgba(16, 42, 67, 0.25);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(108, 207, 223, 0.3);
+        .common-toggle-button {
+            background-color: rgba(16, 42, 67, 0.3);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(108, 207, 223, 0.4);
+            color: #e0f2fe;
+            border-radius: 9999px;
+            width: 40px; height: 40px; font-size: 1.2rem;
+            cursor: pointer; display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            padding: 0;
         }
-        
-        .text-glow {
-            text-shadow: 0 0 8px rgba(108, 207, 223, 0.8);
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(108, 207, 223, 0.1);
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(108, 207, 223, 0.5);
-            border-radius: 4px;
+        .theme-toggle::before { content: var(--theme-toggle-icon); }
+        .top-right-controls { position: fixed; top: 6rem; right: 1.25rem; display: flex; align-items: center; gap: 8px; z-index: 1001; }
+        .lang-switcher { display: flex; gap: 5px; }
+        .lang-switcher button { opacity: 0.6; }
+        .lang-switcher button.lang-active { opacity: 1; border-color: #67e8f9 !important; }
+
+        body.light-mode { background: #f0f7ff; color: #0c1445; }
+        body.light-mode .bg-neptune { background: #f0f7ff; }
+        body.light-mode .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(12, 20, 69, 0.2); }
+        body.light-mode .text-cyan-100, body.light-mode .text-cyan-200 { color: #1e3a8a; }
+        body.light-mode .text-cyan-300 { color: #1d4ed8; }
+        body.light-mode .text-glow { text-shadow: none; color: #0c1445; }
+        body.light-mode .text-glow span { color: #1d4ed8; }
+        body.light-mode .bg-blue-900\/30 { background: rgba(219, 234, 254, 0.5); }
+        body.light-mode .border-cyan-500\/30 { border-color: rgba(12, 20, 69, 0.2); }
+        body.light-mode .common-toggle-button {
+            background-color: rgba(12, 20, 69, 0.1);
+            color: #0c1445;
+            border-color: rgba(12, 20, 69, 0.2);
         }
     </style>
 </head>
 <body class="bg-neptune text-cyan-100 font-sans overflow-x-hidden">
-    <!-- Header -->
     <header class="fixed w-full z-50">
         <nav class="glass-card px-8 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-4">
                 <i class="fas fa-planet-ringed text-4xl text-cyan-300 floating"></i>
-                <h1 class="text-2xl font-bold text-glow">NEPTUNE LIVING</h1>
+                <h1 class="text-2xl font-bold text-glow" data-key="nav_brand">NEPTUNE LIVING</h1>
             </div>
             <div class="hidden md:flex space-x-8">
-                <a href="#" class="hover:text-cyan-300 transition">Dômes</a>
-                <a href="#" class="hover:text-cyan-300 transition">Stations</a>
-                <a href="#" class="hover:text-cyan-300 transition">Expériences</a>
-                <a href="#" class="hover:text-cyan-300 transition">Galerie</a>
+                <a href="#" class="hover:text-cyan-300 transition" data-key="nav_domes">Dômes</a>
+                <a href="#" class="hover:text-cyan-300 transition" data-key="nav_stations">Stations</a>
+                <a href="#" class="hover:text-cyan-300 transition" data-key="nav_experiences">Expériences</a>
+                <a href="#" class="hover:text-cyan-300 transition" data-key="nav_gallery">Galerie</a>
             </div>
             <button class="md:hidden text-2xl">
                 <i class="fas fa-bars"></i>
@@ -66,24 +74,16 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <a href="index.html" class="fixed top-24 left-5 z-50 inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold hover:bg-white/20 hover:border-white/40 transition-all duration-300" title="Retour à la page d'accueil" data-key="back_button">
+    </a>
 
-    <!-- === CODE DU BOUTON À AJOUTER ICI === -->
-    
-    <!-- Hero section -->
-    <header class="pt-24 pb-32 relative">
-        <!-- Hero section -->
-        <header class="pt-24 pb-32 relative">
-
-<!-- === Bouton Retour Flottant === -->
-<a href="index.html" 
-   class="fixed top-12 left-5 z-50 inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold hover:bg-white/20 hover:border-white/40 transition-all duration-300"
-   title="Retour à la page d'accueil">
-    <i class="fas fa-arrow-left mr-2"></i>
-    <span>Accueil</span>
-</a>
-<!-- =============================== -->
-
+    <div class="top-right-controls">
+        <div class="lang-switcher">
+            <button id="lang-fr-btn" class="common-toggle-button" aria-label="Passer en Français">🇫🇷</button>
+            <button id="lang-en-btn" class="common-toggle-button" aria-label="Switch to English">🇬🇧</button>
+        </div>
+        <button id="theme-toggle" class="theme-toggle common-toggle-button" data-key="theme_toggle_label"></button>
+    </div>
 
     <section class="min-h-screen pt-32 pb-20 px-8 flex flex-col justify-center items-center relative overflow-hidden">
         <div class="absolute w-full h-full opacity-20 z-0">
@@ -93,9 +93,9 @@
         </div>
         
         <div class="z-10 text-center max-w-4xl">
-            <h2 class="text-5xl md:text-7xl font-bold mb-6 text-glow">Vivre sous les glaces de <span class="text-cyan-300">Triton</span></h2>
-            <p class="text-xl md:text-2xl mb-12">Nos cités sous-glaciaires vous offrent une vue imprenable sur les profondeurs mystérieuses de Neptune, dans un havre de paix bleuté.</p>
-            <button class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full text-lg font-bold shadow-lg hover:shadow-cyan-500/50 transition shadow-cyan-500/30">
+            <h2 class="text-5xl md:text-7xl font-bold mb-6 text-glow" data-key="hero_title">Vivre sous les glaces de <span class="text-cyan-300">Triton</span></h2>
+            <p class="text-xl md:text-2xl mb-12" data-key="hero_subtitle">Nos cités sous-glaciaires vous offrent une vue imprenable sur les profondeurs mystérieuses de Neptune, dans un havre de paix bleuté.</p>
+            <button class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full text-lg font-bold shadow-lg hover:shadow-cyan-500/50 transition shadow-cyan-500/30" data-key="hero_button">
                 Explorer les habitats
             </button>
         </div>
@@ -105,165 +105,131 @@
         </div>
     </section>
 
-    <!-- Features Section -->
     <section class="py-20 px-8 relative">
-        <h2 class="text-4xl font-bold mb-16 text-center text-glow">Types d'Habitations</h2>
+        <h2 class="text-4xl font-bold mb-16 text-center text-glow" data-key="habitats_title">Types d'Habitations</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
-            <!-- Card 1 -->
             <div class="glass-card p-8 rounded-2xl hover:shadow-lg hover:shadow-cyan-500/30 transition">
-                <div class="text-5xl mb-6 text-cyan-300">
-                    <i class="fas fa-water floating"></i>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Dômes Sous-Glaciaires</h3>
-                <p class="mb-6">Cités pressurisées sous les couches de glace de Triton, avec vue panoramique sur les océans d'ammoniaque fluorescents.</p>
-                <button class="text-cyan-300 hover:underline">Voir les disponibilités →</button>
+                <div class="text-5xl mb-6 text-cyan-300"><i class="fas fa-water floating"></i></div>
+                <h3 class="text-2xl font-bold mb-4" data-key="habitat1_title">Dômes Sous-Glaciaires</h3>
+                <p class="mb-6" data-key="habitat1_desc">Cités pressurisées sous les couches de glace de Triton, avec vue panoramique sur les océans d'ammoniaque fluorescents.</p>
+                <button class="text-cyan-300 hover:underline" data-key="btn_availability">Voir les disponibilités →</button>
             </div>
             
-            <!-- Card 2 -->
             <div class="glass-card p-8 rounded-2xl hover:shadow-lg hover:shadow-cyan-500/30 transition">
-                <div class="text-5xl mb-6 text-cyan-300">
-                    <i class="fas fa-satellite-dish floating"></i>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Stations Orbitales</h3>
-                <p class="mb-6">Habitations en gravité contrôlée offrant une vue imprenable sur les tempêtes de Neptune et ses anneaux ténus.</p>
-                <button class="text-cyan-300 hover:underline">Voir les disponibilités →</button>
+                <div class="text-5xl mb-6 text-cyan-300"><i class="fas fa-satellite-dish floating"></i></div>
+                <h3 class="text-2xl font-bold mb-4" data-key="habitat2_title">Stations Orbitales</h3>
+                <p class="mb-6" data-key="habitat2_desc">Habitations en gravité contrôlée offrant une vue imprenable sur les tempêtes de Neptune et ses anneaux ténus.</p>
+                <button class="text-cyan-300 hover:underline" data-key="btn_availability">Voir les disponibilités →</button>
             </div>
             
-            <!-- Card 3 -->
             <div class="glass-card p-8 rounded-2xl hover:shadow-lg hover:shadow-cyan-500/30 transition">
-                <div class="text-5xl mb-6 text-cyan-300">
-                    <i class="fas fa-mountain floating"></i>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Bases Cryogéniques</h3>
-                <p class="mb-6">Habitations nichées dans les geysers d'azote de Triton, exploitant l'énergie naturelle pour un confort optimal.</p>
-                <button class="text-cyan-300 hover:underline">Voir les disponibilités →</button>
+                <div class="text-5xl mb-6 text-cyan-300"><i class="fas fa-mountain floating"></i></div>
+                <h3 class="text-2xl font-bold mb-4" data-key="habitat3_title">Bases Cryogéniques</h3>
+                <p class="mb-6" data-key="habitat3_desc">Habitations nichées dans les geysers d'azote de Triton, exploitant l'énergie naturelle pour un confort optimal.</p>
+                <button class="text-cyan-300 hover:underline" data-key="btn_availability">Voir les disponibilités →</button>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
     <section class="py-20 px-8 bg-gradient-to-b from-blue-900/40 to-indigo-900/40">
-        <h2 class="text-4xl font-bold mb-16 text-center text-glow">Galerie Neptunienne</h2>
+        <h2 class="text-4xl font-bold mb-16 text-center text-glow" data-key="gallery_title">Galerie Neptunienne</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div class="glass-card rounded-2xl overflow-hidden hover:scale-105 transition">
                 <img src="Neptune/Cité sous-marine sur Neptune.jpg" alt="Cité sous-marine" class="w-full h-64 object-cover">
                 <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">Dôme Azur</h3>
-                    <p class="text-sm">Vue depuis l'intérieur d'un habitat premium sous 3km de glace.</p>
+                    <h3 class="text-xl font-bold mb-2" data-key="gallery1_title">Dôme Azur</h3>
+                    <p class="text-sm" data-key="gallery1_desc">Vue depuis l'intérieur d'un habitat premium sous 3km de glace.</p>
                 </div>
             </div>
             
             <div class="glass-card rounded-2xl overflow-hidden hover:scale-105 transition">
                 <img src="Neptune/Station Horizon sur Neptune.jpg" alt="Station spatiale" class="w-full h-64 object-cover">
                 <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">Station Horizon</h3>
-                    <p class="text-sm">Complexe orbital avec gravité artificielle ajustable.</p>
+                    <h3 class="text-xl font-bold mb-2" data-key="gallery2_title">Station Horizon</h3>
+                    <p class="text-sm" data-key="gallery2_desc">Complexe orbital avec gravité artificielle ajustable.</p>
                 </div>
             </div>
             
             <div class="glass-card rounded-2xl overflow-hidden hover:scale-105 transition">
                 <img src="Neptune/Geysers de Triton.jpg" alt="Geysers de Triton" class="w-full h-64 object-cover">
                 <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">Geysers de Triton</h3>
-                    <p class="text-sm">Vue extérieure des impressionnants geysers d'azote.</p>
+                    <h3 class="text-xl font-bold mb-2" data-key="gallery3_title">Geysers de Triton</h3>
+                    <p class="text-sm" data-key="gallery3_desc">Vue extérieure des impressionnants geysers d'azote.</p>
                 </div>
             </div>
             
             <div class="glass-card rounded-2xl overflow-hidden hover:scale-105 transition">
                 <img src="Neptune/Promenade Biosphère sur Neptune.jpg" alt="Architecture" class="w-full h-64 object-cover">
                 <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">Promenade Biosphère</h3>
-                    <p class="text-sm">Couloirs végétalisés avec espèces adaptées aux basses températures.</p>
+                    <h3 class="text-xl font-bold mb-2" data-key="gallery4_title">Promenade Biosphère</h3>
+                    <p class="text-sm" data-key="gallery4_desc">Couloirs végétalisés avec espèces adaptées aux basses températures.</p>
                 </div>
             </div>
             
             <div class="glass-card rounded-2xl overflow-hidden hover:scale-105 transition">
                 <img src="Neptune/Aurores Neptuniennes.jpg" alt="Aurore" class="w-full h-64 object-cover">
                 <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">Aurores Neptuniennes</h3>
-                    <p class="text-sm">Phénomène unique visible depuis les stations orbitales.</p>
+                    <h3 class="text-xl font-bold mb-2" data-key="gallery5_title">Aurores Neptuniennes</h3>
+                    <p class="text-sm" data-key="gallery5_desc">Phénomène unique visible depuis les stations orbitales.</p>
                 </div>
             </div>
             
             <div class="glass-card rounded-2xl overflow-hidden hover:scale-105 transition">
                 <img src="Neptune/Centre de Recherche sur Neptune.jpg" alt="Laboratoire" class="w-full h-64 object-cover">
                 <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">Centre de Recherche</h3>
-                    <p class="text-sm">Étude des extrêmophiles dans les océans souterrains.</p>
+                    <h3 class="text-xl font-bold mb-2" data-key="gallery6_title">Centre de Recherche</h3>
+                    <p class="text-sm" data-key="gallery6_desc">Étude des extrêmophiles dans les océans souterrains.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials -->
     <section class="py-20 px-8">
-        <h2 class="text-4xl font-bold mb-16 text-center text-glow">Témoignages des Colons</h2>
+        <h2 class="text-4xl font-bold mb-16 text-center text-glow" data-key="testimonials_title">Témoignages des Colons</h2>
         
         <div class="max-w-5xl mx-auto glass-card p-8 rounded-2xl">
-            <div class="custom-scrollbar overflow-x-auto flex space-x-8 pb-4">
-                <!-- Testimonial 1 -->
+            <div class="overflow-x-auto flex space-x-8 pb-4">
                 <div class="flex-shrink-0 w-80 bg-blue-900/30 p-6 rounded-xl">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 rounded-full bg-cyan-400 mr-4"></div>
                         <div>
-                            <h4 class="font-bold">Dr. Elara Voss</h4>
-                            <p class="text-sm text-cyan-200">Exobiologiste - Dôme Epsilon</p>
+                            <h4 class="font-bold" data-key="testimonial1_author">Dr. Elara Voss</h4>
+                            <p class="text-sm text-cyan-200" data-key="testimonial1_role">Exobiologiste - Dôme Epsilon</p>
                         </div>
                     </div>
-                    <p>"Voir la vie extraterrestre évoluer dans les océans souterrains depuis mon salon est une expérience inoubliable. La qualité des habitats dépasse tout ce qu'on trouve sur Mars."</p>
-                    <div class="flex mt-4 text-amber-300">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
+                    <p data-key="testimonial1_quote">"Voir la vie extraterrestre évoluer dans les océans souterrains depuis mon salon est une expérience inoubliable. La qualité des habitats dépasse tout ce qu'on trouve sur Mars."</p>
+                    <div class="flex mt-4 text-amber-300"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                 </div>
                 
-                <!-- Testimonial 2 -->
                 <div class="flex-shrink-0 w-80 bg-blue-900/30 p-6 rounded-xl">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 rounded-full bg-cyan-400 mr-4"></div>
                         <div>
-                            <h4 class="font-bold">Kai Solovyov</h4>
-                            <p class="text-sm text-cyan-200">Ingénieur - Station Horizon</p>
+                            <h4 class="font-bold" data-key="testimonial2_author">Kai Solovyov</h4>
+                            <p class="text-sm text-cyan-200" data-key="testimonial2_role">Ingénieur - Station Horizon</p>
                         </div>
                     </div>
-                    <p>"La gravité artificielle est si bien calibrée qu'on oublie qu'on est en orbite. Les modules d'habitation sont spacieux avec une vue à couper le souffle sur la Grande Tache Sombre."</p>
-                    <div class="flex mt-4 text-amber-300">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
+                    <p data-key="testimonial2_quote">"La gravité artificielle est si bien calibrée qu'on oublie qu'on est en orbite. Les modules d'habitation sont spacieux avec une vue à couper le souffle sur la Grande Tache Sombre."</p>
+                    <div class="flex mt-4 text-amber-300"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
                 </div>
                 
-                <!-- Testimonial 3 -->
                 <div class="flex-shrink-0 w-80 bg-blue-900/30 p-6 rounded-xl">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 rounded-full bg-cyan-400 mr-4"></div>
                         <div>
-                            <h4 class="font-bold">Amina Kuroda</h4>
-                            <p class="text-sm text-cyan-200">Architecte - Dôme Azur</p>
+                            <h4 class="font-bold" data-key="testimonial3_author">Amina Kuroda</h4>
+                            <p class="text-sm text-cyan-200" data-key="testimonial3_role">Architecte - Dôme Azur</p>
                         </div>
                     </div>
-                    <p>"Travailler l'architecture dans un environnement où chaque courbe doit résister à des pressions extrêmes est un défi passionnant. Nos designs fusionnent esthétique et fonctionnalité."</p>
-                    <div class="flex mt-4 text-amber-300">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
+                    <p data-key="testimonial3_quote">"Travailler l'architecture dans un environnement où chaque courbe doit résister à des pressions extrêmes est un défi passionnant. Nos designs fusionnent esthétique et fonctionnalité."</p>
+                    <div class="flex mt-4 text-amber-300"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Call to Action -->
     <section class="py-28 px-8 bg-gradient-to-r from-blue-900/50 to-indigo-900/50 relative overflow-hidden">
         <div class="absolute top-0 left-0 w-full h-full opacity-10">
             <div class="absolute top-1/3 left-1/4 w-28 h-28 rounded-full bg-cyan-400 filter blur-xl"></div>
@@ -271,28 +237,27 @@
         </div>
         
         <div class="max-w-4xl mx-auto text-center relative z-10">
-            <h2 class="text-4xl md:text-5xl font-bold mb-8 text-glow">Prêt pour une vie neptunienne ?</h2>
-            <p class="text-xl mb-12">Nos conseillers vous accompagnent dans votre projet de déménagement interplanétaire, de la sélection d'habitat au transport.</p>
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 text-glow" data-key="cta_title">Prêt pour une vie neptunienne ?</h2>
+            <p class="text-xl mb-12" data-key="cta_subtitle">Nos conseillers vous accompagnent dans votre projet de déménagement interplanétaire, de la sélection d'habitat au transport.</p>
             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <button class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full text-lg font-bold shadow-lg hover:shadow-cyan-500/50 transition shadow-cyan-500/30">
+                <button class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full text-lg font-bold shadow-lg hover:shadow-cyan-500/50 transition shadow-cyan-500/30" data-key="cta_btn1">
                     Planifier une visite virtuelle
                 </button>
-                <button class="px-8 py-4 border-2 border-cyan-400 rounded-full text-lg font-bold hover:bg-cyan-400/10 transition">
+                <button class="px-8 py-4 border-2 border-cyan-400 rounded-full text-lg font-bold hover:bg-cyan-400/10 transition" data-key="cta_btn2">
                     Demander un dossier
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="glass-card py-12 px-8">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-6xl mx-auto">
             <div>
                 <div class="flex items-center mb-6">
                     <i class="fas fa-planet-ringed text-3xl text-cyan-300 mr-3"></i>
-                    <h3 class="text-xl font-bold">NEPTUNE LIVING</h3>
+                    <h3 class="text-xl font-bold" data-key="footer_brand">NEPTUNE LIVING</h3>
                 </div>
-                <p class="text-sm">Pionniers de l'habitat extra-terrestre depuis 2153.</p>
+                <p class="text-sm" data-key="footer_desc">Pionniers de l'habitat extra-terrestre depuis 2153.</p>
                 <div class="flex space-x-4 mt-4 text-xl">
                     <i class="fab fa-twitter hover:text-cyan-300 cursor-pointer"></i>
                     <i class="fab fa-instagram hover:text-cyan-300 cursor-pointer"></i>
@@ -301,47 +266,142 @@
             </div>
             
             <div>
-                <h4 class="text-lg font-bold mb-4">Habitations</h4>
-                <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-cyan-300">Dômes Sous-Glaciaires</a></li>
-                    <li><a href="#" class="hover:text-cyan-300">Stations Orbitales</a></li>
-                    <li><a href="#" class="hover:text-cyan-300">Bases Cryogéniques</a></li>
-                    <li><a href="#" class="hover:text-cyan-300">Propriétés Premium</a></li>
-                </ul>
+                <h4 class="text-lg font-bold mb-4" data-key="footer_nav1_title">Habitations</h4>
+                <ul class="space-y-2" data-key="footer_nav1_list"></ul>
             </div>
             
             <div>
-                <h4 class="text-lg font-bold mb-4">Services</h4>
-                <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-cyan-300">Transport Interplanétaire</a></li>
-                    <li><a href="#" class="hover:text-cyan-300">Équipement Spatial</a></li>
-                    <li><a href="#" class="hover:text-cyan-300">Assurances</a></li>
-                    <li><a href="#" class="hover:text-cyan-300">Formation en Gravité</a></li>
-                </ul>
+                <h4 class="text-lg font-bold mb-4" data-key="footer_nav2_title">Services</h4>
+                <ul class="space-y-2" data-key="footer_nav2_list"></ul>
             </div>
             
             <div>
-                <h4 class="text-lg font-bold mb-4">Contact</h4>
-                <ul class="space-y-2">
-                    <li class="flex items-center"><i class="fas fa-phone-alt mr-2 text-sm"></i> +33 1 23 45 67 89</li>
-                    <li class="flex items-center"><i class="fas fa-envelope mr-2 text-sm"></i> contact@neptune-living.space</li>
-                    <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-sm"></i> Siège Terrestre : Paris, Lune & C.E.T.</li>
-                </ul>
+                <h4 class="text-lg font-bold mb-4" data-key="footer_contact_title">Contact</h4>
+                <ul class="space-y-2" data-key="footer_contact_list"></ul>
             </div>
         </div>
         
-        <div class="border-t border-cyan-500/30 mt-12 pt-8 text-center text-sm">
+        <div class="border-t border-cyan-500/30 mt-12 pt-8 text-center text-sm" data-key="copyright">
             <p>© 2189 Neptune Living - Tous droits réservés au-delà de l'orbite terrestre</p>
         </div>
     </footer>
 
     <script>
-        // Simple animation for interactive elements
-        document.querySelectorAll('button, a').forEach(element => {
-            element.addEventListener('mouseenter', function() {
-                this.classList.add('transition', 'duration-300');
-            });
+    document.addEventListener('DOMContentLoaded', () => {
+        const translations = {
+            fr: {
+                page_title: "Neptune Living | Cités Sous-Glaciaires",
+                back_button: '<i class="fas fa-arrow-left mr-2"></i><span>Accueil</span>',
+                theme_toggle_label: "Changer le thème",
+                nav_brand: "NEPTUNE LIVING", nav_domes: "Dômes", nav_stations: "Stations", nav_experiences: "Expériences", nav_gallery: "Galerie",
+                hero_title: 'Vivre sous les glaces de <span class="text-cyan-300">Triton</span>',
+                hero_subtitle: "Nos cités sous-glaciaires vous offrent une vue imprenable sur les profondeurs mystérieuses de Neptune, dans un havre de paix bleuté.",
+                hero_button: "Explorer les habitats",
+                habitats_title: "Types d'Habitations",
+                habitat1_title: "Dômes Sous-Glaciaires", habitat1_desc: "Cités pressurisées sous les couches de glace de Triton, avec vue panoramique sur les océans d'ammoniaque fluorescents.",
+                habitat2_title: "Stations Orbitales", habitat2_desc: "Habitations en gravité contrôlée offrant une vue imprenable sur les tempêtes de Neptune et ses anneaux ténus.",
+                habitat3_title: "Bases Cryogéniques", habitat3_desc: "Habitations nichées dans les geysers d'azote de Triton, exploitant l'énergie naturelle pour un confort optimal.",
+                btn_availability: "Voir les disponibilités →",
+                gallery_title: "Galerie Neptunienne",
+                gallery1_title: "Dôme Azur", gallery1_desc: "Vue depuis l'intérieur d'un habitat premium sous 3km de glace.",
+                gallery2_title: "Station Horizon", gallery2_desc: "Complexe orbital avec gravité artificielle ajustable.",
+                gallery3_title: "Geysers de Triton", gallery3_desc: "Vue extérieure des impressionnants geysers d'azote.",
+                gallery4_title: "Promenade Biosphère", gallery4_desc: "Couloirs végétalisés avec espèces adaptées aux basses températures.",
+                gallery5_title: "Aurores Neptuniennes", gallery5_desc: "Phénomène unique visible depuis les stations orbitales.",
+                gallery6_title: "Centre de Recherche", gallery6_desc: "Étude des extrêmophiles dans les océans souterrains.",
+                testimonials_title: "Témoignages des Colons",
+                testimonial1_author: "Dr. Elara Voss", testimonial1_role: "Exobiologiste - Dôme Epsilon", testimonial1_quote: "Voir la vie extraterrestre évoluer dans les océans souterrains depuis mon salon est une expérience inoubliable. La qualité des habitats dépasse tout ce qu'on trouve sur Mars.",
+                testimonial2_author: "Kai Solovyov", testimonial2_role: "Ingénieur - Station Horizon", testimonial2_quote: "La gravité artificielle est si bien calibrée qu'on oublie qu'on est en orbite. Les modules d'habitation sont spacieux avec une vue à couper le souffle sur la Grande Tache Sombre.",
+                testimonial3_author: "Amina Kuroda", testimonial3_role: "Architecte - Dôme Azur", testimonial3_quote: "Travailler l'architecture dans un environnement où chaque courbe doit résister à des pressions extrêmes est un défi passionnant. Nos designs fusionnent esthétique et fonctionnalité.",
+                cta_title: "Prêt pour une vie neptunienne ?", cta_subtitle: "Nos conseillers vous accompagnent dans votre projet de déménagement interplanétaire, de la sélection d'habitat au transport.", cta_btn1: "Planifier une visite virtuelle", cta_btn2: "Demander un dossier",
+                footer_brand: "NEPTUNE LIVING", footer_desc: "Pionniers de l'habitat extra-terrestre depuis 2153.",
+                footer_nav1_title: "Habitations", footer_nav1_list: '<li><a href="#" class="hover:text-cyan-300">Dômes Sous-Glaciaires</a></li><li><a href="#" class="hover:text-cyan-300">Stations Orbitales</a></li><li><a href="#" class="hover:text-cyan-300">Bases Cryogéniques</a></li><li><a href="#" class="hover:text-cyan-300">Propriétés Premium</a></li>',
+                footer_nav2_title: "Services", footer_nav2_list: '<li><a href="#" class="hover:text-cyan-300">Transport Interplanétaire</a></li><li><a href="#" class="hover:text-cyan-300">Équipement Spatial</a></li><li><a href="#" class="hover:text-cyan-300">Assurances</a></li><li><a href="#" class="hover:text-cyan-300">Formation en Gravité</a></li>',
+                footer_contact_title: "Contact", footer_contact_list: '<li class="flex items-center"><i class="fas fa-phone-alt mr-2 text-sm"></i> +33 1 23 45 67 89</li><li class="flex items-center"><i class="fas fa-envelope mr-2 text-sm"></i> contact@neptune-living.space</li><li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-sm"></i> Siège Terrestre : Paris, Lune & C.E.T.</li>',
+                copyright: "<p>© 2189 Neptune Living - Tous droits réservés au-delà de l'orbite terrestre</p>",
+            },
+            en: {
+                page_title: "Neptune Living | Sub-Glacial Cities",
+                back_button: '<i class="fas fa-arrow-left mr-2"></i><span>Home</span>',
+                theme_toggle_label: "Change theme",
+                nav_brand: "NEPTUNE LIVING", nav_domes: "Domes", nav_stations: "Stations", nav_experiences: "Experiences", nav_gallery: "Gallery",
+                hero_title: 'Living under the ice of <span class="text-cyan-300">Triton</span>',
+                hero_subtitle: "Our sub-glacial cities offer a breathtaking view of Neptune's mysterious depths, in a haven of bluish peace.",
+                hero_button: "Explore Habitats",
+                habitats_title: "Habitat Types",
+                habitat1_title: "Sub-Glacial Domes", habitat1_desc: "Pressurized cities under Triton's ice sheets, with panoramic views of fluorescent ammonia oceans.",
+                habitat2_title: "Orbital Stations", habitat2_desc: "Habitats in controlled gravity offering a stunning view of Neptune's storms and its faint rings.",
+                habitat3_title: "Cryogenic Bases", habitat3_desc: "Habitats nestled in Triton's nitrogen geysers, harnessing natural energy for optimal comfort.",
+                btn_availability: "Check availability →",
+                gallery_title: "Neptunian Gallery",
+                gallery1_title: "Azure Dome", gallery1_desc: "View from inside a premium habitat under 3km of ice.",
+                gallery2_title: "Horizon Station", gallery2_desc: "Orbital complex with adjustable artificial gravity.",
+                gallery3_title: "Triton's Geysers", gallery3_desc: "External view of the impressive nitrogen geysers.",
+                gallery4_title: "Biosphere Promenade", gallery4_desc: "Vegetated corridors with species adapted to low temperatures.",
+                gallery5_title: "Neptunian Auroras", gallery5_desc: "Unique phenomenon visible from orbital stations.",
+                gallery6_title: "Research Center", gallery6_desc: "Study of extremophiles in the subterranean oceans.",
+                testimonials_title: "Colonist Testimonials",
+                testimonial1_author: "Dr. Elara Voss", testimonial1_role: "Exobiologist - Epsilon Dome", testimonial1_quote: "Watching extraterrestrial life evolve in the subterranean oceans from my living room is an unforgettable experience. The quality of the habitats surpasses anything on Mars.",
+                testimonial2_author: "Kai Solovyov", testimonial2_role: "Engineer - Horizon Station", testimonial2_quote: "The artificial gravity is so well-calibrated that you forget you're in orbit. The living modules are spacious with a breathtaking view of the Great Dark Spot.",
+                testimonial3_author: "Amina Kuroda", testimonial3_role: "Architect - Azure Dome", testimonial3_quote: "Working on architecture in an environment where every curve must withstand extreme pressures is a thrilling challenge. Our designs merge aesthetics and functionality.",
+                cta_title: "Ready for a Neptunian life?", cta_subtitle: "Our advisors will guide you through your interplanetary relocation project, from habitat selection to transportation.", cta_btn1: "Schedule a Virtual Tour", cta_btn2: "Request a Brochure",
+                footer_brand: "NEPTUNE LIVING", footer_desc: "Pioneers in extraterrestrial housing since 2153.",
+                footer_nav1_title: "Habitats", footer_nav1_list: '<li><a href="#" class="hover:text-cyan-300">Sub-Glacial Domes</a></li><li><a href="#" class="hover:text-cyan-300">Orbital Stations</a></li><li><a href="#" class="hover:text-cyan-300">Cryogenic Bases</a></li><li><a href="#" class="hover:text-cyan-300">Premium Properties</a></li>',
+                footer_nav2_title: "Services", footer_nav2_list: '<li><a href="#" class="hover:text-cyan-300">Interplanetary Transport</a></li><li><a href="#" class="hover:text-cyan-300">Space Equipment</a></li><li><a href="#" class="hover:text-cyan-300">Insurance</a></li><li><a href="#" class="hover:text-cyan-300">Gravity Training</a></li>',
+                footer_contact_title: "Contact", footer_contact_list: '<li class="flex items-center"><i class="fas fa-phone-alt mr-2 text-sm"></i> +1 (555) 123-4567</li><li class="flex items-center"><i class="fas fa-envelope mr-2 text-sm"></i> contact@neptune-living.space</li><li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-sm"></i> Earth HQ: Paris, Moon & E.O.S.</li>',
+                copyright: "<p>© 2189 Neptune Living - All rights reserved beyond Earth's orbit</p>",
+            }
+        };
+
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        const currentTheme = localStorage.getItem('neptuneTheme') || 'dark';
+        if (currentTheme === 'light') {
+            body.classList.add('light-mode');
+        }
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const newTheme = body.classList.contains('light-mode') ? 'light' : 'dark';
+            localStorage.setItem('neptuneTheme', newTheme);
         });
+
+        const setLanguage = (lang) => {
+            document.documentElement.lang = lang;
+            localStorage.setItem('neptuneLang', lang);
+
+            document.querySelectorAll('[data-key]').forEach(elem => {
+                const key = elem.dataset.key;
+                const translation = translations[lang]?.[key];
+                if (translation) {
+                    if (elem.id === 'theme-toggle') {
+                        elem.setAttribute('aria-label', translation);
+                    } else {
+                        elem.innerHTML = translation;
+                    }
+                }
+            });
+            
+            document.title = translations[lang].page_title;
+
+            if (lang === 'fr') {
+                document.getElementById('lang-fr-btn').classList.add('lang-active');
+                document.getElementById('lang-en-btn').classList.remove('lang-active');
+            } else {
+                document.getElementById('lang-en-btn').classList.add('lang-active');
+                document.getElementById('lang-fr-btn').classList.remove('lang-active');
+            }
+        };
+
+        const langFrBtn = document.getElementById('lang-fr-btn');
+        const langEnBtn = document.getElementById('lang-en-btn');
+
+        langFrBtn.addEventListener('click', () => setLanguage('fr'));
+        langEnBtn.addEventListener('click', () => setLanguage('en'));
+
+        const initialLang = localStorage.getItem('neptuneLang') || (navigator.language.startsWith('fr') ? 'fr' : 'en');
+        setLanguage(initialLang);
+    });
     </script>
 </body>
 </html>

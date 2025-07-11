@@ -6,7 +6,7 @@
     <title>Logements Jupiter | Stations Atmosphériques</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { --theme-toggle-icon: "🌙"; }
         body.light-mode { --theme-toggle-icon: "☀️"; }
@@ -30,7 +30,7 @@
         .common-toggle-button { background-color: rgba(255,255,255,0.1); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 9999px; width: 40px; height: 40px; font-size: 1.2rem; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all 0.3s; z-index: 1000; padding: 0; }
         body.light-mode .common-toggle-button { background-color: rgba(10,14,35,0.1); color: #0a0e23; border-color: rgba(10,14,35,0.2); }
         .theme-toggle::before { content: var(--theme-toggle-icon); }
-        .top-right-controls { position: fixed; top: 1.25rem; right: 1.25rem; display: flex; align-items: center; gap: 8px; z-index: 1001; }
+        .top-right-controls { position: fixed; top: 1rem; right: 1rem; display: flex; align-items: center; gap: 8px; z-index: 1001; }
         .lang-switcher { display: flex; gap: 5px; }
         .lang-switcher button { opacity: 0.6; }
         .lang-switcher button.lang-active { opacity: 1; border-color: #f97316 !important; }
@@ -52,75 +52,63 @@
             <button id="theme-toggle" class="theme-toggle common-toggle-button" data-key="theme_toggle_label"></button>
         </div>
 
-        <a href="index.html" class="fixed top-5 left-5 z-50 inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold hover:bg-white/20 transition-all duration-300" title="Retour à la page d'accueil" data-key="back_button">
-            <i class="fas fa-arrow-left mr-2"></i><span>Accueil</span>
-        </a>
+<a href="index.html" class="hidden sm:inline-flex fixed top-4 left-4 z-50 items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold hover:bg-white/20 transition-all duration-300" title="Retour à la page d'accueil" data-key="back_button">
+    <i class="fas fa-arrow-left mr-2"></i><span>Accueil</span>
+</a>
 
-        <header class="pt-24 pb-32 relative">
+        <header class="pt-20 sm:pt-24 pb-24 sm:pb-32 relative">
             <div class="text-center">
-                <h1 class="title-font text-5xl md:text-7xl font-bold tracking-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-blue-400" data-key="hero_title">
+                <h1 class="title-font text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-blue-400" data-key="hero_title">
                     Stations Atmosphériques de Jupiter
                 </h1>
-                <p class="text-xl md:text-2xl max-w-3xl mx-auto opacity-90" data-key="hero_subtitle">
+                <p class="text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto opacity-90" data-key="hero_subtitle">
                     Découvrez une nouvelle manière de vivre parmi les nuages tourbillonnants de la planète géante
                 </p>
-                <div class="mt-16 flex justify-center gap-6">
-                    <button onclick="scrollToSection('habitats')" class="px-8 py-3 rounded-full bg-gradient-to-r from-orange-500 to-orange-700 text-white font-semibold hover:shadow-lg hover:shadow-orange-500/30 transition-all" data-key="btn_habitats">Nos habitats</button>
-                    <button onclick="scrollToSection('tourism')" class="px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/30 transition-all" data-key="btn_tourism">Tourisme scientifique</button>
+                <div class="mt-12 sm:mt-16 flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
+                    <button onclick="scrollToSection('habitats')" class="w-full sm:w-auto px-8 py-3 rounded-full bg-gradient-to-r from-orange-500 to-orange-700 text-white font-semibold hover:shadow-lg hover:shadow-orange-500/30 transition-all" data-key="btn_habitats">Nos habitats</button>
+                    <button onclick="scrollToSection('tourism')" class="w-full sm:w-auto px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/30 transition-all" data-key="btn_tourism">Tourisme scientifique</button>
                 </div>
             </div>
         </header>
         
-        <section id="habitats" class="py-24">
-            <div class="text-center mb-20">
-                <h2 class="title-font text-4xl md:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-orange-300" data-key="habitats_title">Habitats Suspendus</h2>
+        <section id="habitats" class="py-16 sm:py-24">
+            <div class="text-center mb-12 sm:mb-20">
+                <h2 class="title-font text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-orange-300" data-key="habitats_title">Habitats Suspendus</h2>
                 <p class="max-w-2xl mx-auto text-lg opacity-90" data-key="habitats_subtitle">Nos structures autonomes flottantes offrent une vue imprenable sur les nuages joviens</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="habitat-card bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl transition-all duration-300 relative overflow-hidden flex flex-col">
                     <img src="Jupiter/nebula-pod.jpg" alt="Habitat Nebula Pod" class="w-full h-48 object-cover">
-                    <div class="p-8 flex flex-col flex-grow">
+                    <div class="p-6 sm:p-8 flex flex-col flex-grow">
                         <div class="relative z-10 flex flex-col flex-grow">
                              <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-orange-600 flex items-center justify-center mb-6 mx-auto pulse-orange"><i class="fas fa-cloud text-white text-2xl"></i></div>
                             <h3 class="title-font text-2xl font-semibold mb-4 text-center" data-key="card1_title">Nebula Pod</h3>
                             <p class="mb-6 opacity-90 flex-grow" data-key="card1_desc">Modules individuels suspendus dans les couches supérieures, équipés de laboratoires et de baies vitrées à 360°.</p>
-                            <ul class="space-y-2 text-sm text-gray-300 mb-6" data-key="card1_features">
-                                <li class="flex items-center"><i class="fas fa-check-circle text-blue-400 mr-2"></i> Résistance aux vents de 500 km/h</li>
-                                <li class="flex items-center"><i class="fas fa-check-circle text-blue-400 mr-2"></i> Stabilisation gyroscopique</li>
-                                <li class="flex items-center"><i class="fas fa-check-circle text-blue-400 mr-2"></i> Parois autonettoyantes</li>
-                            </ul>
+                            <ul class="space-y-2 text-sm text-gray-300 mb-6" data-key="card1_features"></ul>
                             <button class="w-full mt-auto py-3 rounded-lg bg-gradient-to-r from-blue-600/80 to-blue-800/80 hover:from-blue-500/80" data-key="btn_availability">Voir disponibilités</button>
                         </div>
                     </div>
                 </div>
                 <div class="habitat-card bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl transition-all duration-300 relative overflow-hidden flex flex-col">
                     <img src="Jupiter/stratosphere-tower.jpg" alt="Tour stratosphérique" class="w-full h-48 object-cover">
-                    <div class="p-8 flex flex-col flex-grow">
+                    <div class="p-6 sm:p-8 flex flex-col flex-grow">
                         <div class="relative z-10 flex flex-col flex-grow">
                             <div class="w-16 h-16 rounded-full bg-gradient-to-br from-orange-400 to-blue-600 flex items-center justify-center mb-6 mx-auto pulse-blue"><i class="fas fa-layer-group text-white text-2xl"></i></div>
                             <h3 class="title-font text-2xl font-semibold mb-4 text-center" data-key="card2_title">Stratosphere Tower</h3>
                             <p class="mb-6 opacity-90 flex-grow" data-key="card2_desc">Structure verticale multi-niveaux ancrée dans les courants jets, offrant des panoramas changeants.</p>
-                            <ul class="space-y-2 text-sm text-gray-300 mb-6" data-key="card2_features">
-                                <li class="flex items-center"><i class="fas fa-check-circle text-orange-400 mr-2"></i> Plateformes d'observation</li>
-                                <li class="flex items-center"><i class="fas fa-check-circle text-orange-400 mr-2"></i> Jardins hydroponiques</li>
-                                <li class="flex items-center"><i class="fas fa-check-circle text-orange-400 mr-2"></i> Ascenseurs atmosphériques</li>
-                            </ul>
+                            <ul class="space-y-2 text-sm text-gray-300 mb-6" data-key="card2_features"></ul>
                             <button class="w-full mt-auto py-3 rounded-lg bg-gradient-to-r from-orange-600/80 to-orange-800/80 hover:from-orange-500/80" data-key="btn_availability">Voir disponibilités</button>
                         </div>
                     </div>
                 </div>
                 <div class="habitat-card bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl transition-all duration-300 relative overflow-hidden flex flex-col">
                     <img src="Jupiter/Un observatoire spatial.jpg" alt="Observatoire de la Tache Rouge" class="w-full h-48 object-cover">
-                    <div class="p-8 flex flex-col flex-grow">
+                    <div class="p-6 sm:p-8 flex flex-col flex-grow">
                         <div class="relative z-10 flex flex-col flex-grow">
                             <div class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-blue-400 flex items-center justify-center mb-6 mx-auto pulse-orange"><i class="fas fa-redo text-white text-2xl"></i></div>
                             <h3 class="title-font text-2xl font-semibold mb-4 text-center" data-key="card3_title">Red Spot Observatory</h3>
                             <p class="mb-6 opacity-90 flex-grow" data-key="card3_desc">Station mobile en orbite autour de la Grande Tache Rouge, pour une immersion totale dans le plus grand vortex du système solaire.</p>
-                            <ul class="space-y-2 text-sm text-gray-300 mb-6" data-key="card3_features">
-                                <li class="flex items-center"><i class="fas fa-check-circle text-purple-400 mr-2"></i> Boucliers anti-tempête</li>
-                                <li class="flex items-center"><i class="fas fa-check-circle text-purple-400 mr-2"></i> Analyseurs haute résolution</li>
-                                <li class="flex items-center"><i class="fas fa-check-circle text-purple-400 mr-2"></i> Quartiers pour long séjour</li>
-                            </ul>
+                            <ul class="space-y-2 text-sm text-gray-300 mb-6" data-key="card3_features"></ul>
                             <button class="w-full mt-auto py-3 rounded-lg bg-gradient-to-r from-purple-600/80 to-blue-800/80 hover:from-purple-500/80" data-key="btn_availability">Voir disponibilités</button>
                         </div>
                     </div>
@@ -128,115 +116,59 @@
             </div>
         </section>
         
-        <section id="tourism" class="py-24 relative">
-             <div class="text-center mb-20">
-                <h2 class="title-font text-4xl md:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-orange-300 to-blue-300" data-key="tourism_title">Tourisme Scientifique</h2>
+        <section id="tourism" class="py-16 sm:py-24 relative">
+             <div class="text-center mb-12 sm:mb-20">
+                <h2 class="title-font text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-orange-300 to-blue-300" data-key="tourism_title">Tourisme Scientifique</h2>
                 <p class="max-w-2xl mx-auto text-lg opacity-90" data-key="tourism_subtitle">Vivez une expérience unique combinant aventure spatiale et recherche de pointe</p>
             </div>
             <div class="flex flex-col lg:flex-row gap-12 items-center">
                 <div class="lg:w-1/2 relative float-animation"><img src="Jupiter/Vue station atmosphérique complexe.jpg" alt="Station atmosphérique complexe" class="w-full h-auto rounded-2xl shadow-2xl border border-gray-800"></div>
                 <div class="lg:w-1/2">
-                    <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 mb-8">
+                    <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 sm:p-8 mb-8">
                         <h3 class="title-font text-2xl font-semibold mb-4 text-orange-400" data-key="immersion_title">Programme d'Immersion</h3>
                         <p class="mb-4 opacity-90" data-key="immersion_desc">Participez activement aux recherches tout en profitant d'un hébergement de luxe.</p>
-                        <ul class="space-y-3 text-gray-300" data-key="immersion_list">
-                            <li class="flex items-start"><i class="fas fa-vial text-blue-400 mt-1 mr-3"></i><span>Collecte d'échantillons atmosphériques</span></li>
-                            <li class="flex items-start"><i class="fas fa-satellite-dish text-orange-400 mt-1 mr-3"></i><span>Survol de phénomènes extrêmes</span></li>
-                            <li class="flex items-start"><i class="fas fa-chart-line text-purple-400 mt-1 mr-3"></i><span>Ateliers sur la dynamique des fluides</span></li>
-                        </ul>
+                        <ul class="space-y-3 text-gray-300" data-key="immersion_list"></ul>
                     </div>
-                    <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8">
+                    <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 sm:p-8">
                         <h3 class="title-font text-2xl font-semibold mb-4 text-blue-400" data-key="experience_title">Expériences Uniques</h3>
                         <p class="mb-4 opacity-90" data-key="experience_desc">Des activités que vous ne vivrez nulle part ailleurs.</p>
-                        <ul class="space-y-3 text-gray-300" data-key="experience_list">
-                            <li class="flex items-start"><i class="fas fa-wind text-orange-400 mt-1 mr-3"></i><span>Plongée dans les courants-jets</span></li>
-                            <li class="flex items-start"><i class="fas fa-eye text-blue-400 mt-1 mr-3"></i><span>Observation de la Grande Tache Rouge</span></li>
-                            <li class="flex items-start"><i class="fas fa-cloud-moon text-purple-400 mt-1 mr-3"></i><span>Nuits sous les aurores joviennes</span></li>
-                        </ul>
+                        <ul class="space-y-3 text-gray-300" data-key="experience_list"></ul>
                     </div>
                 </div>
             </div>
         </section>
         
-        <section class="py-24 bg-gradient-to-b from-gray-900/50 to-transparent rounded-3xl my-12">
-            <div class="text-center mb-20">
-                <h2 class="title-font text-4xl md:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-orange-300" data-key="platforms_title">Plateformes Flottantes</h2>
-                <p class="max-w-2xl mx-auto text-lg opacity-90" data-key="platforms_subtitle">Nos structures exploitent les courants ascendants naturels de l'atmosphère</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-6">
-                    <div class="w-14 h-14 rounded-full bg-blue-700/30 flex items-center justify-center mb-4 mx-auto"><i class="fas fa-anchor text-blue-300 text-xl"></i></div>
-                    <h3 class="title-font text-xl font-semibold mb-3 text-center" data-key="platform1_title">Ancrage Dynamique</h3>
-                    <p class="text-sm opacity-90" data-key="platform1_desc">Utilisation de voiles atmosphériques pour maintenir la position entre les couches nuageuses.</p>
-                </div>
-                <div class="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-6">
-                    <div class="w-14 h-14 rounded-full bg-orange-700/30 flex items-center justify-center mb-4 mx-auto"><i class="fas fa-bolt text-orange-300 text-xl"></i></div>
-                    <h3 class="title-font text-xl font-semibold mb-3 text-center" data-key="platform2_title">Collecte d'Énergie</h3>
-                    <p class="text-sm opacity-90" data-key="platform2_desc">Turbines convertissant les flux atmosphériques intenses en énergie propre pour les stations.</p>
-                </div>
-                <div class="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-6">
-                    <div class="w-14 h-14 rounded-full bg-purple-700/30 flex items-center justify-center mb-4 mx-auto"><i class="fas fa-shield-alt text-purple-300 text-xl"></i></div>
-                    <h3 class="title-font text-xl font-semibold mb-3 text-center" data-key="platform3_title">Protection Intégrée</h3>
-                    <p class="text-sm opacity-90" data-key="platform3_desc">Champs de force et boucliers thermiques contre les radiations et débris atmosphériques.</p>
-                </div>
-            </div>
-        </section>
-        
-        <section class="py-24 text-center relative">
-            <div class="relative z-10 max-w-3xl mx-auto">
-                <h2 class="title-font text-4xl md:text-5xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-orange-300 to-blue-300" data-key="cta_title">Prêt pour l'Expérience Jovienne?</h2>
-                <p class="text-xl mb-10 opacity-90" data-key="cta_subtitle">Réservez votre séjour et participez à l'aventure scientifique du siècle.</p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <button class="px-8 py-4 rounded-full bg-gradient-to-r from-orange-500 to-orange-700 text-white font-semibold" data-key="btn_quote">Demander un devis</button>
-                    <button class="px-8 py-4 rounded-full bg-gradient-to-r from-gray-700 to-gray-900 border border-gray-700 text-white font-semibold" data-key="btn_video">Vidéo de présentation <i class="fas fa-play ml-2"></i></button>
-                </div>
-            </div>
-        </section>
-    </div>
-    
-    <footer class="bg-gray-900/80 backdrop-blur-sm border-t border-gray-800 py-12 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="title-font text-lg font-semibold mb-4 text-blue-300" data-key="footer1_title">Stations Atmosphériques</h3>
-                    <p class="text-sm text-gray-400" data-key="footer1_desc">Leaders en hébergement extraterrestre depuis 2156. Vivez Jupiter comme jamais auparavant.</p>
-                </div>
-                <div>
-                    <h3 class="title-font text-lg font-semibold mb-4 text-orange-300" data-key="footer2_title">Navigation</h3>
-                    <ul class="space-y-2" data-key="footer2_list">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Accueil</a></li>
-                        <li><a href="#habitats" class="text-gray-400 hover:text-white transition">Habitats</a></li>
-                        <li><a href="#tourism" class="text-gray-400 hover:text-white transition">Tourisme</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Recherche</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="title-font text-lg font-semibold mb-4 text-purple-300" data-key="footer3_title">Contacts</h3>
-                    <ul class="space-y-2 text-gray-400 text-sm" data-key="footer3_list">
-                        <li class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-3 text-gray-500"></i><span>Orbite jovienne<br>Station Alpha-7</span></li>
-                        <li class="flex items-center"><i class="fas fa-comment-alt mt-1 mr-3 text-gray-500"></i><span>contact@jupiterstations.space</span></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="title-font text-lg font-semibold mb-4 text-blue-300" data-key="footer4_title">Réseaux</h3>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-400"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-600"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-red-500"><i class="fab fa-youtube"></i></a>
+        <footer class="bg-gray-900/80 backdrop-blur-sm border-t border-gray-800 py-12 relative z-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div>
+                        <h3 class="title-font text-lg font-semibold mb-4 text-blue-300" data-key="footer1_title"></h3>
+                        <p class="text-sm text-gray-400" data-key="footer1_desc"></p>
+                    </div>
+                    <div>
+                        <h3 class="title-font text-lg font-semibold mb-4 text-orange-300" data-key="footer2_title"></h3>
+                        <ul class="space-y-2" data-key="footer2_list"></ul>
+                    </div>
+                    <div>
+                        <h3 class="title-font text-lg font-semibold mb-4 text-purple-300" data-key="footer3_title"></h3>
+                        <ul class="space-y-2 text-gray-400 text-sm" data-key="footer3_list"></ul>
+                    </div>
+                    <div>
+                        <h3 class="title-font text-lg font-semibold mb-4 text-blue-300" data-key="footer4_title"></h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-400"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-600"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-red-500"><i class="fab fa-youtube"></i></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-500 text-sm mb-4 md:mb-0" data-key="copyright">© 2187 Jupiter Stations Atmospheriques. Tous droits réservés.</p>
-                <div class="flex space-x-6" data-key="legal_links">
-                    <a href="#" class="text-gray-500 hover:text-white transition text-sm">Conditions</a>
-                    <a href="#" class="text-gray-500 hover:text-white transition text-sm">Confidentialité</a>
-                    <a href="#" class="text-gray-500 hover:text-white transition text-sm">Sécurité</a>
+                <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0" data-key="copyright"></p>
+                    <div class="flex space-x-6" data-key="legal_links"></div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
     
     <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -252,40 +184,22 @@
                 tourism_title: "Tourisme Scientifique", tourism_subtitle: "Vivez une expérience unique combinant aventure spatiale et recherche de pointe",
                 immersion_title: "Programme d'Immersion", immersion_desc: "Participez activement aux recherches tout en profitant d'un hébergement de luxe.", immersion_list: '<li class="flex items-start"><i class="fas fa-vial text-blue-400 mt-1 mr-3"></i><span>Collecte d\'échantillons atmosphériques</span></li><li class="flex items-start"><i class="fas fa-satellite-dish text-orange-400 mt-1 mr-3"></i><span>Survol de phénomènes extrêmes</span></li><li class="flex items-start"><i class="fas fa-chart-line text-purple-400 mt-1 mr-3"></i><span>Ateliers sur la dynamique des fluides</span></li>',
                 experience_title: "Expériences Uniques", experience_desc: "Des activités que vous ne vivrez nulle part ailleurs.", experience_list: '<li class="flex items-start"><i class="fas fa-wind text-orange-400 mt-1 mr-3"></i><span>Plongée dans les courants-jets</span></li><li class="flex items-start"><i class="fas fa-eye text-blue-400 mt-1 mr-3"></i><span>Observation de la Grande Tache Rouge</span></li><li class="flex items-start"><i class="fas fa-cloud-moon text-purple-400 mt-1 mr-3"></i><span>Nuits sous les aurores joviennes</span></li>',
-                platforms_title: "Plateformes Flottantes", platforms_subtitle: "Nos structures exploitent les courants ascendants naturels de l'atmosphère",
-                platform1_title: "Ancrage Dynamique", platform1_desc: "Utilisation de voiles atmosphériques pour maintenir la position entre les couches nuageuses.",
-                platform2_title: "Collecte d'Énergie", platform2_desc: "Turbines convertissant les flux atmosphériques intenses en énergie propre pour les stations.",
-                platform3_title: "Protection Intégrée", platform3_desc: "Champs de force et boucliers thermiques contre les radiations et débris atmosphériques.",
-                cta_title: "Prêt pour l'Expérience Jovienne?", cta_subtitle: "Réservez votre séjour et participez à l'aventure scientifique du siècle.",
-                btn_quote: "Demander un devis", btn_video: 'Vidéo de présentation <i class="fas fa-play ml-2"></i>',
-                footer1_title: "Stations Atmosphériques", footer1_desc: "Leaders en hébergement extraterrestre depuis 2156. Vivez Jupiter comme jamais auparavant.",
-                footer2_title: "Navigation", footer2_list: '<li><a href="#" class="text-gray-400 hover:text-white transition">Accueil</a></li><li><a href="#habitats" class="text-gray-400 hover:text-white transition">Habitats</a></li><li><a href="#tourism" class="text-gray-400 hover:text-white transition">Tourisme</a></li><li><a href="#" class="text-gray-400 hover:text-white transition">Recherche</a></li>',
-                footer3_title: "Contacts", footer3_list: '<li class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-3 text-gray-500"></i><span>Orbite jovienne<br>Station Alpha-7</span></li><li class="flex items-center"><i class="fas fa-comment-alt mt-1 mr-3 text-gray-500"></i><span>contact@jupiterstations.space</span></li>',
-                footer4_title: "Réseaux",
-                copyright: "© 2187 Jupiter Stations Atmospheriques. Tous droits réservés.", legal_links: '<a href="#" class="text-gray-500 hover:text-white transition text-sm">Conditions</a><a href="#" class="text-gray-500 hover:text-white transition text-sm">Confidentialité</a><a href="#" class="text-gray-500 hover:text-white transition text-sm">Sécurité</a>'
+                footer1_title: "Stations Atmosphériques", footer1_desc: "Leaders en hébergement extraterrestre depuis 2156.", footer2_title: "Navigation", footer2_list: '<li><a href="#" class="text-gray-400 hover:text-white transition">Accueil</a></li><li><a href="#habitats" class="text-gray-400 hover:text-white transition">Habitats</a></li>', footer3_title: "Contacts", footer3_list: '<li class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-3"></i><span>Orbite jovienne<br>Station Alpha-7</span></li>', footer4_title: "Réseaux",
+                copyright: "© 2187 Jupiter Stations. Tous droits réservés.", legal_links: '<a href="#" class="text-gray-500 hover:text-white text-sm">Conditions</a><a href="#" class="text-gray-500 hover:text-white text-sm">Confidentialité</a>'
             },
             en: {
                 theme_toggle_label: "Change theme", back_button: '<i class="fas fa-arrow-left mr-2"></i><span>Home</span>',
                 hero_title: "Jupiter's Atmospheric Stations", hero_subtitle: "Discover a new way of life among the swirling clouds of the giant planet",
                 btn_habitats: "Our Habitats", btn_tourism: "Scientific Tourism", habitats_title: "Floating Habitats", habitats_subtitle: "Our autonomous floating structures offer breathtaking views of the Jovian clouds",
-                card1_title: "Nebula Pod", card1_desc: "Individual modules suspended in the upper layers, equipped with laboratories and 360° glass bays.", card1_features: '<li class="flex items-center"><i class="fas fa-check-circle text-blue-400 mr-2"></i> Resistant to 500 km/h winds</li><li class="flex items-center"><i class="fas fa-check-circle text-blue-400 mr-2"></i> Gyroscopic stabilization</li><li class="flex items-center"><i class="fas fa-check-circle text-blue-400 mr-2"></i> Self-cleaning walls</li>',
-                card2_title: "Stratosphere Tower", card2_desc: "Multi-level vertical structure anchored in the jet streams, offering changing panoramas.", card2_features: '<li class="flex items-center"><i class="fas fa-check-circle text-orange-400 mr-2"></i> Observation platforms</li><li class="flex items-center"><i class="fas fa-check-circle text-orange-400 mr-2"></i> Hydroponic gardens</li><li class="flex items-center"><i class="fas fa-check-circle text-orange-400 mr-2"></i> Atmospheric elevators</li>',
+                card1_title: "Nebula Pod", card1_desc: "Individual modules suspended in the upper layers, with labs and 360° glass bays.", card1_features: '<li class="flex items-center"><i class="fas fa-check-circle text-blue-400 mr-2"></i> 500 km/h wind resistance</li><li class="flex items-center"><i class="fas fa-check-circle text-blue-400 mr-2"></i> Gyroscopic stabilization</li><li class="flex items-center"><i class="fas fa-check-circle text-blue-400 mr-2"></i> Self-cleaning walls</li>',
+                card2_title: "Stratosphere Tower", card2_desc: "Multi-level vertical structure anchored in jet streams, offering changing panoramas.", card2_features: '<li class="flex items-center"><i class="fas fa-check-circle text-orange-400 mr-2"></i> Observation platforms</li><li class="flex items-center"><i class="fas fa-check-circle text-orange-400 mr-2"></i> Hydroponic gardens</li><li class="flex items-center"><i class="fas fa-check-circle text-orange-400 mr-2"></i> Atmospheric elevators</li>',
                 card3_title: "Red Spot Observatory", card3_desc: "Mobile station orbiting the Great Red Spot for total immersion in the solar system's largest vortex.", card3_features: '<li class="flex items-center"><i class="fas fa-check-circle text-purple-400 mr-2"></i> Storm shields</li><li class="flex items-center"><i class="fas fa-check-circle text-purple-400 mr-2"></i> High-resolution analyzers</li><li class="flex items-center"><i class="fas fa-check-circle text-purple-400 mr-2"></i> Long-stay quarters</li>',
                 btn_availability: "Check Availability",
                 tourism_title: "Scientific Tourism", tourism_subtitle: "Experience a unique blend of space adventure and cutting-edge research",
-                immersion_title: "Immersion Program", immersion_desc: "Actively participate in research while enjoying luxury accommodation.", immersion_list: '<li class="flex items-start"><i class="fas fa-vial text-blue-400 mt-1 mr-3"></i><span>Atmospheric sample collection</span></li><li class="flex items-start"><i class="fas fa-satellite-dish text-orange-400 mt-1 mr-3"></i><span>Extreme weather flyovers</span></li><li class="flex items-start"><i class="fas fa-chart-line text-purple-400 mt-1 mr-3"></i><span>Planetary fluid dynamics workshops</span></li>',
+                immersion_title: "Immersion Program", immersion_desc: "Actively participate in research while enjoying luxury accommodation.", immersion_list: '<li class="flex items-start"><i class="fas fa-vial text-blue-400 mt-1 mr-3"></i><span>Atmospheric sample collection</span></li><li class="flex items-start"><i class="fas fa-satellite-dish text-orange-400 mt-1 mr-3"></i><span>Extreme weather flyovers</span></li><li class="flex items-start"><i class="fas fa-chart-line text-purple-400 mt-1 mr-3"></i><span>Fluid dynamics workshops</span></li>',
                 experience_title: "Unique Experiences", experience_desc: "Activities you will not experience anywhere else.", experience_list: '<li class="flex items-start"><i class="fas fa-wind text-orange-400 mt-1 mr-3"></i><span>Diving into jet streams</span></li><li class="flex items-start"><i class="fas fa-eye text-blue-400 mt-1 mr-3"></i><span>Observing the Great Red Spot</span></li><li class="flex items-start"><i class="fas fa-cloud-moon text-purple-400 mt-1 mr-3"></i><span>Nights under Jovian auroras</span></li>',
-                platforms_title: "Floating Platforms", platforms_subtitle: "Our structures harness the natural updrafts of the atmosphere",
-                platform1_title: "Dynamic Anchoring", platform1_desc: "Using atmospheric sails to maintain position between cloud layers.",
-                platform2_title: "Energy Harvesting", platform2_desc: "Turbines converting intense atmospheric flows into clean energy for the stations.",
-                platform3_title: "Integrated Protection", platform3_desc: "Force fields and heat shields against radiation and atmospheric debris.",
-                cta_title: "Ready for the Jovian Experience?", cta_subtitle: "Book your stay and join the scientific adventure of the century.",
-                btn_quote: "Request a Quote", btn_video: 'Presentation Video <i class="fas fa-play ml-2"></i>',
-                footer1_title: "Atmospheric Stations", footer1_desc: "Leaders in extraterrestrial hosting since 2156. Experience Jupiter like never before.",
-                footer2_title: "Navigation", footer2_list: '<li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li><li><a href="#habitats" class="text-gray-400 hover:text-white transition">Habitats</a></li><li><a href="#tourism" class="text-gray-400 hover:text-white transition">Tourism</a></li><li><a href="#" class="text-gray-400 hover:text-white transition">Research</a></li>',
-                footer3_title: "Contacts", footer3_list: '<li class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-3 text-gray-500"></i><span>Jovian Orbit<br>Station Alpha-7</span></li><li class="flex items-center"><i class="fas fa-comment-alt mt-1 mr-3 text-gray-500"></i><span>contact@jupiterstations.space</span></li>',
-                footer4_title: "Networks",
-                copyright: "© 2187 Jupiter Atmospheric Stations. All rights reserved.", legal_links: '<a href="#" class="text-gray-500 hover:text-white transition text-sm">Terms</a><a href="#" class="text-gray-500 hover:text-white transition text-sm">Privacy</a><a href="#" class="text-gray-500 hover:text-white transition text-sm">Security</a>'
+                footer1_title: "Atmospheric Stations", footer1_desc: "Leaders in extraterrestrial hosting since 2156.", footer2_title: "Navigation", footer2_list: '<li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li><li><a href="#habitats" class="text-gray-400 hover:text-white transition">Habitats</a></li>', footer3_title: "Contacts", footer3_list: '<li class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-3"></i><span>Jovian Orbit<br>Station Alpha-7</span></li>', footer4_title: "Networks",
+                copyright: "© 2187 Jupiter Stations. All rights reserved.", legal_links: '<a href="#" class="text-gray-500 hover:text-white text-sm">Terms</a><a href="#" class="text-gray-500 hover:text-white text-sm">Privacy</a>'
             }
         };
 
@@ -323,30 +237,6 @@
         langEnBtn.addEventListener('click', () => setLanguage('en'));
         const initialLang = localStorage.getItem('jupiterLang') || (navigator.language.startsWith('fr') ? 'fr' : 'en');
         setLanguage(initialLang);
-
-        function createStars() {
-            const starsContainer = document.createElement('div');
-            starsContainer.style.position = 'absolute';
-            starsContainer.style.inset = '0';
-            starsContainer.style.pointerEvents = 'none';
-            document.getElementById('background-wrapper').appendChild(starsContainer);
-            
-            for (let i = 0; i < 100; i++) {
-                const star = document.createElement('div');
-                star.className = 'absolute rounded-full bg-white';
-                star.style.width = `${Math.random()*0.1+0.1}vmin`;
-                star.style.height = star.style.width;
-                star.style.left = `${Math.random()*100}%`;
-                star.style.top = `${Math.random()*100}%`;
-                star.style.opacity = Math.random()*0.7+0.1;
-                star.style.animation = `twinkle ${Math.random()*3+2}s infinite ${Math.random()*5}s`;
-                starsContainer.appendChild(star);
-            }
-        }
-        const style = document.createElement('style');
-        style.innerHTML = `@keyframes twinkle { 0%, 100% { opacity: 0.2; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.1); } }`;
-        document.head.appendChild(style);
-        window.addEventListener('load', createStars);
     });
 
     function scrollToSection(id) {
